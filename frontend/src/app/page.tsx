@@ -1,6 +1,3 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import {
   Bell,
   Search,
@@ -12,7 +9,6 @@ import {
   Users,
   Settings,
   HelpCircle,
-  LogIn,
   LogOut,
   Flame,
   TrendingUp,
@@ -21,8 +17,6 @@ import {
   UserPlus,
 } from "lucide-react";
 import { WorkoutIllustration } from "@/components/workout-illustration";
-import { RequireAuth } from "@/components/require-auth";
-import { useAuth } from "@/lib/auth-context";
 
 const navItems = [
   { label: "대시보드", icon: LayoutDashboard, active: true },
@@ -35,6 +29,7 @@ const navItems = [
 const generalItems = [
   { label: "설정", icon: Settings },
   { label: "도움말", icon: HelpCircle },
+  { label: "로그아웃", icon: LogOut },
 ];
 
 const stats = [
@@ -131,26 +126,6 @@ function DayBar({
 
 export default function Home() {
   return (
-    <RequireAuth>
-      <Dashboard />
-    </RequireAuth>
-  );
-}
-
-function Dashboard() {
-  const { user, logout } = useAuth();
-  const router = useRouter();
-
-  function handleAuthButtonClick() {
-    if (user) {
-      logout();
-      router.push("/login");
-    } else {
-      router.push("/login");
-    }
-  }
-
-  return (
     <div className="flex min-h-screen w-full bg-gray-50 text-gray-900">
       {/* Sidebar */}
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 py-5 lg:flex">
@@ -193,13 +168,6 @@ function Dashboard() {
               {label}
             </button>
           ))}
-          <button
-            onClick={handleAuthButtonClick}
-            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100"
-          >
-            {user ? <LogOut size={18} /> : <LogIn size={18} />}
-            {user ? "로그아웃" : "로그인"}
-          </button>
         </nav>
 
         <div className="mt-auto shrink-0 rounded-2xl bg-gradient-to-br from-emerald-900 to-emerald-700 p-4 text-white">
@@ -223,20 +191,15 @@ function Dashboard() {
             <Bell size={18} />
             <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-rose-500" />
           </button>
-          <button
-            onClick={handleAuthButtonClick}
-            className="flex items-center gap-3 rounded-full p-1 text-left hover:bg-gray-50"
-          >
+          <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-sm font-semibold text-emerald-800">
-              {user ? user.lastName[0] : "?"}
+              도
             </div>
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold leading-tight">
-                {user ? `${user.lastName}${user.firstName}` : "게스트"}
-              </p>
-              <p className="text-xs text-gray-400">{user?.email ?? "로그인이 필요합니다"}</p>
+              <p className="text-sm font-semibold leading-tight">김도윤</p>
+              <p className="text-xs text-gray-400">doyoon@example.com</p>
             </div>
-          </button>
+          </div>
         </header>
 
         <main className="space-y-6 p-6 lg:p-8">

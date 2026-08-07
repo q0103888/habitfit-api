@@ -25,14 +25,7 @@ public class AuthService {
         if (userRepository.existsByEmail(request.email())) {
             throw new IllegalArgumentException("이미 가입된 이메일입니다.");
         }
-        User user =
-                new User(
-                        request.email(),
-                        passwordEncoder.encode(request.password()),
-                        request.lastName(),
-                        request.firstName(),
-                        request.birthDate(),
-                        request.nationality());
+        User user = new User(request.email(), passwordEncoder.encode(request.password()));
         userRepository.save(user);
         return new AuthResponse(jwtService.generateToken(user.getEmail()), user.getEmail());
     }
@@ -47,18 +40,5 @@ public class AuthService {
             throw new BadCredentialsException("이메일 또는 비밀번호가 올바르지 않습니다.");
         }
         return new AuthResponse(jwtService.generateToken(user.getEmail()), user.getEmail());
-    }
-
-    public MeResponse getProfile(String email) {
-        User user =
-                userRepository
-                        .findByEmail(email)
-                        .orElseThrow(() -> new BadCredentialsException("사용자를 찾을 수 없습니다."));
-        return new MeResponse(
-                user.getEmail(),
-                user.getLastName(),
-                user.getFirstName(),
-                user.getBirthDate(),
-                user.getNationality());
     }
 }
