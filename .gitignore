@@ -1,0 +1,11 @@
+node_modules/
+.next/
+target/
+build/
+*.log
+.env
+.DS_Store
+.idea/
+.vscode/
+frontend/*-preview.png
+frontend/dashboard-loggedin.png
