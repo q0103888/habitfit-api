@@ -13,6 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+// OncePerRequestFilter를 상속하면, 이 서버로 들어오는 "모든" HTTP 요청마다
+// doFilterInternal()이 자동으로 한 번씩 실행됨 (요청마다 문지기가 검문하는 셈)
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -30,15 +32,24 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain)
             throws ServletException, IOException {
+
+        // 요청 헤더에서 "Authorization: Bearer eyJ..." 형태의 값을 꺼냄
         String header = request.getHeader("Authorization");
+
         if (header != null && header.startsWith("Bearer ")) {
+            // "Bearer " 뒤(7글자 이후)가 진짜 토큰 문자열
             String token = header.substring(7);
+
             if (jwtService.isValid(token)) {
                 String email = jwtService.extractEmail(token);
+
+                // 토큰이 진짜면, 이메일로 실제 유저가 DB에 있는지 확인
                 userRepository
                         .findByEmail(email)
                         .ifPresent(
                                 user -> {
+                                    // "이 요청은 이 사람이 보낸 게 맞다"고 스프링 시큐리티에 등록.
+                                    // 이후 컨트롤러에서 Authentication 파라미터로 이 정보를 꺼내 씀
                                     var auth =
                                             new UsernamePasswordAuthenticationToken(
                                                     user.getEmail(), null, List.of());
@@ -46,6 +57,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                                 });
             }
         }
+
+        // 검문 끝났으면 다음 처리 단계로 넘김.
+        // 이 줄이 없으면 모든 요청이 여기서 영원히 멈춰버림 (필수!)
         filterChain.doFilter(request, response);
     }
 }
