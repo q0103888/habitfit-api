@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.List;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -49,11 +50,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                         .ifPresent(
                                 user -> {
                                     // "이 요청은 이 사람이 보낸 게 맞다"고 스프링 시큐리티에 등록.
-                                    // 이후 컨트롤러에서 Authentication 파라미터로 이 정보를 꺼내 씀
+                                    // Spring Security 6부터는 기존 context를 그대로 수정하는 대신
+                                    // 새 context를 만들어서 통째로 SecurityContextHolder에 등록해야
+                                    // 뒤쪽 필터(AuthorizationFilter)에서 확실히 인식됨
                                     var auth =
                                             new UsernamePasswordAuthenticationToken(
                                                     user.getEmail(), null, List.of());
-                                    SecurityContextHolder.getContext().setAuthentication(auth);
+                                    SecurityContext context = SecurityContextHolder.createEmptyContext();
+                                    context.setAuthentication(auth);
+                                    SecurityContextHolder.setContext(context);
                                 });
             }
         }

@@ -50,7 +50,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         auth ->
                                 // 회원가입/로그인/헬스체크는 토큰 없이도 허용
-                                auth.requestMatchers("/api/auth/signup", "/api/auth/login", "/actuator/health")
+                                auth.requestMatchers(
+                                                "/api/auth/signup",
+                                                "/api/auth/login",
+                                                "/actuator/health",
+                                                "/error") // 존재하지 않는 URL 요청 시 내부 포워딩되는 경로. 없으면 404가 403으로 둔갑함
                                         .permitAll()
                                         // 그 외 모든 요청은 인증(로그인) 필수
                                         .anyRequest()
