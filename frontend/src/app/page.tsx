@@ -1,3 +1,5 @@
+"use client"; // 파일 맨 첫 줄에 추가
+
 import {
   Bell,
   Search,
@@ -17,6 +19,10 @@ import {
   UserPlus,
 } from "lucide-react";
 import { WorkoutIllustration } from "@/components/workout-illustration";
+import { useRouter } from "next/navigation";
+import { RequireAuth } from "@/components/require-auth";
+import { useAuth } from "@/lib/auth-context";
+
 
 const navItems = [
   { label: "대시보드", icon: LayoutDashboard, active: true },
@@ -29,7 +35,6 @@ const navItems = [
 const generalItems = [
   { label: "설정", icon: Settings },
   { label: "도움말", icon: HelpCircle },
-  { label: "로그아웃", icon: LogOut },
 ];
 
 const stats = [
@@ -126,7 +131,26 @@ function DayBar({
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen w-full bg-gray-50 text-gray-900">
+    <RequireAuth>
+      <Dashboard />
+    </RequireAuth>
+  );
+}
+
+// Home() 안에 중첩해서 정의하면 Home이 리렌더링될 때마다 Dashboard가
+// "새로운 컴포넌트"로 취급돼서 매번 다시 마운트됨(깜빡임/상태 초기화 원인).
+// 그래서 같은 파일이지만 Home과는 별개의(형제) 함수로 분리해서 정의함
+function Dashboard() {
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
+  function handleLogout() {
+    logout();
+    router.push("/login");
+  }
+
+  return (
+      <div className="flex min-h-screen w-full bg-gray-50 text-gray-900">
       {/* Sidebar */}
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 py-5 lg:flex">
         <div className="flex items-center gap-2 px-1">
@@ -153,6 +177,13 @@ export default function Home() {
               {label}
             </button>
           ))}
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100"
+          >
+            <LogOut size={18} />
+            로그아웃
+          </button>
         </nav>
 
         <p className="mt-6 px-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
@@ -192,12 +223,12 @@ export default function Home() {
             <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-rose-500" />
           </button>
           <div className="flex items-center gap-3">
+            {/* 아바타 원 안에는 이니셜(이름 첫 글자)만 — 문장이 들어가면 40x40px 원을 넘침 */}
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-sm font-semibold text-emerald-800">
-              도
+              {user?.firstName?.[0]}
             </div>
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold leading-tight">김도윤</p>
-              <p className="text-xs text-gray-400">doyoon@example.com</p>
+              <p className="text-sm font-semibold leading-tight">{user?.firstName}님</p>
             </div>
           </div>
         </header>
@@ -397,5 +428,7 @@ export default function Home() {
         </main>
       </div>
     </div>
-  );
+  )
 }
+
+

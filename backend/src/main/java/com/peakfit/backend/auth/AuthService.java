@@ -47,7 +47,7 @@ public class AuthService {
         userRepository.save(user);
 
         // 가입 완료 = 로그인도 된 것으로 취급 → 바로 토큰 발급해서 반환
-        return new AuthResponse(jwtService.generateToken(user.getEmail()), user.getEmail());
+        return new AuthResponse(jwtService.generateToken(user.getEmail()), user.getEmail(), user.getFirstName());
     }
 
     // 로그인
@@ -66,6 +66,6 @@ public class AuthService {
         }
 
         // 통과했으면 signup과 동일하게 토큰 발급
-        return new AuthResponse(jwtService.generateToken(user.getEmail()), user.getEmail());
+        return new AuthResponse(jwtService.generateToken(user.getEmail()), user.getEmail(), user.getFirstName());
     }
 }
