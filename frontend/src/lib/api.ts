@@ -31,6 +31,9 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
     throw new ApiError(body.message ?? "요청에 실패했습니다.");
   }
 
+  // 204 No Content처럼 body가 없는 응답에서 res.json()을 부르면 파싱 에러가 남
+  if (res.status === 204) return undefined as T;
+
   return res.json();
 }
 
@@ -61,4 +64,85 @@ export function login(data: LoginPayload) {
     method: "POST",
     body: JSON.stringify(data),
   });
+}
+
+// 백엔드 RoutineResponse 레코드와 모양을 맞춘 타입
+export type Routine = {
+  id: number;
+  bodyPart: string;
+  exerciseName: string;
+  scheduledDate: string;
+  done: boolean;
+  fromTemplate: boolean;
+};
+
+export type RoutinePayload = {
+  bodyPart: string;
+  exerciseName: string;
+  scheduledDate: string;
+};
+
+// date를 안 주면 백엔드가 오늘 날짜 기준으로 조회
+export function getRoutines(date?: string) {
+  return request<Routine[]>(`/api/routines${date ? `?date=${date}` : ""}`);
+}
+
+// date가 속한 주(일~토) 전체 루틴 조회 — date를 안 주면 이번 주 기준
+export function getWeekRoutines(date?: string) {
+  return request<Routine[]>(`/api/routines/week${date ? `?date=${date}` : ""}`);
+}
+
+export function createRoutine(data: RoutinePayload) {
+  return request<Routine>("/api/routines", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+}
+
+export function toggleRoutine(id: number) {
+  return request<Routine>(`/api/routines/${id}/toggle`, { method: "PATCH" });
+}
+
+export function deleteRoutine(id: number) {
+  return request<void>(`/api/routines/${id}`, { method: "DELETE" });
+}
+
+// 월요일 시작 — lib/constants.ts의 WEEKDAY_LABELS와 인덱스가 맞아야 함
+export const WEEKDAYS = [
+  "MONDAY",
+  "TUESDAY",
+  "WEDNESDAY",
+  "THURSDAY",
+  "FRIDAY",
+  "SATURDAY",
+  "SUNDAY",
+] as const;
+
+// 백엔드 RoutineTemplateResponse 레코드와 모양을 맞춘 타입 — "매주 O요일 = OO 운동" 반복 규칙
+export type RoutineTemplate = {
+  id: number;
+  bodyPart: string;
+  exerciseName: string;
+  dayOfWeek: (typeof WEEKDAYS)[number];
+};
+
+export type RoutineTemplatePayload = {
+  bodyPart: string;
+  exerciseName: string;
+  dayOfWeek: (typeof WEEKDAYS)[number];
+};
+
+export function getTemplates() {
+  return request<RoutineTemplate[]>("/api/routine-templates");
+}
+
+export function createTemplate(data: RoutineTemplatePayload) {
+  return request<RoutineTemplate>("/api/routine-templates", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+}
+
+export function deleteTemplate(id: number) {
+  return request<void>(`/api/routine-templates/${id}`, { method: "DELETE" });
 }

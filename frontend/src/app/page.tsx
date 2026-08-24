@@ -4,67 +4,20 @@ import {
   Bell,
   Search,
   Plus,
-  LayoutDashboard,
   Dumbbell,
-  CalendarDays,
-  BarChart3,
-  Users,
-  Settings,
-  HelpCircle,
-  LogOut,
   Flame,
-  TrendingUp,
   CheckCircle2,
   MessageCircle,
   UserPlus,
+  Trash2,
+  Repeat,
 } from "lucide-react";
-import { WorkoutIllustration } from "@/components/workout-illustration";
-import { useRouter } from "next/navigation";
+import { useEffect, useState, type FormEvent } from "react";
+import { Sidebar } from "@/components/sidebar";
 import { RequireAuth } from "@/components/require-auth";
 import { useAuth } from "@/lib/auth-context";
-
-
-const navItems = [
-  { label: "대시보드", icon: LayoutDashboard, active: true },
-  { label: "루틴", icon: Dumbbell },
-  { label: "캘린더", icon: CalendarDays },
-  { label: "통계", icon: BarChart3 },
-  { label: "팀", icon: Users },
-];
-
-const generalItems = [
-  { label: "설정", icon: Settings },
-  { label: "도움말", icon: HelpCircle },
-];
-
-const stats = [
-  { label: "이번 주 달성률", value: "74%", icon: TrendingUp, highlight: true },
-  { label: "연속 달성일", value: "12일", icon: Flame },
-  { label: "진행 중인 팀 루틴", value: "3개", icon: Users },
-  { label: "오늘 완료", value: "2 / 4", icon: CheckCircle2 },
-];
-
-const weeklyRecord = [
-  { day: "일", pct: 0 },
-  { day: "월", pct: 80 },
-  { day: "화", pct: 100 },
-  { day: "수", pct: 45, isToday: true },
-  { day: "목", pct: 0 },
-  { day: "금", pct: 0 },
-  { day: "토", pct: 0 },
-];
-
-const todayRoutine = [
-  { part: "가슴", exercise: "벤치프레스", detail: "4세트 x 10회", done: true },
-  { part: "등", exercise: "랫풀다운", detail: "3세트 x 12회", done: true },
-  { part: "팔", exercise: "덤벨컬", detail: "3세트 x 15회", done: false },
-  {
-    part: "어깨",
-    exercise: "사이드 레터럴 레이즈",
-    detail: "3세트 x 12회",
-    done: false,
-  },
-];
+import { getWeekRoutines, toggleRoutine, createRoutine, deleteRoutine, type Routine } from "@/lib/api";
+import { BODY_PARTS, WEEKDAY_LABELS, bodyPartLabel, toDateStr, getMonday } from "@/lib/constants";
 
 const teamMembers = [
   { name: "박서준", task: "가슴 루틴", status: "완료" as const },
@@ -74,19 +27,17 @@ const teamMembers = [
 ];
 
 const avatarColors = [
-  "bg-emerald-100 text-emerald-800",
-  "bg-amber-100 text-amber-800",
-  "bg-sky-100 text-sky-800",
-  "bg-rose-100 text-rose-800",
+  "bg-lime-400/15 text-lime-300",
+  "bg-amber-400/15 text-amber-300",
+  "bg-cyan-400/15 text-cyan-300",
+  "bg-fuchsia-400/15 text-fuchsia-300",
 ];
 
 const statusStyles: Record<string, string> = {
-  완료: "bg-emerald-100 text-emerald-700",
-  진행중: "bg-amber-100 text-amber-700",
-  미완료: "bg-gray-100 text-gray-500",
+  완료: "bg-lime-400/15 text-lime-300",
+  진행중: "bg-amber-400/15 text-amber-300",
+  미완료: "bg-white/5 text-zinc-500",
 };
-
-const weeklyGoalPct = 74;
 
 function DayBar({
   day,
@@ -100,11 +51,13 @@ function DayBar({
   const filled = pct > 0;
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="relative h-32 w-8 overflow-hidden rounded-full bg-gray-100">
+      <div className="relative h-32 w-8 overflow-hidden rounded-full bg-white/5">
         {filled ? (
           <div
             className={`absolute bottom-0 left-0 right-0 rounded-full ${
-              isToday ? "bg-emerald-800" : "bg-emerald-400"
+              isToday
+                ? "bg-lime-400 shadow-[0_0_16px_-2px_rgba(163,230,53,0.8)]"
+                : "bg-lime-400/50"
             }`}
             style={{ height: `${Math.max(pct, 10)}%` }}
           />
@@ -113,14 +66,14 @@ function DayBar({
             className="absolute inset-0 rounded-full opacity-70"
             style={{
               backgroundImage:
-                "repeating-linear-gradient(135deg, #d1d5db 0px, #d1d5db 3px, transparent 3px, transparent 7px)",
+                "repeating-linear-gradient(135deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 3px, transparent 3px, transparent 7px)",
             }}
           />
         )}
       </div>
       <span
         className={`text-xs ${
-          isToday ? "font-semibold text-emerald-800" : "text-gray-400"
+          isToday ? "font-semibold text-lime-400" : "text-zinc-500"
         }`}
       >
         {day}
@@ -141,199 +94,251 @@ export default function Home() {
 // "새로운 컴포넌트"로 취급돼서 매번 다시 마운트됨(깜빡임/상태 초기화 원인).
 // 그래서 같은 파일이지만 Home과는 별개의(형제) 함수로 분리해서 정의함
 function Dashboard() {
-  const { user, logout } = useAuth();
-  const router = useRouter();
+  const { user } = useAuth();
+  const [weekRoutines, setWeekRoutines] = useState<Routine[]>([]);
 
-  function handleLogout() {
-    logout();
-    router.push("/login");
+  useEffect(() => {
+    getWeekRoutines().then(setWeekRoutines);
+  }, []);
+
+  async function handleToggle(id: number) {
+    const updated = await toggleRoutine(id);
+    setWeekRoutines((prev) => prev.map((r) => (r.id === id ? updated : r)));
   }
 
+  async function handleDelete(id: number) {
+    await deleteRoutine(id);
+    setWeekRoutines((prev) => prev.filter((r) => r.id !== id));
+  }
+
+  const [isAdding, setIsAdding] = useState(false);
+  const [newBodyPart, setNewBodyPart] = useState(BODY_PARTS[0].code);
+  const [newExerciseName, setNewExerciseName] = useState("");
+
+  async function handleAdd(e: FormEvent) {
+    e.preventDefault();
+    const created = await createRoutine({
+      bodyPart: newBodyPart,
+      exerciseName: newExerciseName,
+      scheduledDate: toDateStr(new Date()),
+    });
+    setWeekRoutines((prev) => [...prev, created]);
+    setNewBodyPart(BODY_PARTS[0].code);
+    setNewExerciseName("");
+    setIsAdding(false);
+  }
+
+  // weekRoutines(이번 주 전체)에서 오늘/요일별/주간달성률을 여기서 파생시킴 —
+  // 서버에 여러 번 물어보는 대신 한 번 받아온 데이터를 화면별로 나눠 씀
+  const today = new Date();
+  const todayStr = toDateStr(today);
+  const todayRoutines = weekRoutines.filter((r) => r.scheduledDate === todayStr);
+  const todayDoneCount = todayRoutines.filter((r) => r.done).length;
+
+  const weekStart = getMonday(today);
+  const weekBars = WEEKDAY_LABELS.map((label, i) => {
+    const date = new Date(weekStart);
+    date.setDate(weekStart.getDate() + i);
+    const dateStr = toDateStr(date);
+    const dayRoutines = weekRoutines.filter((r) => r.scheduledDate === dateStr);
+    const doneCount = dayRoutines.filter((r) => r.done).length;
+    return {
+      day: label,
+      pct: dayRoutines.length ? Math.round((doneCount / dayRoutines.length) * 100) : 0,
+      isToday: dateStr === todayStr,
+    };
+  });
+
+  const weeklyGoalPct = weekRoutines.length
+    ? Math.round((weekRoutines.filter((r) => r.done).length / weekRoutines.length) * 100)
+    : 0;
+
   return (
-      <div className="flex min-h-screen w-full bg-gray-50 text-gray-900">
-      {/* Sidebar */}
-      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 py-5 lg:flex">
-        <div className="flex items-center gap-2 px-1">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-700 text-white">
-            <Dumbbell size={18} />
-          </div>
-          <span className="text-lg font-bold tracking-tight">PeakFit</span>
-        </div>
-
-        <p className="mt-6 px-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
-          메뉴
-        </p>
-        <nav className="mt-2 flex flex-col gap-1">
-          {navItems.map(({ label, icon: Icon, active }) => (
-            <button
-              key={label}
-              className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
-                active
-                  ? "bg-emerald-700 text-white"
-                  : "text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              <Icon size={18} />
-              {label}
-            </button>
-          ))}
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100"
-          >
-            <LogOut size={18} />
-            로그아웃
-          </button>
-        </nav>
-
-        <p className="mt-6 px-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
-          일반
-        </p>
-        <nav className="mt-2 flex flex-col gap-1">
-          {generalItems.map(({ label, icon: Icon }) => (
-            <button
-              key={label}
-              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100"
-            >
-              <Icon size={18} />
-              {label}
-            </button>
-          ))}
-        </nav>
-
-        <div className="mt-auto shrink-0 rounded-2xl bg-gradient-to-br from-emerald-900 to-emerald-700 p-4 text-white">
-          <WorkoutIllustration className="mb-2 h-10 w-10 text-emerald-200" />
-          <p className="text-sm font-semibold">오늘의 팁</p>
-          <p className="mt-1 text-xs leading-snug text-emerald-100">
-            운동 전 5분 스트레칭으로 부상을 예방하세요.
-          </p>
-        </div>
-      </aside>
+    <div className="flex min-h-screen w-full bg-black text-zinc-100">
+      <Sidebar />
 
       {/* Main column */}
       <div className="min-w-0 flex-1">
         {/* Top bar */}
-        <header className="flex items-center gap-4 border-b border-gray-200 bg-white px-6 py-4 lg:px-8">
-          <div className="flex flex-1 items-center gap-2 rounded-xl bg-gray-100 px-3 py-2 text-sm text-gray-400">
+        <header className="flex items-center gap-4 border-b border-white/10 bg-black/40 px-6 py-4 backdrop-blur-xl lg:px-8">
+          <div className="flex flex-1 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-500">
             <Search size={16} />
             <span>운동 또는 루틴 검색</span>
           </div>
-          <button className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600">
+          <button className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-300 hover:bg-white/10">
             <Bell size={18} />
             <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-rose-500" />
           </button>
           <div className="flex items-center gap-3">
             {/* 아바타 원 안에는 이니셜(이름 첫 글자)만 — 문장이 들어가면 40x40px 원을 넘침 */}
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-sm font-semibold text-emerald-800">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-lime-400/30 bg-lime-400/15 text-sm font-semibold text-lime-300">
               {user?.firstName?.[0]}
             </div>
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold leading-tight">{user?.firstName}님</p>
+              <p className="text-sm font-semibold leading-tight text-white">{user?.firstName}님</p>
             </div>
           </div>
         </header>
 
         <main className="space-y-6 p-6 lg:p-8">
-          {/* Header row */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight">대시보드</h1>
-              <p className="mt-1 text-sm text-gray-500">
-                오늘도 루틴을 확인하고 꾸준히 실천해보세요.
-              </p>
-            </div>
-            <div className="flex gap-3">
-              <button className="flex items-center gap-2 rounded-full bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800">
-                <Plus size={16} />
-                루틴 추가
-              </button>
-              <button className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
-                <UserPlus size={16} />
-                팀원 초대
-              </button>
-            </div>
-          </div>
-
-          {/* Stat cards */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map(({ label, value, icon: Icon, highlight }) => (
-              <div
-                key={label}
-                className={`rounded-2xl p-5 ${
-                  highlight
-                    ? "bg-emerald-800 text-white"
-                    : "border border-gray-200 bg-white text-gray-900"
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`text-sm font-medium ${
-                      highlight ? "text-emerald-100" : "text-gray-500"
-                    }`}
-                  >
-                    {label}
+          {/* Hero — 균일한 카드 격자 대신, 오늘의 동기부여 + 큰 스트릭 숫자를 전면에 내세움 */}
+          <section className="relative overflow-hidden rounded-3xl border border-lime-400/20 bg-gradient-to-br from-zinc-900 via-black to-zinc-950 p-8 lg:p-10">
+            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-lime-400/20 blur-3xl" />
+            <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-lime-400">
+                  오늘도 화이팅
+                </p>
+                <h1 className="mt-3 text-3xl font-black leading-tight text-white lg:text-5xl">
+                  {user?.firstName}님,
+                  <br className="hidden lg:block" />
+                  한계를 넘어설 시간이에요
+                </h1>
+                <div className="mt-6 flex items-end gap-2">
+                  <span className="text-6xl font-black leading-none text-lime-400 drop-shadow-[0_0_25px_rgba(163,230,53,0.6)] lg:text-7xl">
+                    12
                   </span>
-                  <Icon
-                    size={18}
-                    className={highlight ? "text-emerald-200" : "text-emerald-700"}
-                  />
+                  <span className="pb-2 text-lg font-medium text-zinc-400">
+                    일 연속 달성 중
+                  </span>
                 </div>
-                <p className="mt-3 text-3xl font-bold">{value}</p>
               </div>
-            ))}
-          </div>
+              <div className="flex gap-3">
+                <button className="flex items-center gap-2 rounded-full bg-lime-400 px-6 py-3 text-sm font-bold text-black shadow-[0_0_25px_-6px_rgba(163,230,53,0.7)] hover:bg-lime-300">
+                  <Plus size={18} />
+                  루틴 추가
+                </button>
+                <button className="flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-bold text-zinc-200 hover:bg-white/5">
+                  <UserPlus size={18} />
+                  팀원 초대
+                </button>
+              </div>
+            </div>
+          </section>
 
-          {/* Middle row */}
+          {/* 벤토 그리드 1행 — 큰 카드 하나 + 작은 숫자 카드 두 개를 세로로 쌓아 비대칭 리듬을 만듦 */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h2 className="text-base font-semibold">이번 주 운동 기록</h2>
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl lg:col-span-2">
+              <h2 className="text-base font-semibold text-white">이번 주 운동 기록</h2>
               <div className="mt-6 flex justify-between">
-                {weeklyRecord.map((d) => (
+                {weekBars.map((d) => (
                   <DayBar key={d.day} {...d} />
                 ))}
               </div>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h2 className="text-base font-semibold">오늘의 리마인더</h2>
-              <p className="mt-4 text-lg font-semibold leading-snug">
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-1 flex-col justify-between rounded-3xl bg-lime-400 p-6 text-black shadow-[0_0_30px_-8px_rgba(163,230,53,0.7)]">
+                <span className="text-xs font-bold uppercase tracking-wider text-black/70">
+                  이번 주 달성률
+                </span>
+                <span className="text-6xl font-black leading-none">{weeklyGoalPct}%</span>
+                <span className="text-xs font-semibold text-black/70">
+                  목표까지 얼마 안 남았어요
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col justify-between rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+                <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                  오늘 완료
+                </span>
+                <span className="text-6xl font-black leading-none text-white">
+                  {todayDoneCount}
+                  <span className="text-2xl text-zinc-500">/{todayRoutines.length}</span>
+                </span>
+                <span className="text-xs font-semibold text-lime-400">조금만 더!</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Middle row */}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+              <h2 className="text-base font-semibold text-white">오늘의 리마인더</h2>
+              <p className="mt-4 text-lg font-semibold leading-snug text-white">
                 저녁 8시, 하체 루틴
               </p>
-              <p className="mt-1 text-sm text-gray-500">시간: 20:00 - 20:45</p>
-              <button className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-700 py-3 text-sm font-semibold text-white hover:bg-emerald-800">
+              <p className="mt-1 text-sm text-zinc-400">시간: 20:00 - 20:45</p>
+              <button className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-lime-400 py-3 text-sm font-semibold text-black shadow-[0_0_25px_-6px_rgba(163,230,53,0.7)] hover:bg-lime-300">
                 <Dumbbell size={16} />
                 루틴 시작하기
               </button>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
               <div className="flex items-center justify-between">
-                <h2 className="text-base font-semibold">오늘의 루틴</h2>
-                <button className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50">
+                <h2 className="text-base font-semibold text-white">오늘의 루틴</h2>
+                <button
+                  onClick={() => setIsAdding((v) => !v)}
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-zinc-400 hover:bg-white/5"
+                >
                   <Plus size={14} />
                 </button>
               </div>
+              {isAdding && (
+                <form
+                  onSubmit={handleAdd}
+                  className="mt-4 flex flex-col gap-2 rounded-xl border border-white/10 bg-black/30 p-3"
+                >
+                  <select
+                    value={newBodyPart}
+                    onChange={(e) => setNewBodyPart(e.target.value)}
+                    className="rounded-lg border border-white/10 bg-white/5 px-2 py-1.5 text-sm text-white"
+                  >
+                    {BODY_PARTS.map((part) => (
+                      <option key={part.code} value={part.code} className="bg-zinc-900">
+                        {part.label}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    required
+                    placeholder="운동 이름"
+                    value={newExerciseName}
+                    onChange={(e) => setNewExerciseName(e.target.value)}
+                    className="rounded-lg border border-white/10 bg-white/5 px-2 py-1.5 text-sm text-white placeholder:text-zinc-600"
+                  />
+                  <button
+                    type="submit"
+                    className="rounded-lg bg-lime-400 py-1.5 text-sm font-semibold text-black hover:bg-lime-300"
+                  >
+                    추가
+                  </button>
+                </form>
+              )}
               <ul className="mt-4 space-y-3">
-                {todayRoutine.map((item) => (
+                {todayRoutines.length === 0 && (
+                  <li className="text-sm text-zinc-500">오늘 등록된 루틴이 없어요.</li>
+                )}
+                {todayRoutines.map((routine) => (
                   <li
-                    key={item.exercise}
+                    key={routine.id}
                     className="flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="rounded-lg bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">
-                        {item.part}
+                      <span className="rounded-lg bg-lime-400/15 px-2 py-1 text-xs font-semibold text-lime-300">
+                        {bodyPartLabel(routine.bodyPart)}
                       </span>
-                      <div>
-                        <p className="text-sm font-medium leading-tight">
-                          {item.exercise}
-                        </p>
-                        <p className="text-xs text-gray-400">{item.detail}</p>
-                      </div>
+                      <p className="text-sm font-medium leading-tight text-white">
+                        {routine.exerciseName}
+                      </p>
+                      {routine.fromTemplate && (
+                        <Repeat size={12} className="shrink-0 text-zinc-500" />
+                      )}
                     </div>
-                    <CheckCircle2
-                      size={20}
-                      className={item.done ? "text-emerald-600" : "text-gray-200"}
-                    />
+                    <div className="flex items-center gap-3">
+                      <button onClick={() => handleToggle(routine.id)}>
+                        <CheckCircle2
+                          size={20}
+                          className={routine.done ? "text-lime-400" : "text-white/10"}
+                        />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(routine.id)}
+                        className="text-zinc-600 hover:text-rose-400"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -342,10 +347,10 @@ function Dashboard() {
 
           {/* Bottom row */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
-            <div className="rounded-2xl border border-gray-200 bg-white p-6 lg:col-span-2">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl lg:col-span-2">
               <div className="flex items-center justify-between">
-                <h2 className="text-base font-semibold">팀 콜라보레이션</h2>
-                <button className="flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1.5 text-xs font-semibold text-gray-600 hover:bg-gray-50">
+                <h2 className="text-base font-semibold text-white">팀 콜라보레이션</h2>
+                <button className="flex items-center gap-1 rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-zinc-300 hover:bg-white/5">
                   <UserPlus size={14} />
                   멤버 추가
                 </button>
@@ -365,10 +370,10 @@ function Dashboard() {
                         {member.name[0]}
                       </div>
                       <div>
-                        <p className="text-sm font-semibold leading-tight">
+                        <p className="text-sm font-semibold leading-tight text-white">
                           {member.name}
                         </p>
-                        <p className="text-xs text-gray-400">{member.task}</p>
+                        <p className="text-xs text-zinc-500">{member.task}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -377,7 +382,7 @@ function Dashboard() {
                       >
                         {member.status}
                       </span>
-                      <button className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-400 hover:bg-gray-50">
+                      <button className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-zinc-400 hover:bg-white/5">
                         <MessageCircle size={14} />
                       </button>
                     </div>
@@ -386,41 +391,41 @@ function Dashboard() {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h2 className="text-base font-semibold">주간 목표 달성률</h2>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+              <h2 className="text-base font-semibold text-white">주간 목표 달성률</h2>
               <div className="relative mx-auto mt-6 h-36 w-36">
                 <div
                   className="h-full w-full rounded-full"
                   style={{
-                    background: `conic-gradient(#065f46 0% ${weeklyGoalPct}%, #d1fae5 ${weeklyGoalPct}% 100%)`,
+                    background: `conic-gradient(#a3e635 0% ${weeklyGoalPct}%, rgba(255,255,255,0.08) ${weeklyGoalPct}% 100%)`,
                   }}
                 />
-                <div className="absolute inset-3 flex flex-col items-center justify-center rounded-full bg-white">
-                  <span className="text-2xl font-bold">{weeklyGoalPct}%</span>
-                  <span className="text-xs text-gray-400">목표 대비</span>
+                <div className="absolute inset-3 flex flex-col items-center justify-center rounded-full bg-zinc-950">
+                  <span className="text-2xl font-bold text-white">{weeklyGoalPct}%</span>
+                  <span className="text-xs text-zinc-500">목표 대비</span>
                 </div>
               </div>
-              <div className="mt-6 flex items-center justify-center gap-4 text-xs text-gray-500">
+              <div className="mt-6 flex items-center justify-center gap-4 text-xs text-zinc-400">
                 <span className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full bg-emerald-800" />
+                  <span className="h-2 w-2 rounded-full bg-lime-400" />
                   달성
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full bg-emerald-100" />
+                  <span className="h-2 w-2 rounded-full bg-white/15" />
                   남음
                 </span>
               </div>
             </div>
 
-            <div className="flex flex-col justify-between rounded-2xl bg-gradient-to-br from-emerald-800 to-emerald-950 p-6 text-white">
-              <div className="flex items-center gap-2 text-sm font-medium text-emerald-200">
+            <div className="flex flex-col justify-between rounded-2xl border border-lime-400/20 bg-gradient-to-br from-zinc-900 to-black p-6 shadow-[0_0_40px_-15px_rgba(163,230,53,0.5)]">
+              <div className="flex items-center gap-2 text-sm font-medium text-lime-400">
                 <Flame size={18} />
                 연속 달성일
               </div>
-              <p className="mt-4 text-5xl font-bold">
-                12<span className="ml-1 text-lg font-medium">일째</span>
+              <p className="mt-4 text-5xl font-bold text-white">
+                12<span className="ml-1 text-lg font-medium text-zinc-400">일째</span>
               </p>
-              <p className="mt-2 text-sm text-emerald-200">
+              <p className="mt-2 text-sm text-zinc-400">
                 이 페이스를 유지하면 이번 달 최고 기록이에요.
               </p>
             </div>
@@ -428,7 +433,5 @@ function Dashboard() {
         </main>
       </div>
     </div>
-  )
+  );
 }
-
-

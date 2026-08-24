@@ -3,6 +3,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { signup, ApiError, type SignupPayload } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 
@@ -23,6 +24,9 @@ const initialForm: SignupPayload = {
   birthDate: "",
   nationality: NATIONALITIES[0].code, // 기본값을 목록 첫 번째로 미리 선택해둠
 };
+
+const inputClass =
+  "mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-zinc-600";
 
 export default function SignupPage() {
   const [form, setForm] = useState<SignupPayload>(initialForm);
@@ -63,96 +67,97 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-10">
+    <div className="flex min-h-screen items-center justify-center bg-black px-4 py-10">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-sm rounded-2xl border border-gray-200 bg-white p-8"
+        className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
       >
-        <h1 className="text-xl font-bold">PeakFit 회원가입</h1>
+        <Image src="/logo.png" alt="PeakFit 로고" width={48} height={48} className="rounded-xl" />
+        <h1 className="mt-4 text-xl font-bold text-white">PeakFit 회원가입</h1>
 
         <div className="mt-6 grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-medium text-gray-700">성</label>
+            <label className="block text-sm font-medium text-zinc-300">성</label>
             <input
               required
               value={form.lastName}
               onChange={updateField("lastName")}
-              className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-900"
+              className={inputClass}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">이름</label>
+            <label className="block text-sm font-medium text-zinc-300">이름</label>
             <input
               required
               value={form.firstName}
               onChange={updateField("firstName")}
-              className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-900"
+              className={inputClass}
             />
           </div>
         </div>
 
-        <label className="mt-4 block text-sm font-medium text-gray-700">이메일</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">이메일</label>
         <input
           type="email"
           required
           value={form.email}
           onChange={updateField("email")}
-          className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-900"
+          className={inputClass}
         />
 
-        <label className="mt-4 block text-sm font-medium text-gray-700">비밀번호</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">비밀번호</label>
         <input
           type="password"
           required
           value={form.password}
           onChange={updateField("password")}
-          className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-900"
+          className={inputClass}
         />
 
-        <label className="mt-4 block text-sm font-medium text-gray-700">비밀번호 확인</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">비밀번호 확인</label>
         <input
           type="password"
           required
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-900"
+          className={inputClass}
         />
 
-        <label className="mt-4 block text-sm font-medium text-gray-700">생년월일</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">생년월일</label>
         <input
           type="date"
           required
           value={form.birthDate}
           onChange={updateField("birthDate")}
-          className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-900"
+          className={inputClass}
         />
 
-        <label className="mt-4 block text-sm font-medium text-gray-700">국적</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">국적</label>
         <select
           required
           value={form.nationality}
           onChange={updateField("nationality")}
-          className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-900"
+          className={inputClass}
         >
           {NATIONALITIES.map((n) => (
-            <option key={n.code} value={n.code}>
+            <option key={n.code} value={n.code} className="bg-zinc-900">
               {n.label}
             </option>
           ))}
         </select>
 
-        {error && <p className="mt-3 text-sm text-rose-600">{error}</p>}
+        {error && <p className="mt-3 text-sm text-rose-400">{error}</p>}
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="mt-6 w-full rounded-xl bg-emerald-700 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:opacity-50"
+          className="mt-6 w-full rounded-xl bg-lime-400 py-2.5 text-sm font-semibold text-black shadow-[0_0_25px_-6px_rgba(163,230,53,0.7)] hover:bg-lime-300 disabled:opacity-50"
         >
           {isSubmitting ? "가입 중..." : "회원가입"}
         </button>
 
-        <p className="mt-4 text-center text-sm text-gray-500">
-          이미 계정이 있나요? <Link href="/login" className="font-semibold text-emerald-700">로그인</Link>
+        <p className="mt-4 text-center text-sm text-zinc-500">
+          이미 계정이 있나요? <Link href="/login" className="font-semibold text-lime-400">로그인</Link>
         </p>
       </form>
     </div>

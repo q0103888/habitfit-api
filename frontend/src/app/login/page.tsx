@@ -4,6 +4,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ApiError } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 
@@ -33,43 +34,45 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-black px-4">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-sm rounded-2xl border border-gray-200 bg-white p-8"
+        className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
       >
-        <h1 className="text-xl font-bold">PeakFit 로그인</h1>
+        <Image src="/logo.png" alt="PeakFit 로고" width={48} height={48} className="rounded-xl" />
+        <h1 className="mt-4 text-xl font-bold text-white">PeakFit 로그인</h1>
+        <p className="mt-1 text-sm text-zinc-400">운동 루틴을 이어서 기록해보세요.</p>
 
-        <label className="mt-6 block text-sm font-medium text-gray-700">이메일</label>
+        <label className="mt-6 block text-sm font-medium text-zinc-300">이메일</label>
         <input
           type="email"
           required
           value={email}                                   // ① state 값을 그대로 화면에 반영
           onChange={(e) => setEmail(e.target.value)}       // ② 타이핑할 때마다 state 갱신
-          className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-900"
+          className="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-zinc-600"
         />
 
-        <label className="mt-4 block text-sm font-medium text-gray-700">비밀번호</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">비밀번호</label>
         <input
           type="password"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-900"
+          className="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-zinc-600"
         />
 
-        {error && <p className="mt-3 text-sm text-rose-600">{error}</p>}
+        {error && <p className="mt-3 text-sm text-rose-400">{error}</p>}
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="mt-6 w-full rounded-xl bg-emerald-700 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800 disabled:opacity-50"
+          className="mt-6 w-full rounded-xl bg-lime-400 py-2.5 text-sm font-semibold text-black shadow-[0_0_25px_-6px_rgba(163,230,53,0.7)] hover:bg-lime-300 disabled:opacity-50"
         >
           {isSubmitting ? "로그인 중..." : "로그인"}
         </button>
 
-        <p className="mt-4 text-center text-sm text-gray-500">
-          계정이 없나요? <Link href="/signup" className="font-semibold text-emerald-700">회원가입</Link>
+        <p className="mt-4 text-center text-sm text-zinc-500">
+          계정이 없나요? <Link href="/signup" className="font-semibold text-lime-400">회원가입</Link>
         </p>
       </form>
     </div>
