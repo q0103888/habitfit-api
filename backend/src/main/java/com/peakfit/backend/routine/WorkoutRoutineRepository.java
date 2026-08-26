@@ -18,4 +18,7 @@ public interface WorkoutRoutineRepository extends JpaRepository<WorkoutRoutine, 
 
     // 템플릿 삭제 시, 그 템플릿에서 나온 오늘/이후 루틴도 같이 정리 (지난 기록은 그대로 둠)
     void deleteByTemplateIdAndScheduledDateGreaterThanEqual(Long templateId, LocalDate date);
+
+    // 특정 운동을 언제 얼마나 했는지 시간순으로 — 통계 화면의 무게 추이 그래프용
+    List<WorkoutRoutine> findByUserAndExerciseNameOrderByScheduledDateAsc(User user, String exerciseName);
 }

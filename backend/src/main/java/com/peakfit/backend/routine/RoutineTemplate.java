@@ -35,11 +35,13 @@ public class RoutineTemplate {
     private User user;
 
     @Column(name = "body_part", nullable = false)
-    private String bodyPart;
+    private String bodyPart; // 영어 코드로 저장 (CHEST/BACK/SHOULDER/LEG/ARM_ABS), WorkoutRoutine과 동일 규칙
 
     @Column(name = "exercise_name", nullable = false)
     private String exerciseName;
 
+    // EnumType.STRING: DB엔 "MONDAY" 같은 문자열로 저장 (숫자 ordinal로 저장하면 enum 순서
+    // 바뀔 때 기존 데이터가 엉뚱한 요일을 가리키게 될 수 있어서 이 방식이 더 안전함)
     @Enumerated(EnumType.STRING)
     @Column(name = "day_of_week", nullable = false)
     private DayOfWeek dayOfWeek;

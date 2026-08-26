@@ -5,8 +5,10 @@ export const BODY_PARTS = [
   { code: "SHOULDER", label: "어깨" },
   { code: "LEG", label: "하체" },
   { code: "ARM_ABS", label: "팔+복근" },
+  { code: "CARDIO", label: "유산소" },
 ];
 
+// 저장된 영어 코드(CHEST 등)를 화면에 보여줄 한글 라벨로 변환. 못 찾으면 코드 그대로 반환
 export function bodyPartLabel(code: string) {
   return BODY_PARTS.find((p) => p.code === code)?.label ?? code;
 }

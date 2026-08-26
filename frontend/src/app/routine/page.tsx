@@ -12,9 +12,11 @@ import {
   getTemplates,
   createTemplate,
   deleteTemplate,
+  getExercises,
   WEEKDAYS,
   type Routine,
   type RoutineTemplate,
+  type Exercise,
 } from "@/lib/api";
 import { BODY_PARTS, WEEKDAY_LABELS, bodyPartLabel, toDateStr, getMonday } from "@/lib/constants";
 
@@ -26,13 +28,16 @@ export default function RoutinePage() {
   );
 }
 
+// /routine 페이지 본체 — 이번 주 요일별 즉석 추가/체크/삭제와, 매주 반복되는 루틴 설정을 함께 관리
 function RoutineManager() {
   const [weekRoutines, setWeekRoutines] = useState<Routine[]>([]);
   const [templates, setTemplates] = useState<RoutineTemplate[]>([]);
+  const [exercises, setExercises] = useState<Exercise[]>([]);
 
   useEffect(() => {
     getWeekRoutines().then(setWeekRoutines);
     getTemplates().then(setTemplates);
+    getExercises().then(setExercises);
   }, []);
 
   async function handleToggle(id: number) {
@@ -59,6 +64,18 @@ function RoutineManager() {
   const [addingDate, setAddingDate] = useState<string | null>(null);
   const [newBodyPart, setNewBodyPart] = useState(BODY_PARTS[0].code);
   const [newExerciseName, setNewExerciseName] = useState("");
+  const exercisesForNewRoutine = exercises.filter((ex) => ex.bodyPart === newBodyPart);
+
+  // 부위를 바꾸면 운동 목록도 바뀌니, 운동 선택도 그 부위의 첫 항목으로 같이 리셋
+  function handleNewBodyPartChange(part: string) {
+    setNewBodyPart(part);
+    setNewExerciseName(exercises.find((ex) => ex.bodyPart === part)?.name ?? "");
+  }
+
+  useEffect(() => {
+    if (exercises.length === 0 || newExerciseName) return;
+    setNewExerciseName(exercises.find((ex) => ex.bodyPart === newBodyPart)?.name ?? "");
+  }, [exercises]);
 
   async function handleAddRoutine(e: FormEvent, dateStr: string) {
     e.preventDefault();
@@ -68,8 +85,7 @@ function RoutineManager() {
       scheduledDate: dateStr,
     });
     setWeekRoutines((prev) => [...prev, created]);
-    setNewBodyPart(BODY_PARTS[0].code);
-    setNewExerciseName("");
+    handleNewBodyPartChange(BODY_PARTS[0].code);
     setAddingDate(null);
   }
 
@@ -77,6 +93,18 @@ function RoutineManager() {
   const [newTemplateBodyPart, setNewTemplateBodyPart] = useState(BODY_PARTS[0].code);
   const [newTemplateExerciseName, setNewTemplateExerciseName] = useState("");
   const [newTemplateDay, setNewTemplateDay] = useState<(typeof WEEKDAYS)[number]>("MONDAY");
+  const exercisesForTemplate = exercises.filter((ex) => ex.bodyPart === newTemplateBodyPart);
+
+  // 부위를 바꾸면 운동 목록도 바뀌니, 운동 선택도 그 부위의 첫 항목으로 같이 리셋
+  function handleTemplateBodyPartChange(part: string) {
+    setNewTemplateBodyPart(part);
+    setNewTemplateExerciseName(exercises.find((ex) => ex.bodyPart === part)?.name ?? "");
+  }
+
+  useEffect(() => {
+    if (exercises.length === 0 || newTemplateExerciseName) return;
+    setNewTemplateExerciseName(exercises.find((ex) => ex.bodyPart === newTemplateBodyPart)?.name ?? "");
+  }, [exercises]);
 
   async function handleAddTemplate(e: FormEvent) {
     e.preventDefault();
@@ -86,7 +114,7 @@ function RoutineManager() {
       dayOfWeek: newTemplateDay,
     });
     setTemplates((prev) => [...prev, created]);
-    setNewTemplateExerciseName("");
+    handleTemplateBodyPartChange(BODY_PARTS[0].code);
     // 방금 추가한 템플릿이 이번 주 요일에 해당하면 바로 반영되게 다시 불러옴
     getWeekRoutines().then(setWeekRoutines);
   }
@@ -151,7 +179,7 @@ function RoutineManager() {
                       >
                         <select
                           value={newBodyPart}
-                          onChange={(e) => setNewBodyPart(e.target.value)}
+                          onChange={(e) => handleNewBodyPartChange(e.target.value)}
                           className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-xs text-white"
                         >
                           {BODY_PARTS.map((part) => (
@@ -160,13 +188,21 @@ function RoutineManager() {
                             </option>
                           ))}
                         </select>
-                        <input
+                        <select
                           required
-                          placeholder="운동 이름"
                           value={newExerciseName}
                           onChange={(e) => setNewExerciseName(e.target.value)}
-                          className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-xs text-white placeholder:text-zinc-600"
-                        />
+                          className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-xs text-white"
+                        >
+                          <option value="" disabled className="bg-zinc-900">
+                            운동 선택
+                          </option>
+                          {exercisesForNewRoutine.map((ex) => (
+                            <option key={ex.id} value={ex.name} className="bg-zinc-900">
+                              {ex.name}
+                            </option>
+                          ))}
+                        </select>
                         <button
                           type="submit"
                           className="rounded-lg bg-lime-400 py-1 text-xs font-semibold text-black hover:bg-lime-300"
@@ -234,7 +270,7 @@ function RoutineManager() {
               </select>
               <select
                 value={newTemplateBodyPart}
-                onChange={(e) => setNewTemplateBodyPart(e.target.value)}
+                onChange={(e) => handleTemplateBodyPartChange(e.target.value)}
                 className="rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-white"
               >
                 {BODY_PARTS.map((part) => (
@@ -243,13 +279,21 @@ function RoutineManager() {
                   </option>
                 ))}
               </select>
-              <input
+              <select
                 required
-                placeholder="운동 이름"
                 value={newTemplateExerciseName}
                 onChange={(e) => setNewTemplateExerciseName(e.target.value)}
-                className="min-w-[140px] flex-1 rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-white placeholder:text-zinc-600"
-              />
+                className="min-w-[140px] flex-1 rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-white"
+              >
+                <option value="" disabled className="bg-zinc-900">
+                  운동 선택
+                </option>
+                {exercisesForTemplate.map((ex) => (
+                  <option key={ex.id} value={ex.name} className="bg-zinc-900">
+                    {ex.name}
+                  </option>
+                ))}
+              </select>
               <button
                 type="submit"
                 className="rounded-lg bg-lime-400 px-4 py-2 text-sm font-semibold text-black hover:bg-lime-300"

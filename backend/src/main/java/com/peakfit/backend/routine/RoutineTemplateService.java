@@ -9,6 +9,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+// 반복 루틴 규칙(RoutineTemplate)의 CRUD만 담당. 실제 요일별 루틴 자동 생성 로직은
+// RoutineService.materializeTemplates()에 있음 — 이 서비스는 규칙 자체만 다룸
 @Service
 public class RoutineTemplateService {
 
@@ -25,11 +27,13 @@ public class RoutineTemplateService {
         this.userRepository = userRepository;
     }
 
+    // 이 유저가 등록해둔 반복 규칙 전부 조회
     public List<RoutineTemplateResponse> list(String email) {
         User user = findUser(email);
         return templateRepository.findByUser(user).stream().map(RoutineTemplateResponse::from).toList();
     }
 
+    // 새 반복 규칙 저장 — 아직 실제 루틴을 만들진 않고, 다음 /week 조회 때 자동 생성됨
     public RoutineTemplateResponse create(String email, RoutineTemplateRequest request) {
         User user = findUser(email);
         RoutineTemplate template =
