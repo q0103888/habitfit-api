@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:8080";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8080";
 
 // 백엔드가 { "message": "..." } 형태로 보낸 에러를, 화면에서 구분해서 잡을 수 있게
 // 전용 에러 타입으로 감쌈. 그냥 Error를 던지면 나중에 "이게 API 에러인지 다른 에러인지"

@@ -1,6 +1,8 @@
 package com.peakfit.backend.security;
 
+import java.util.Arrays;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,6 +23,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
+
+    @Value("${app.cors.allowed-origins}")
+    private String allowedOrigins;
 
     public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
         this.jwtAuthFilter = jwtAuthFilter;
@@ -68,11 +73,12 @@ public class SecurityConfig {
 
     // 어떤 출처(도메인/포트)의 요청을 허용할지 정의.
     // 프론트(localhost:3100)와 백엔드(localhost:8080)는 포트가 달라서
-    // 브라우저가 기본적으로 요청을 막는데, 이걸로 명시적으로 허용해줌
+    // 브라우저가 기본적으로 요청을 막는데, 이걸로 명시적으로 허용해줌.
+    // 배포 환경에서는 CORS_ALLOWED_ORIGINS 환경변수로 프론트 도메인을 콤마로 구분해 넘김
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:3100"));
+        config.setAllowedOrigins(Arrays.stream(allowedOrigins.split(",")).map(String::trim).toList());
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Content-Type", "Authorization"));
 

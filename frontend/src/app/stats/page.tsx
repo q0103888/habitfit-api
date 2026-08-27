@@ -23,6 +23,9 @@ function shortDate(dateStr: string) {
   return `${m}/${d}`;
 }
 
+// 3대 운동 — 운동 카탈로그의 정확한 이름과 일치해야 기록 조회가 됨
+const BIG_THREE = ["벤치프레스", "데드리프트", "스쿼트"];
+
 export default function StatsPage() {
   return (
     <RequireAuth>
@@ -38,6 +41,7 @@ function Stats() {
   const [selectedExercise, setSelectedExercise] = useState("");
   const [history, setHistory] = useState<ExerciseHistoryPoint[]>([]);
   const [bodyPartSummary, setBodyPartSummary] = useState<BodyPartSummaryPoint[]>([]);
+  const [bigThree, setBigThree] = useState<Record<string, number>>({});
 
   useEffect(() => {
     getBodyWeightLogs().then(setBodyWeightLogs);
@@ -45,6 +49,13 @@ function Stats() {
     getExercises().then((list) => {
       setExercises(list);
       setSelectedExercise(list.find((ex) => ex.bodyPart === BODY_PARTS[0].code)?.name ?? "");
+    });
+    Promise.all(BIG_THREE.map((name) => getExerciseHistory(name))).then((results) => {
+      const records: Record<string, number> = {};
+      BIG_THREE.forEach((name, i) => {
+        records[name] = results[i].reduce((max, p) => Math.max(max, p.maxWeightKg), 0);
+      });
+      setBigThree(records);
     });
   }, []);
 
@@ -72,6 +83,26 @@ function Stats() {
         </header>
 
         <main className="space-y-6 p-6 lg:p-8">
+          <section className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <h2 className="text-base font-semibold text-white">3대 운동 최고 기록</h2>
+            <div className="mt-4 grid grid-cols-2 gap-4 lg:grid-cols-4">
+              {BIG_THREE.map((name) => (
+                <div key={name} className="rounded-xl border border-white/10 bg-black/30 p-4">
+                  <p className="text-xs font-semibold text-zinc-400">{name}</p>
+                  <p className="mt-2 text-2xl font-bold text-white">
+                    {bigThree[name] ? `${bigThree[name]}kg` : "-"}
+                  </p>
+                </div>
+              ))}
+              <div className="rounded-xl border border-lime-400/30 bg-lime-400/10 p-4">
+                <p className="text-xs font-semibold text-lime-400">3대 합계</p>
+                <p className="mt-2 text-2xl font-bold text-white">
+                  {BIG_THREE.reduce((sum, name) => sum + (bigThree[name] ?? 0), 0)}kg
+                </p>
+              </div>
+            </div>
+          </section>
+
           <section className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <h2 className="text-base font-semibold text-white">부위별 운동 비중 (최근 30일)</h2>
             <div className="mt-6">

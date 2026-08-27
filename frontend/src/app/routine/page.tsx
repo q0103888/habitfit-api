@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { Plus, Trash2, CheckCircle2, Repeat } from "lucide-react";
+import { Plus, Trash2, CheckCircle2, Repeat, ChevronDown, ChevronUp } from "lucide-react";
 import { Sidebar } from "@/components/sidebar";
 import { RequireAuth } from "@/components/require-auth";
 import {
@@ -9,6 +9,8 @@ import {
   createRoutine,
   toggleRoutine,
   deleteRoutine,
+  addSet,
+  deleteSet,
   getTemplates,
   createTemplate,
   deleteTemplate,
@@ -48,6 +50,27 @@ function RoutineManager() {
   async function handleDeleteRoutine(id: number) {
     await deleteRoutine(id);
     setWeekRoutines((prev) => prev.filter((r) => r.id !== id));
+  }
+
+  // 세트 기록 UI — 한 번에 하나의 루틴만 펼쳐서 보여줌 (대시보드와 동일한 패턴)
+  const [expandedRoutineId, setExpandedRoutineId] = useState<number | null>(null);
+  const [setWeightInput, setSetWeightInput] = useState("");
+  const [setRepsInput, setSetRepsInput] = useState("");
+
+  async function handleAddSet(e: FormEvent, routineId: number) {
+    e.preventDefault();
+    const weightKg = Number(setWeightInput);
+    const reps = Number(setRepsInput);
+    if (Number.isNaN(weightKg) || !reps) return;
+    const updated = await addSet(routineId, { weightKg, reps });
+    setWeekRoutines((prev) => prev.map((r) => (r.id === routineId ? updated : r)));
+    setSetWeightInput("");
+    setSetRepsInput("");
+  }
+
+  async function handleDeleteSet(routineId: number, setId: number) {
+    const updated = await deleteSet(routineId, setId);
+    setWeekRoutines((prev) => prev.map((r) => (r.id === routineId ? updated : r)));
   }
 
   // 이번 주(월~일) 각 요일의 실제 날짜 계산
@@ -216,33 +239,105 @@ function RoutineManager() {
                       {dayRoutines.length === 0 && (
                         <li className="text-xs text-zinc-600">루틴 없음</li>
                       )}
-                      {dayRoutines.map((routine) => (
-                        <li key={routine.id} className="flex items-center justify-between gap-2">
-                          <div className="flex min-w-0 items-center gap-2">
-                            <span className="shrink-0 rounded bg-lime-400/15 px-1.5 py-0.5 text-[10px] font-semibold text-lime-300">
-                              {bodyPartLabel(routine.bodyPart)}
-                            </span>
-                            <span className="truncate text-xs text-white">{routine.exerciseName}</span>
-                            {routine.fromTemplate && (
-                              <Repeat size={11} className="shrink-0 text-zinc-500" />
+                      {dayRoutines.map((routine) => {
+                        const isExpanded = expandedRoutineId === routine.id;
+                        return (
+                          <li key={routine.id}>
+                            <div className="flex items-center justify-between gap-2">
+                              <button
+                                onClick={() => setExpandedRoutineId(isExpanded ? null : routine.id)}
+                                className="flex min-w-0 flex-1 items-center gap-2 text-left"
+                              >
+                                <span className="shrink-0 rounded bg-lime-400/15 px-1.5 py-0.5 text-[10px] font-semibold text-lime-300">
+                                  {bodyPartLabel(routine.bodyPart)}
+                                </span>
+                                <span className="truncate text-xs text-white">{routine.exerciseName}</span>
+                                {routine.fromTemplate && (
+                                  <Repeat size={11} className="shrink-0 text-zinc-500" />
+                                )}
+                                {routine.sets.length > 0 && (
+                                  <span className="shrink-0 text-[10px] text-zinc-500">
+                                    {routine.sets.length}세트
+                                  </span>
+                                )}
+                                {isExpanded ? (
+                                  <ChevronUp size={12} className="shrink-0 text-zinc-500" />
+                                ) : (
+                                  <ChevronDown size={12} className="shrink-0 text-zinc-500" />
+                                )}
+                              </button>
+                              <div className="flex shrink-0 items-center gap-1.5">
+                                <button onClick={() => handleToggle(routine.id)}>
+                                  <CheckCircle2
+                                    size={16}
+                                    className={routine.done ? "text-lime-400" : "text-white/10"}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteRoutine(routine.id)}
+                                  className="text-zinc-600 hover:text-rose-400"
+                                >
+                                  <Trash2 size={14} />
+                                </button>
+                              </div>
+                            </div>
+
+                            {isExpanded && (
+                              <div className="mt-2 rounded-lg border border-white/10 bg-black/30 p-2">
+                                {routine.sets.length === 0 && (
+                                  <p className="text-[11px] text-zinc-500">아직 기록된 세트가 없어요.</p>
+                                )}
+                                <ul className="space-y-1">
+                                  {routine.sets.map((set) => (
+                                    <li
+                                      key={set.id}
+                                      className="flex items-center justify-between text-[11px] text-zinc-300"
+                                    >
+                                      <span>
+                                        {set.setNumber}세트 — {set.weightKg}kg x {set.reps}회
+                                      </span>
+                                      <button
+                                        onClick={() => handleDeleteSet(routine.id, set.id)}
+                                        className="text-zinc-600 hover:text-rose-400"
+                                      >
+                                        <Trash2 size={11} />
+                                      </button>
+                                    </li>
+                                  ))}
+                                </ul>
+                                <form
+                                  onSubmit={(e) => handleAddSet(e, routine.id)}
+                                  className="mt-2 flex items-center gap-1.5"
+                                >
+                                  <input
+                                    required
+                                    type="number"
+                                    step="0.5"
+                                    placeholder="kg"
+                                    value={setWeightInput}
+                                    onChange={(e) => setSetWeightInput(e.target.value)}
+                                    className="w-14 rounded-lg border border-white/10 bg-white/5 px-1.5 py-1 text-[11px] text-white placeholder:text-zinc-600"
+                                  />
+                                  <input
+                                    required
+                                    type="number"
+                                    placeholder="회"
+                                    value={setRepsInput}
+                                    onChange={(e) => setSetRepsInput(e.target.value)}
+                                    className="w-12 rounded-lg border border-white/10 bg-white/5 px-1.5 py-1 text-[11px] text-white placeholder:text-zinc-600"
+                                  />
+                                  <button
+                                    type="submit"
+                                    className="rounded-lg bg-lime-400 px-2 py-1 text-[11px] font-semibold text-black hover:bg-lime-300"
+                                  >
+                                    추가
+                                  </button>
+                                </form>
+                              </div>
                             )}
-                          </div>
-                          <div className="flex shrink-0 items-center gap-1.5">
-                            <button onClick={() => handleToggle(routine.id)}>
-                              <CheckCircle2
-                                size={16}
-                                className={routine.done ? "text-lime-400" : "text-white/10"}
-                              />
-                            </button>
-                            <button
-                              onClick={() => handleDeleteRoutine(routine.id)}
-                              className="text-zinc-600 hover:text-rose-400"
-                            >
-                              <Trash2 size={14} />
-                            </button>
-                          </div>
-                        </li>
-                      ))}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 );

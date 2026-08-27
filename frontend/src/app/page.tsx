@@ -19,6 +19,7 @@ import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import { Sidebar } from "@/components/sidebar";
 import { RequireAuth } from "@/components/require-auth";
+import { WorkoutSession } from "@/components/workout-session";
 import { useAuth } from "@/lib/auth-context";
 import {
   getWeekRoutines,
@@ -203,6 +204,14 @@ function Dashboard() {
   const todayStr = toDateStr(today);
   const todayRoutines = weekRoutines.filter((r) => r.scheduledDate === todayStr);
   const todayDoneCount = todayRoutines.filter((r) => r.done).length;
+  const nextRoutine = todayRoutines.find((r) => !r.done);
+
+  // "루틴 시작하기" — 오늘 미완료 루틴을 순서대로 진행하는 세션 모달을 띄움
+  const [sessionActive, setSessionActive] = useState(false);
+
+  function handleRoutineUpdate(updated: Routine) {
+    setWeekRoutines((prev) => prev.map((r) => (r.id === updated.id ? updated : r)));
+  }
 
   const weekStart = getMonday(today);
   const weekBars = WEEKDAY_LABELS.map((label, i) => {
@@ -326,14 +335,27 @@ function Dashboard() {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
               <h2 className="text-base font-semibold text-white">오늘의 리마인더</h2>
-              <p className="mt-4 text-lg font-semibold leading-snug text-white">
-                저녁 8시, 하체 루틴
-              </p>
-              <p className="mt-1 text-sm text-zinc-400">시간: 20:00 - 20:45</p>
-              <button className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-lime-400 py-3 text-sm font-semibold text-black shadow-[0_0_25px_-6px_rgba(163,230,53,0.7)] hover:bg-lime-300">
-                <Dumbbell size={16} />
-                루틴 시작하기
-              </button>
+              {nextRoutine ? (
+                <>
+                  <p className="mt-4 text-lg font-semibold leading-snug text-white">
+                    {bodyPartLabel(nextRoutine.bodyPart)}, {nextRoutine.exerciseName}
+                  </p>
+                  <p className="mt-1 text-sm text-zinc-400">
+                    오늘 남은 루틴 {todayRoutines.length - todayDoneCount}개
+                  </p>
+                  <button
+                    onClick={() => setSessionActive(true)}
+                    className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-lime-400 py-3 text-sm font-semibold text-black shadow-[0_0_25px_-6px_rgba(163,230,53,0.7)] hover:bg-lime-300"
+                  >
+                    <Dumbbell size={16} />
+                    루틴 시작하기
+                  </button>
+                </>
+              ) : (
+                <p className="mt-4 text-lg font-semibold leading-snug text-white">
+                  {todayRoutines.length === 0 ? "오늘 등록된 루틴이 없어요." : "오늘 루틴을 모두 완료했어요!"}
+                </p>
+              )}
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
@@ -607,6 +629,14 @@ function Dashboard() {
           </div>
         </main>
       </div>
+
+      {sessionActive && (
+        <WorkoutSession
+          initialQueue={todayRoutines.filter((r) => !r.done)}
+          onUpdate={handleRoutineUpdate}
+          onClose={() => setSessionActive(false)}
+        />
+      )}
     </div>
   );
 }
