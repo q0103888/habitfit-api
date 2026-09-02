@@ -1,5 +1,7 @@
 "use client";
 
+import { useLanguage } from "@/lib/i18n";
+
 // 별도 차트 라이브러리 없이 순수 SVG로 그리는 꺾은선 그래프.
 // 1 단위 = 1px로 그려서 계산이 단순하고, 점마다 위에 값 아래에 날짜를 직접 써서
 // 축 범례 없이도 어느 점이 며칠/몇 kg인지 바로 알 수 있게 함.
@@ -14,8 +16,10 @@ export function LineChart({
   unit?: string;
   maxPoints?: number;
 }) {
+  const { t } = useLanguage();
+
   if (points.length === 0) {
-    return <p className="text-sm text-zinc-500">아직 데이터가 없어요.</p>;
+    return <p className="text-sm text-zinc-500">{t("common.noData")}</p>;
   }
 
   const displayPoints =

@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 // 부위별 운동 카탈로그 조회 API. 루틴 추가 화면에서 자유 입력 대신 여기서 골라 쓰게 하기 위한 참조 데이터라
@@ -18,9 +19,11 @@ public class ExerciseController {
         this.exerciseRepository = exerciseRepository;
     }
 
-    // 전체를 한 번에 내려주고, 부위별 필터링은 프론트에서 함 (개수가 적어서 왕복 아낄 수 있음)
+    // 전체를 한 번에 내려주고, 부위별 필터링은 프론트에서 함 (개수가 적어서 왕복 아낄 수 있음).
+    // locale=ja면 일본어 번역 이름을 displayName으로 내려줌 (없으면 한글로 폴백)
     @GetMapping
-    public ResponseEntity<List<ExerciseResponse>> list() {
-        return ResponseEntity.ok(exerciseRepository.findAll().stream().map(ExerciseResponse::from).toList());
+    public ResponseEntity<List<ExerciseResponse>> list(@RequestParam(required = false) String locale) {
+        return ResponseEntity.ok(
+                exerciseRepository.findAll().stream().map(e -> ExerciseResponse.from(e, locale)).toList());
     }
 }

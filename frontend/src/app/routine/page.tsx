@@ -4,13 +4,12 @@ import { useEffect, useState, type FormEvent } from "react";
 import { Plus, Trash2, CheckCircle2, Repeat, ChevronDown, ChevronUp } from "lucide-react";
 import { Sidebar } from "@/components/sidebar";
 import { RequireAuth } from "@/components/require-auth";
+import { SetPanel } from "@/components/set-panel";
 import {
   getWeekRoutines,
   createRoutine,
   toggleRoutine,
   deleteRoutine,
-  addSet,
-  deleteSet,
   getTemplates,
   createTemplate,
   deleteTemplate,
@@ -20,7 +19,8 @@ import {
   type RoutineTemplate,
   type Exercise,
 } from "@/lib/api";
-import { BODY_PARTS, WEEKDAY_LABELS, bodyPartLabel, toDateStr, getMonday } from "@/lib/constants";
+import { BODY_PARTS, toDateStr, getMonday } from "@/lib/constants";
+import { useLanguage, bodyPartLabel, weekdayLabels } from "@/lib/i18n";
 
 export default function RoutinePage() {
   return (
@@ -32,15 +32,27 @@ export default function RoutinePage() {
 
 // /routine 페이지 본체 — 이번 주 요일별 즉석 추가/체크/삭제와, 매주 반복되는 루틴 설정을 함께 관리
 function RoutineManager() {
+  const { t } = useLanguage();
   const [weekRoutines, setWeekRoutines] = useState<Routine[]>([]);
   const [templates, setTemplates] = useState<RoutineTemplate[]>([]);
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
+  const { locale } = useLanguage();
+
   useEffect(() => {
     getWeekRoutines().then(setWeekRoutines);
     getTemplates().then(setTemplates);
-    getExercises().then(setExercises);
   }, []);
+
+  // 운동 카탈로그는 언어 전환 시 표시 이름(displayName)이 바뀌므로 locale이 바뀔 때마다 다시 불러옴
+  useEffect(() => {
+    getExercises(locale).then(setExercises);
+  }, [locale]);
+
+  // 루틴/템플릿에 저장된 exerciseName(내부 식별용 한글)을 현재 언어의 표시 이름으로 변환
+  function exerciseDisplayName(name: string) {
+    return exercises.find((ex) => ex.name === name)?.displayName ?? name;
+  }
 
   async function handleToggle(id: number) {
     const updated = await toggleRoutine(id);
@@ -52,32 +64,18 @@ function RoutineManager() {
     setWeekRoutines((prev) => prev.filter((r) => r.id !== id));
   }
 
-  // 세트 기록 UI — 한 번에 하나의 루틴만 펼쳐서 보여줌 (대시보드와 동일한 패턴)
+  // 세트 기록 UI — 한 번에 하나의 루틴만 펼쳐서 보여줌 (SetPanel 컴포넌트가 실제 기록 로직을 담당)
   const [expandedRoutineId, setExpandedRoutineId] = useState<number | null>(null);
-  const [setWeightInput, setSetWeightInput] = useState("");
-  const [setRepsInput, setSetRepsInput] = useState("");
 
-  async function handleAddSet(e: FormEvent, routineId: number) {
-    e.preventDefault();
-    const weightKg = Number(setWeightInput);
-    const reps = Number(setRepsInput);
-    if (Number.isNaN(weightKg) || !reps) return;
-    const updated = await addSet(routineId, { weightKg, reps });
-    setWeekRoutines((prev) => prev.map((r) => (r.id === routineId ? updated : r)));
-    setSetWeightInput("");
-    setSetRepsInput("");
-  }
-
-  async function handleDeleteSet(routineId: number, setId: number) {
-    const updated = await deleteSet(routineId, setId);
-    setWeekRoutines((prev) => prev.map((r) => (r.id === routineId ? updated : r)));
+  function handleRoutineUpdate(updated: Routine) {
+    setWeekRoutines((prev) => prev.map((r) => (r.id === updated.id ? updated : r)));
   }
 
   // 이번 주(월~일) 각 요일의 실제 날짜 계산
   const today = new Date();
   const todayStr = toDateStr(today);
   const weekStart = getMonday(today);
-  const weekDates = WEEKDAY_LABELS.map((label, i) => {
+  const weekDates = weekdayLabels(t).map((label, i) => {
     const date = new Date(weekStart);
     date.setDate(weekStart.getDate() + i);
     return { label, dateStr: toDateStr(date) };
@@ -150,9 +148,10 @@ function RoutineManager() {
   }
 
   // 요일(월~일) 순으로 묶어서 표시 — 등록 순서로만 나열하면 요일이 뒤섞여서 읽기 어려움
+  const labels = weekdayLabels(t);
   const templateGroups = WEEKDAYS.map((day, i) => ({
     day,
-    label: WEEKDAY_LABELS[i],
+    label: labels[i],
     items: templates
       .filter((t) => t.dayOfWeek === day)
       .sort((a, b) => a.exerciseName.localeCompare(b.exerciseName)),
@@ -163,15 +162,13 @@ function RoutineManager() {
       <Sidebar />
       <div className="min-w-0 flex-1">
         <header className="border-b border-white/10 bg-black/40 px-6 py-4 backdrop-blur-xl lg:px-8">
-          <h1 className="text-xl font-bold text-white">루틴 관리</h1>
-          <p className="mt-1 text-sm text-zinc-400">
-            이번 주 루틴을 그때그때 추가하거나, 매주 반복되는 루틴을 설정해두세요.
-          </p>
+          <h1 className="text-xl font-bold text-white">{t("routine.title")}</h1>
+          <p className="mt-1 text-sm text-zinc-400">{t("routine.subtitle")}</p>
         </header>
 
         <main className="space-y-8 p-6 lg:p-8">
           <section>
-            <h2 className="text-base font-semibold text-white">이번 주 루틴</h2>
+            <h2 className="text-base font-semibold text-white">{t("routine.thisWeek")}</h2>
             <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
               {weekDates.map(({ label, dateStr }) => {
                 const dayRoutines = weekRoutines.filter((r) => r.scheduledDate === dateStr);
@@ -185,7 +182,9 @@ function RoutineManager() {
                   >
                     <div className="flex items-center justify-between">
                       <span className={`text-sm font-semibold ${isToday ? "text-lime-400" : "text-white"}`}>
-                        {label}요일{isToday && " · 오늘"}
+                        {label}
+                        {t("weekday.suffix")}
+                        {isToday && t("routine.todaySuffix")}
                       </span>
                       <button
                         onClick={() => setAddingDate(addingDate === dateStr ? null : dateStr)}
@@ -207,7 +206,7 @@ function RoutineManager() {
                         >
                           {BODY_PARTS.map((part) => (
                             <option key={part.code} value={part.code} className="bg-zinc-900">
-                              {part.label}
+                              {bodyPartLabel(part.code, t)}
                             </option>
                           ))}
                         </select>
@@ -218,11 +217,11 @@ function RoutineManager() {
                           className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-xs text-white"
                         >
                           <option value="" disabled className="bg-zinc-900">
-                            운동 선택
+                            {t("common.selectExercise")}
                           </option>
                           {exercisesForNewRoutine.map((ex) => (
                             <option key={ex.id} value={ex.name} className="bg-zinc-900">
-                              {ex.name}
+                              {ex.displayName}
                             </option>
                           ))}
                         </select>
@@ -230,14 +229,14 @@ function RoutineManager() {
                           type="submit"
                           className="rounded-lg bg-lime-400 py-1 text-xs font-semibold text-black hover:bg-lime-300"
                         >
-                          추가
+                          {t("common.add")}
                         </button>
                       </form>
                     )}
 
                     <ul className="mt-3 space-y-2">
                       {dayRoutines.length === 0 && (
-                        <li className="text-xs text-zinc-600">루틴 없음</li>
+                        <li className="text-xs text-zinc-600">{t("routine.noRoutine")}</li>
                       )}
                       {dayRoutines.map((routine) => {
                         const isExpanded = expandedRoutineId === routine.id;
@@ -249,15 +248,17 @@ function RoutineManager() {
                                 className="flex min-w-0 flex-1 items-center gap-2 text-left"
                               >
                                 <span className="shrink-0 rounded bg-lime-400/15 px-1.5 py-0.5 text-[10px] font-semibold text-lime-300">
-                                  {bodyPartLabel(routine.bodyPart)}
+                                  {bodyPartLabel(routine.bodyPart, t)}
                                 </span>
-                                <span className="truncate text-xs text-white">{routine.exerciseName}</span>
+                                <span className="truncate text-xs text-white">
+                                  {exerciseDisplayName(routine.exerciseName)}
+                                </span>
                                 {routine.fromTemplate && (
                                   <Repeat size={11} className="shrink-0 text-zinc-500" />
                                 )}
                                 {routine.sets.length > 0 && (
                                   <span className="shrink-0 text-[10px] text-zinc-500">
-                                    {routine.sets.length}세트
+                                    {t("common.setCount", { n: routine.sets.length })}
                                   </span>
                                 )}
                                 {isExpanded ? (
@@ -282,59 +283,7 @@ function RoutineManager() {
                               </div>
                             </div>
 
-                            {isExpanded && (
-                              <div className="mt-2 rounded-lg border border-white/10 bg-black/30 p-2">
-                                {routine.sets.length === 0 && (
-                                  <p className="text-[11px] text-zinc-500">아직 기록된 세트가 없어요.</p>
-                                )}
-                                <ul className="space-y-1">
-                                  {routine.sets.map((set) => (
-                                    <li
-                                      key={set.id}
-                                      className="flex items-center justify-between text-[11px] text-zinc-300"
-                                    >
-                                      <span>
-                                        {set.setNumber}세트 — {set.weightKg}kg x {set.reps}회
-                                      </span>
-                                      <button
-                                        onClick={() => handleDeleteSet(routine.id, set.id)}
-                                        className="text-zinc-600 hover:text-rose-400"
-                                      >
-                                        <Trash2 size={11} />
-                                      </button>
-                                    </li>
-                                  ))}
-                                </ul>
-                                <form
-                                  onSubmit={(e) => handleAddSet(e, routine.id)}
-                                  className="mt-2 flex items-center gap-1.5"
-                                >
-                                  <input
-                                    required
-                                    type="number"
-                                    step="0.5"
-                                    placeholder="kg"
-                                    value={setWeightInput}
-                                    onChange={(e) => setSetWeightInput(e.target.value)}
-                                    className="w-14 rounded-lg border border-white/10 bg-white/5 px-1.5 py-1 text-[11px] text-white placeholder:text-zinc-600"
-                                  />
-                                  <input
-                                    required
-                                    type="number"
-                                    placeholder="회"
-                                    value={setRepsInput}
-                                    onChange={(e) => setSetRepsInput(e.target.value)}
-                                    className="w-12 rounded-lg border border-white/10 bg-white/5 px-1.5 py-1 text-[11px] text-white placeholder:text-zinc-600"
-                                  />
-                                  <button
-                                    type="submit"
-                                    className="rounded-lg bg-lime-400 px-2 py-1 text-[11px] font-semibold text-black hover:bg-lime-300"
-                                  >
-                                    추가
-                                  </button>
-                                </form>
-                              </div>
-                            )}
+                            {isExpanded && <SetPanel routine={routine} onUpdate={handleRoutineUpdate} />}
                           </li>
                         );
                       })}
@@ -346,10 +295,8 @@ function RoutineManager() {
           </section>
 
           <section className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <h2 className="text-base font-semibold text-white">반복 루틴 설정</h2>
-            <p className="mt-1 text-sm text-zinc-400">
-              여기서 등록하면 매주 그 요일에 자동으로 루틴이 채워져요.
-            </p>
+            <h2 className="text-base font-semibold text-white">{t("routine.repeatSettings")}</h2>
+            <p className="mt-1 text-sm text-zinc-400">{t("routine.repeatDesc")}</p>
 
             <form onSubmit={handleAddTemplate} className="mt-4 flex flex-wrap items-end gap-2">
               <select
@@ -359,7 +306,8 @@ function RoutineManager() {
               >
                 {WEEKDAYS.map((day, i) => (
                   <option key={day} value={day} className="bg-zinc-900">
-                    {WEEKDAY_LABELS[i]}요일
+                    {labels[i]}
+                    {t("weekday.suffix")}
                   </option>
                 ))}
               </select>
@@ -370,7 +318,7 @@ function RoutineManager() {
               >
                 {BODY_PARTS.map((part) => (
                   <option key={part.code} value={part.code} className="bg-zinc-900">
-                    {part.label}
+                    {bodyPartLabel(part.code, t)}
                   </option>
                 ))}
               </select>
@@ -381,11 +329,11 @@ function RoutineManager() {
                 className="min-w-[140px] flex-1 rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-white"
               >
                 <option value="" disabled className="bg-zinc-900">
-                  운동 선택
+                  {t("common.selectExercise")}
                 </option>
                 {exercisesForTemplate.map((ex) => (
                   <option key={ex.id} value={ex.name} className="bg-zinc-900">
-                    {ex.name}
+                    {ex.displayName}
                   </option>
                 ))}
               </select>
@@ -393,18 +341,18 @@ function RoutineManager() {
                 type="submit"
                 className="rounded-lg bg-lime-400 px-4 py-2 text-sm font-semibold text-black hover:bg-lime-300"
               >
-                반복 추가
+                {t("routine.addRepeat")}
               </button>
             </form>
 
             {templateGroups.length === 0 && (
-              <p className="mt-4 text-sm text-zinc-500">등록된 반복 루틴이 없어요.</p>
+              <p className="mt-4 text-sm text-zinc-500">{t("routine.noRepeat")}</p>
             )}
             <div className="mt-4 space-y-4">
               {templateGroups.map((group) => (
                 <div key={group.day}>
                   <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                    매주 {group.label}요일
+                    {t("routine.weeklyLabel", { day: group.label })}
                   </p>
                   <ul className="mt-2 space-y-2">
                     {group.items.map((template) => (
@@ -414,9 +362,11 @@ function RoutineManager() {
                       >
                         <div className="flex items-center gap-3">
                           <span className="rounded-lg bg-lime-400/15 px-2 py-1 text-xs font-semibold text-lime-300">
-                            {bodyPartLabel(template.bodyPart)}
+                            {bodyPartLabel(template.bodyPart, t)}
                           </span>
-                          <span className="text-sm text-white">{template.exerciseName}</span>
+                          <span className="text-sm text-white">
+                            {exerciseDisplayName(template.exerciseName)}
+                          </span>
                         </div>
                         <button
                           onClick={() => handleDeleteTemplate(template.id)}

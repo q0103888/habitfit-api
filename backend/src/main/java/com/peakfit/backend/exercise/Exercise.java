@@ -25,10 +25,18 @@ public class Exercise {
     private String bodyPart; // WorkoutRoutine/RoutineTemplate과 같은 영어 코드 규칙 (CHEST, BACK ...)
 
     @Column(nullable = false)
-    private String name; // 화면에 그대로 보여주는 한글 운동 이름 (예: "벤치프레스")
+    private String name; // 내부 식별 키로 쓰는 한글 이름 (예: "벤치프레스") — 루틴/템플릿/통계가 전부 이 값으로 매칭하므로 불변
 
-    public Exercise(String bodyPart, String name) {
+    @Column(name = "name_ja")
+    private String nameJa; // 화면 표시용 일본어 번역. 없으면 컨트롤러에서 name으로 폴백
+
+    public Exercise(String bodyPart, String name, String nameJa) {
         this.bodyPart = bodyPart;
         this.name = name;
+        this.nameJa = nameJa;
+    }
+
+    public void setNameJa(String nameJa) {
+        this.nameJa = nameJa;
     }
 }

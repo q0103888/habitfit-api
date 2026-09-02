@@ -26,9 +26,12 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   });
 
   if (!res.ok) {
-    // 실패 응답의 JSON을 파싱 시도. 혹시 body가 JSON이 아니면 빈 객체로 처리
+    // 실패 응답의 JSON을 파싱 시도. 혹시 body가 JSON이 아니면 빈 객체로 처리.
+    // 여기는 React 밖(hook 사용 불가)이라 localStorage에서 언어를 직접 읽음 — LanguageProvider와 같은 키
     const body = await res.json().catch(() => ({}));
-    throw new ApiError(body.message ?? "요청에 실패했습니다.");
+    const locale = typeof window !== "undefined" ? localStorage.getItem("locale") : null;
+    const fallback = locale === "ko" ? "요청에 실패했습니다." : "リクエストに失敗しました。";
+    throw new ApiError(body.message ?? fallback);
   }
 
   // 204 No Content처럼 body가 없는 응답에서 res.json()을 부르면 파싱 에러가 남
@@ -97,6 +100,11 @@ export function getWeekRoutines(date?: string) {
   return request<Routine[]>(`/api/routines/week${date ? `?date=${date}` : ""}`);
 }
 
+// date가 속한 달(1일~말일) 전체 루틴 조회 — 캘린더 화면용. date를 안 주면 이번 달 기준
+export function getMonthRoutines(date?: string) {
+  return request<Routine[]>(`/api/routines/month${date ? `?date=${date}` : ""}`);
+}
+
 // 새 루틴 추가 (반복 템플릿과 무관한 1회성 루틴)
 export function createRoutine(data: RoutinePayload) {
   return request<Routine>("/api/routines", {
@@ -132,11 +140,12 @@ export function getStreak() {
   return request<{ days: number }>("/api/routines/streak");
 }
 
-// 부위별 운동 카탈로그 — 루틴 추가 폼에서 자유 입력 대신 여기서 골라 쓰게 함
-export type Exercise = { id: number; bodyPart: string; name: string };
+// 부위별 운동 카탈로그 — 루틴 추가 폼에서 자유 입력 대신 여기서 골라 쓰게 함.
+// name은 루틴 생성 시 그대로 보내야 하는 내부 식별 키(한글), displayName은 요청 locale에 맞는 화면 표시용 번역
+export type Exercise = { id: number; bodyPart: string; name: string; displayName: string };
 
-export function getExercises() {
-  return request<Exercise[]>("/api/exercises");
+export function getExercises(locale?: string) {
+  return request<Exercise[]>(`/api/exercises${locale ? `?locale=${locale}` : ""}`);
 }
 
 // 월요일 시작 — lib/constants.ts의 WEEKDAY_LABELS와 인덱스가 맞아야 함
@@ -218,4 +227,11 @@ export type BodyPartSummaryPoint = { bodyPart: string; count: number };
 
 export function getBodyPartSummary() {
   return request<BodyPartSummaryPoint[]>("/api/routines/summary");
+}
+
+// 통계 화면의 부위별 회복 상태 카드용 — 그 부위를 마지막으로 완료한 날짜(기록 없으면 목록에 안 나옴)
+export type BodyPartRecoveryPoint = { bodyPart: string; lastTrainedDate: string };
+
+export function getRecoveryStatus() {
+  return request<BodyPartRecoveryPoint[]>("/api/routines/recovery");
 }

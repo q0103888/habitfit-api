@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ApiError } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
+import { useLanguage } from "@/lib/i18n";
 
 export default function LoginPage() {
   // 입력창 하나당 state 하나. 사용자가 타이핑할 때마다 이 값들이 갱신됨
@@ -16,6 +17,7 @@ export default function LoginPage() {
   const [isSubmitting, setIsSubmitting] = useState(false); // 중복 클릭 방지용
 
   const { login } = useAuth();   // 2단계에서 만든 Context에서 login 함수 꺼내옴
+  const { t } = useLanguage();
   const router = useRouter();     // 페이지 이동시킬 때 씀
 
   async function handleSubmit(e: FormEvent) {
@@ -27,7 +29,7 @@ export default function LoginPage() {
       router.push("/");               // 성공하면 대시보드로 이동
     } catch (err) {
       // ApiError면 백엔드가 보낸 진짜 실패 이유를 보여줌, 아니면 일반 메시지
-      setError(err instanceof ApiError ? err.message : "로그인에 실패했습니다.");
+      setError(err instanceof ApiError ? err.message : t("auth.loginFailed"));
     } finally {
       setIsSubmitting(false);
     }
@@ -39,11 +41,11 @@ export default function LoginPage() {
         onSubmit={handleSubmit}
         className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
       >
-        <Image src="/logo.png" alt="PeakFit 로고" width={48} height={48} className="rounded-xl" />
-        <h1 className="mt-4 text-xl font-bold text-white">PeakFit 로그인</h1>
-        <p className="mt-1 text-sm text-zinc-400">운동 루틴을 이어서 기록해보세요.</p>
+        <Image src="/logo.png" alt={t("common.logoAlt")} width={48} height={48} className="rounded-xl" />
+        <h1 className="mt-4 text-xl font-bold text-white">{t("auth.loginTitle")}</h1>
+        <p className="mt-1 text-sm text-zinc-400">{t("auth.loginSubtitle")}</p>
 
-        <label className="mt-6 block text-sm font-medium text-zinc-300">이메일</label>
+        <label className="mt-6 block text-sm font-medium text-zinc-300">{t("auth.email")}</label>
         <input
           type="email"
           required
@@ -52,7 +54,7 @@ export default function LoginPage() {
           className="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-zinc-600"
         />
 
-        <label className="mt-4 block text-sm font-medium text-zinc-300">비밀번호</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">{t("auth.password")}</label>
         <input
           type="password"
           required
@@ -68,11 +70,14 @@ export default function LoginPage() {
           disabled={isSubmitting}
           className="mt-6 w-full rounded-xl bg-lime-400 py-2.5 text-sm font-semibold text-black shadow-[0_0_25px_-6px_rgba(163,230,53,0.7)] hover:bg-lime-300 disabled:opacity-50"
         >
-          {isSubmitting ? "로그인 중..." : "로그인"}
+          {isSubmitting ? t("auth.loggingIn") : t("auth.login")}
         </button>
 
         <p className="mt-4 text-center text-sm text-zinc-500">
-          계정이 없나요? <Link href="/signup" className="font-semibold text-lime-400">회원가입</Link>
+          {t("auth.noAccount")}{" "}
+          <Link href="/signup" className="font-semibold text-lime-400">
+            {t("auth.signup")}
+          </Link>
         </p>
       </form>
     </div>

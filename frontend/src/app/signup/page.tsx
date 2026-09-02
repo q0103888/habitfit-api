@@ -6,14 +6,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { signup, ApiError, type SignupPayload } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
+import { useLanguage, type Key } from "@/lib/i18n";
 
 // DB 테이블 대신 여기 고정 배열로 관리 — ISO 국가 코드는 사실상 안 바뀌는 데이터라
-// 프론트 코드 안에 하드코딩해도 충분함. 나중에 국가가 더 필요하면 그냥 이 배열에 추가하면 됨
-const NATIONALITIES = [
-  { code: "KR", label: "대한민국" },
-  { code: "JP", label: "일본" },
-  { code: "US", label: "미국" },
-  { code: "CN", label: "중국" },
+// 프론트 코드 안에 하드코딩해도 충분함. 나중에 국가가 더 필요하면 그냥 이 배열에 추가하면 됨.
+// 화면 라벨은 언어별로 다르므로 i18n 딕셔너리의 nationality.* 키에서 가져옴
+const NATIONALITIES: { code: string; labelKey: Key }[] = [
+  { code: "KR", labelKey: "nationality.KR" },
+  { code: "JP", labelKey: "nationality.JP" },
+  { code: "US", labelKey: "nationality.US" },
+  { code: "CN", labelKey: "nationality.CN" },
 ];
 
 const initialForm: SignupPayload = {
@@ -34,6 +36,7 @@ export default function SignupPage() {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { login } = useAuth();
+  const { t } = useLanguage();
   const router = useRouter();
 
   // 입력창마다 onChange 함수를 따로 안 만들고, 필드 이름만 받으면
@@ -50,7 +53,7 @@ export default function SignupPage() {
     // 백엔드로 보내기 전에 프론트에서 먼저 확인 — 서버까지 갈 필요도 없는 실수라
     // API 호출 전에 걸러내는 게 사용자 입장에서도 더 빠르게 피드백을 받음
     if (form.password !== confirmPassword) {
-      setError("비밀번호가 일치하지 않습니다.");
+      setError(t("auth.passwordMismatch"));
       return;
     }
 
@@ -60,7 +63,7 @@ export default function SignupPage() {
       await login(form.email, form.password); // 가입 성공했으니 바로 로그인 상태로 전환
       router.push("/");
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "회원가입에 실패했습니다.");
+      setError(err instanceof ApiError ? err.message : t("auth.signupFailed"));
     } finally {
       setIsSubmitting(false);
     }
@@ -72,12 +75,12 @@ export default function SignupPage() {
         onSubmit={handleSubmit}
         className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
       >
-        <Image src="/logo.png" alt="PeakFit 로고" width={48} height={48} className="rounded-xl" />
-        <h1 className="mt-4 text-xl font-bold text-white">PeakFit 회원가입</h1>
+        <Image src="/logo.png" alt={t("common.logoAlt")} width={48} height={48} className="rounded-xl" />
+        <h1 className="mt-4 text-xl font-bold text-white">{t("auth.signupTitle")}</h1>
 
         <div className="mt-6 grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-medium text-zinc-300">성</label>
+            <label className="block text-sm font-medium text-zinc-300">{t("auth.lastName")}</label>
             <input
               required
               value={form.lastName}
@@ -86,7 +89,7 @@ export default function SignupPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-zinc-300">이름</label>
+            <label className="block text-sm font-medium text-zinc-300">{t("auth.firstName")}</label>
             <input
               required
               value={form.firstName}
@@ -96,7 +99,7 @@ export default function SignupPage() {
           </div>
         </div>
 
-        <label className="mt-4 block text-sm font-medium text-zinc-300">이메일</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">{t("auth.email")}</label>
         <input
           type="email"
           required
@@ -105,7 +108,7 @@ export default function SignupPage() {
           className={inputClass}
         />
 
-        <label className="mt-4 block text-sm font-medium text-zinc-300">비밀번호</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">{t("auth.password")}</label>
         <input
           type="password"
           required
@@ -114,7 +117,7 @@ export default function SignupPage() {
           className={inputClass}
         />
 
-        <label className="mt-4 block text-sm font-medium text-zinc-300">비밀번호 확인</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">{t("auth.confirmPassword")}</label>
         <input
           type="password"
           required
@@ -123,7 +126,7 @@ export default function SignupPage() {
           className={inputClass}
         />
 
-        <label className="mt-4 block text-sm font-medium text-zinc-300">생년월일</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">{t("auth.birthDate")}</label>
         <input
           type="date"
           required
@@ -132,7 +135,7 @@ export default function SignupPage() {
           className={inputClass}
         />
 
-        <label className="mt-4 block text-sm font-medium text-zinc-300">국적</label>
+        <label className="mt-4 block text-sm font-medium text-zinc-300">{t("auth.nationality")}</label>
         <select
           required
           value={form.nationality}
@@ -141,7 +144,7 @@ export default function SignupPage() {
         >
           {NATIONALITIES.map((n) => (
             <option key={n.code} value={n.code} className="bg-zinc-900">
-              {n.label}
+              {t(n.labelKey)}
             </option>
           ))}
         </select>
@@ -153,11 +156,14 @@ export default function SignupPage() {
           disabled={isSubmitting}
           className="mt-6 w-full rounded-xl bg-lime-400 py-2.5 text-sm font-semibold text-black shadow-[0_0_25px_-6px_rgba(163,230,53,0.7)] hover:bg-lime-300 disabled:opacity-50"
         >
-          {isSubmitting ? "가입 중..." : "회원가입"}
+          {isSubmitting ? t("auth.signingUp") : t("auth.signup")}
         </button>
 
         <p className="mt-4 text-center text-sm text-zinc-500">
-          이미 계정이 있나요? <Link href="/login" className="font-semibold text-lime-400">로그인</Link>
+          {t("auth.hasAccount")}{" "}
+          <Link href="/login" className="font-semibold text-lime-400">
+            {t("auth.login")}
+          </Link>
         </p>
       </form>
     </div>

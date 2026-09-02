@@ -57,6 +57,26 @@ public class RoutineService {
         return toResponses(routineRepository.findByUserAndScheduledDateBetween(user, weekStart, weekEnd));
     }
 
+    // anchor가 속한 달 전체 루틴 조회 — 캘린더 화면용. 그 달에 걸치는 모든 주(월~일)에 대해
+    // 반복 템플릿을 미리 materialize해서, 아직 안 지난 미래 날짜에도 반복 루틴이 미리 보이게 함
+    public List<RoutineResponse> listMonth(String email, LocalDate anchor) {
+        User user = findUser(email);
+        LocalDate reference = anchor != null ? anchor : LocalDate.now();
+        LocalDate monthStart = reference.withDayOfMonth(1);
+        LocalDate monthEnd = reference.withDayOfMonth(reference.lengthOfMonth());
+
+        // 반복 템플릿 미리보기는 오늘로부터 2주 뒤까지만 — 그 이상 미래는 실제 그 날짜가 다가와야 생성됨.
+        // (안 그러면 캘린더를 몇 년 뒤로 넘겨도 똑같은 루틴이 끝없이 "예정"으로 보임)
+        LocalDate materializeCap = LocalDate.now().plusDays(14);
+        LocalDate weekStart = monthStart.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        while (!weekStart.isAfter(monthEnd) && !weekStart.isAfter(materializeCap)) {
+            materializeTemplates(user, weekStart);
+            weekStart = weekStart.plusWeeks(1);
+        }
+
+        return toResponses(routineRepository.findByUserAndScheduledDateBetween(user, monthStart, monthEnd));
+    }
+
     // 루틴 목록 여러 개에 대한 세트를 한 번에 조회해서 매핑 (루틴마다 따로 쿼리 안 날리게 함)
     private List<RoutineResponse> toResponses(List<WorkoutRoutine> routines) {
         if (routines.isEmpty()) return List.of();
@@ -116,6 +136,22 @@ public class RoutineService {
                 .stream()
                 .map(e -> new BodyPartSummaryPoint(e.getKey(), e.getValue()))
                 .sorted((a, b) -> Long.compare(b.count(), a.count()))
+                .toList();
+    }
+
+    // 부위별 마지막 완료 훈련 날짜 — 통계 화면 "회복 상태" 카드용. 최근 60일만 봐도 충분해서 그 안에서만 조회
+    public List<BodyPartRecoveryPoint> recoveryStatus(String email) {
+        User user = findUser(email);
+        LocalDate today = LocalDate.now();
+        return routineRepository.findByUserAndScheduledDateBetween(user, today.minusDays(60), today).stream()
+                .filter(WorkoutRoutine::isDone)
+                .collect(
+                        Collectors.groupingBy(
+                                WorkoutRoutine::getBodyPart,
+                                Collectors.mapping(WorkoutRoutine::getScheduledDate, Collectors.maxBy(LocalDate::compareTo))))
+                .entrySet().stream()
+                .filter(e -> e.getValue().isPresent())
+                .map(e -> new BodyPartRecoveryPoint(e.getKey(), e.getValue().get()))
                 .toList();
     }
 

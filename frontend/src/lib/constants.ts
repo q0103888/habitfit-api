@@ -1,20 +1,13 @@
-// 대시보드/루틴 페이지에서 공통으로 쓰는 상수 — 부위는 DB에 영어 코드로 저장하고 화면엔 한글로 표시
+// 대시보드/루틴 페이지에서 공통으로 쓰는 상수 — 부위는 DB에 영어 코드로 저장.
+// 화면 라벨은 언어별로 달라지므로 lib/i18n.tsx의 bodyPartLabel(code, t)에서 가져옴
 export const BODY_PARTS = [
-  { code: "CHEST", label: "가슴" },
-  { code: "BACK", label: "등" },
-  { code: "SHOULDER", label: "어깨" },
-  { code: "LEG", label: "하체" },
-  { code: "ARM_ABS", label: "팔+복근" },
-  { code: "CARDIO", label: "유산소" },
+  { code: "CHEST" },
+  { code: "BACK" },
+  { code: "SHOULDER" },
+  { code: "LEG" },
+  { code: "ARM_ABS" },
+  { code: "CARDIO" },
 ];
-
-// 저장된 영어 코드(CHEST 등)를 화면에 보여줄 한글 라벨로 변환. 못 찾으면 코드 그대로 반환
-export function bodyPartLabel(code: string) {
-  return BODY_PARTS.find((p) => p.code === code)?.label ?? code;
-}
-
-// 월요일 시작 — 백엔드 listWeek()의 주 경계(월~일)와 맞춤
-export const WEEKDAY_LABELS = ["월", "화", "수", "목", "금", "토", "일"];
 
 // toISOString()은 UTC로 변환해서 자정 근처(한국 기준 00~08시)엔 날짜가 하루 밀릴 수 있음 —
 // 로컬 달력 기준으로 직접 "YYYY-MM-DD" 문자열을 만들어서 그 문제를 피함

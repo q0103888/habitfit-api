@@ -44,6 +44,14 @@ public class RoutineController {
         return ResponseEntity.ok(routineService.listWeek(principal.getName(), date));
     }
 
+    // date가 속한 달 전체 조회 — 캘린더 화면용. 조회할 때마다 그 달의 모든 주에 대해 반복 템플릿을 자동으로 채워 넣음
+    @GetMapping("/month")
+    public ResponseEntity<List<RoutineResponse>> listMonth(
+            Principal principal,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return ResponseEntity.ok(routineService.listMonth(principal.getName(), date));
+    }
+
     // 연속 달성일 조회 — 계산 로직은 RoutineService.calculateStreak() 참고
     @GetMapping("/streak")
     public ResponseEntity<StreakResponse> streak(Principal principal) {
@@ -95,5 +103,11 @@ public class RoutineController {
     @GetMapping("/summary")
     public ResponseEntity<List<BodyPartSummaryPoint>> bodyPartSummary(Principal principal) {
         return ResponseEntity.ok(routineService.bodyPartSummary(principal.getName()));
+    }
+
+    // 부위별 마지막 훈련 날짜 (통계 화면 회복 상태 카드용)
+    @GetMapping("/recovery")
+    public ResponseEntity<List<BodyPartRecoveryPoint>> recoveryStatus(Principal principal) {
+        return ResponseEntity.ok(routineService.recoveryStatus(principal.getName()));
     }
 }
