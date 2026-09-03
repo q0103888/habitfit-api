@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { Trash2 } from "lucide-react";
 import { addSet, deleteSet, getExerciseHistory, type Routine } from "@/lib/api";
 import { useLanguage } from "@/lib/i18n";
+import { BodyPartIcon } from "@/components/body-part-icon";
 
 // 대시보드/루틴/캘린더/운동세션에서 공통으로 쓰는 세트 기록 패널.
 // 세트 목록+추가/삭제 폼에 더해, 지난 세션 최고 무게 참고와 신기록 알림을 붙임
@@ -43,6 +44,7 @@ export function SetPanel({ routine, onUpdate }: { routine: Routine; onUpdate: (r
 
   return (
     <div className="mt-2 rounded-xl border border-white/10 bg-black/30 p-3">
+      <BodyPartIcon bodyPart={routine.bodyPart} className="mb-3 h-12 w-12" />
       {routine.sets.length === 0 && <p className="text-xs text-zinc-500">{t("common.noSetsYet")}</p>}
       <ul className="space-y-1.5">
         {routine.sets.map((set) => (

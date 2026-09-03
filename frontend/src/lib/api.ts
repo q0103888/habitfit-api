@@ -142,7 +142,13 @@ export function getStreak() {
 
 // 부위별 운동 카탈로그 — 루틴 추가 폼에서 자유 입력 대신 여기서 골라 쓰게 함.
 // name은 루틴 생성 시 그대로 보내야 하는 내부 식별 키(한글), displayName은 요청 locale에 맞는 화면 표시용 번역
-export type Exercise = { id: number; bodyPart: string; name: string; displayName: string };
+export type Exercise = {
+  id: number;
+  bodyPart: string;
+  name: string;
+  displayName: string;
+  imageUrl: string | null;
+};
 
 export function getExercises(locale?: string) {
   return request<Exercise[]>(`/api/exercises${locale ? `?locale=${locale}` : ""}`);

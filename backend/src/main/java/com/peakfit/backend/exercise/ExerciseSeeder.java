@@ -1,9 +1,15 @@
 package com.peakfit.backend.exercise;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 // 앱 시작할 때 exercises 테이블에 아래 목록 중 아직 없는 것만 채워 넣음.
@@ -91,6 +97,9 @@ public class ExerciseSeeder implements CommandLineRunner {
         List<Exercise> toAdd = seed.stream().filter(e -> !existing.containsKey(e.getBodyPart() + "|" + e.getName())).toList();
         if (!toAdd.isEmpty()) {
             exerciseRepository.saveAll(toAdd);
+            // existing은 이 메서드 맨 위에서 찍은 스냅샷이라, 방금 새로 넣은 것들도 반영해둬야
+            // 아래 seedFromCatalogFile()이 "완전히 새로 시작하는 DB"에서 이걸 중복으로 다시 넣지 않음
+            toAdd.forEach(e -> existing.put(e.getBodyPart() + "|" + e.getName(), e));
         }
 
         // 이미 심어져 있던(nameJa 컬럼 추가 이전) 기존 로우는 번역이 비어있으므로 백필
@@ -111,5 +120,53 @@ public class ExerciseSeeder implements CommandLineRunner {
         if (!toBackfill.isEmpty()) {
             exerciseRepository.saveAll(toBackfill);
         }
+
+        seedFromCatalogFile(existing);
     }
+
+    // resources/exercises-catalog.json — free-exercise-db(퍼블릭 도메인) 기반으로 만든 확장 카탈로그.
+    // 이미 있는 (부위,이름)이면 null인 필드만 채워주고(예: 기존 60개의 imageUrl 백필),
+    // 없으면 새 운동으로 추가함. 나중에 운동을 더 늘리고 싶으면 이 파일에 항목만 추가하면 됨
+    private void seedFromCatalogFile(Map<String, Exercise> existing) {
+        List<CatalogEntry> catalog;
+        try (InputStream in = new ClassPathResource("exercises-catalog.json").getInputStream()) {
+            catalog = new ObjectMapper().readValue(in, new TypeReference<>() {});
+        } catch (IOException e) {
+            throw new IllegalStateException("exercises-catalog.json을 읽을 수 없습니다.", e);
+        }
+
+        List<Exercise> toInsert = new ArrayList<>();
+        List<Exercise> toPatch = new ArrayList<>();
+        for (CatalogEntry entry : catalog) {
+            String key = entry.bodyPart() + "|" + entry.name();
+            Exercise found = existing.get(key);
+            if (found == null) {
+                Exercise fresh = new Exercise(entry.bodyPart(), entry.name(), entry.nameJa());
+                fresh.setImageUrl(entry.imageUrl());
+                toInsert.add(fresh);
+                existing.put(key, fresh);
+            } else {
+                boolean changed = false;
+                if (found.getNameJa() == null && entry.nameJa() != null) {
+                    found.setNameJa(entry.nameJa());
+                    changed = true;
+                }
+                if (found.getImageUrl() == null && entry.imageUrl() != null) {
+                    found.setImageUrl(entry.imageUrl());
+                    changed = true;
+                }
+                if (changed) {
+                    toPatch.add(found);
+                }
+            }
+        }
+        if (!toInsert.isEmpty()) {
+            exerciseRepository.saveAll(toInsert);
+        }
+        if (!toPatch.isEmpty()) {
+            exerciseRepository.saveAll(toPatch);
+        }
+    }
+
+    private record CatalogEntry(String bodyPart, String name, String nameJa, String imageUrl) {}
 }

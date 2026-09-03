@@ -12,6 +12,7 @@ const ja = {
   "nav.dashboard": "ダッシュボード",
   "nav.routine": "ルーティン",
   "nav.calendar": "カレンダー",
+  "nav.exercises": "種目図鑑",
   "nav.stats": "統計",
   "nav.team": "チーム",
   "nav.settings": "設定",
@@ -104,6 +105,10 @@ const ja = {
   "calendar.selectDayPrompt": "日付を選択するとその日のルーティンが見られます。",
   "calendar.addForDay": "この日にルーティン追加",
 
+  "exercises.title": "種目図鑑",
+  "exercises.subtitle": "部位別に種目を確認できます。",
+  "exercises.noImage": "画像なし",
+
   "stats.title": "統計",
   "stats.subtitle": "体重と種目別の重量変化を確認しましょう。",
   "stats.bigThree": "ビッグ3自己ベスト",
@@ -180,6 +185,7 @@ const ko: Record<Key, string> = {
   "nav.dashboard": "대시보드",
   "nav.routine": "루틴",
   "nav.calendar": "캘린더",
+  "nav.exercises": "운동 도감",
   "nav.stats": "통계",
   "nav.team": "팀",
   "nav.settings": "설정",
@@ -271,6 +277,10 @@ const ko: Record<Key, string> = {
   "calendar.legendWeight": "몸무게 기록",
   "calendar.selectDayPrompt": "날짜를 선택하면 그날의 루틴을 볼 수 있어요.",
   "calendar.addForDay": "이 날짜에 루틴 추가",
+
+  "exercises.title": "운동 도감",
+  "exercises.subtitle": "부위별로 운동 종목을 확인할 수 있어요.",
+  "exercises.noImage": "이미지 없음",
 
   "stats.title": "통계",
   "stats.subtitle": "몸무게와 운동별 무게 변화를 확인하세요.",

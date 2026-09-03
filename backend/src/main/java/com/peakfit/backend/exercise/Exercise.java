@@ -30,6 +30,9 @@ public class Exercise {
     @Column(name = "name_ja")
     private String nameJa; // 화면 표시용 일본어 번역. 없으면 컨트롤러에서 name으로 폴백
 
+    @Column(name = "image_url", length = 500)
+    private String imageUrl; // 자세 참고용 이미지 — free-exercise-db(퍼블릭 도메인) CDN URL
+
     public Exercise(String bodyPart, String name, String nameJa) {
         this.bodyPart = bodyPart;
         this.name = name;
@@ -38,5 +41,9 @@ public class Exercise {
 
     public void setNameJa(String nameJa) {
         this.nameJa = nameJa;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

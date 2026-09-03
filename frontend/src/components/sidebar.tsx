@@ -9,6 +9,7 @@ import {
   Settings,
   HelpCircle,
   LogOut,
+  Images,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,6 +27,7 @@ const TIP_ROTATE_MS = 30_000; // 30초마다 랜덤 교체
 const navItems = [
   { labelKey: "nav.dashboard", icon: LayoutDashboard, href: "/" },
   { labelKey: "nav.routine", icon: Dumbbell, href: "/routine" },
+  { labelKey: "nav.exercises", icon: Images, href: "/exercises" },
   { labelKey: "nav.calendar", icon: CalendarDays, href: "/calendar" },
   { labelKey: "nav.stats", icon: BarChart3, href: "/stats" },
   { labelKey: "nav.team", icon: Users, href: "#" },

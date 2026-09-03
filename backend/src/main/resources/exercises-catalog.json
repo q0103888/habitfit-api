@@ -1,0 +1,2732 @@
+[
+{
+"bodyPart": "CHEST",
+"name": "벤치프레스",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Bench_Press_-_Medium_Grip/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 벤치프레스",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "디클라인 벤치프레스",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Barbell_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "스미스 머신 벤치프레스",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "덤벨 플라이",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Flyes/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "펙덱 플라이",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Butterfly/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "케이블 크로스오버",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Crossover/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "체스트프레스 머신",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leverage_Chest_Press/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "딥스",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dips_-_Triceps_Version/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "푸시업",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Pushups/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "랫풀다운",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Wide-Grip_Lat_Pulldown/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "언더핸드 랫풀다운",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Underhand_Cable_Pulldowns/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "데드리프트",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Deadlift/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "바벨로우",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent_Over_Barbell_Row/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "시티드 케이블로우",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Cable_Rows/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "풀업",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Pullups/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "원암 덤벨로우",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Dumbbell_Row/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "티바로우",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_T-Bar_Row/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "백 익스텐션",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Hyperextensions_Back_Extensions/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "슈러그",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Shrug/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "밀리터리프레스",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Military_Press_To_The_Side/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "사이드 레터럴 레이즈",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Side_Lateral_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "케이블 레터럴 레이즈",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Side_Lateral_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "프론트 레이즈",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Front_Dumbbell_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "리어 델트 플라이",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Reverse_Flyes/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "페이스풀",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Face_Pull/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "아놀드 프레스",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Arnold_Dumbbell_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "시티드 덤벨프레스",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Dumbbell_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "업라이트로우",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Upright_Barbell_Row/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스쿼트",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "레그프레스",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leg_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "런지",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Lunge/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "힙쓰러스트",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Hip_Thrust/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "레그컬",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Leg_Curls/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "시티드 레그컬",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Leg_Curl/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "레그익스텐션",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leg_Extensions/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "루마니안 데드리프트",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Romanian_Deadlift/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "카프레이즈",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Calf_Raises/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "덤벨컬",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Bicep_Curl/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "바벨컬",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Curl/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "이지바 컬",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/EZ-Bar_Curl/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 컬",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/High_Cable_Curls/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "트라이셉스 익스텐션",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Incline_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "스컬크러셔",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Lying_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 푸시다운",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Triceps_Pushdown/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "행잉 레그레이즈",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Hanging_Leg_Raise/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "크런치",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Crunches/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "플랭크",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Plank/0.jpg"
+},
+{
+"bodyPart": "CARDIO",
+"name": "러닝머신",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Jogging_Treadmill/0.jpg"
+},
+{
+"bodyPart": "CARDIO",
+"name": "실외 러닝",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Running_Treadmill/0.jpg"
+},
+{
+"bodyPart": "CARDIO",
+"name": "사이클",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bicycling_Stationary/0.jpg"
+},
+{
+"bodyPart": "CARDIO",
+"name": "로잉머신",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Rowing_Stationary/0.jpg"
+},
+{
+"bodyPart": "CARDIO",
+"name": "일립티컬",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Elliptical_Trainer/0.jpg"
+},
+{
+"bodyPart": "CARDIO",
+"name": "계단 오르기",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Stairmaster/0.jpg"
+},
+{
+"bodyPart": "CARDIO",
+"name": "줄넘기",
+"nameJa": null,
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Rope_Jumping/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "복근 크런치 머신",
+"nameJa": "腹筋クランチマシン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Ab_Crunch_Machine/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "복근 롤러",
+"nameJa": "腹筋ローラー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Ab_Roller/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "얼터네이트 해머 컬",
+"nameJa": "オルタネイトハンマーカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Alternate_Hammer_Curl/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "얼터네이트 인클라인 덤벨 컬",
+"nameJa": "オルタネイトインクラインダンベルカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Alternate_Incline_Dumbbell_Curl/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "얼터네이팅 케이블 숄더 프레스",
+"nameJa": "オルタネイトケーブルショルダープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Alternating_Cable_Shoulder_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "얼터네이팅 델토이드 레이즈",
+"nameJa": "オルタネイトデルトイドレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Alternating_Deltoid_Raise/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "얼터네이팅 플로어 프레스",
+"nameJa": "オルタネイトフロアプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Alternating_Floor_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "얼터네이팅 행 클린",
+"nameJa": "オルタネイトハングクリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Alternating_Hang_Clean/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "얼터네이팅 케틀벨 프레스",
+"nameJa": "オルタネイトケトルベルプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Alternating_Kettlebell_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "얼터네이팅 케틀벨 로우",
+"nameJa": "オルタネイトケトルベルロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Alternating_Kettlebell_Row/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "아놀드 덤벨 프레스",
+"nameJa": "アーノルドダンベルプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Arnold_Dumbbell_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "백 플라이 밴드",
+"nameJa": "バックフライバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Back_Flyes_-_With_Bands/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "밸런스 보드",
+"nameJa": "バランスボード",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Balance_Board/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "볼 레그 컬",
+"nameJa": "ボールレッグカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Ball_Leg_Curl/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "밴드 어시스티드 풀 업",
+"nameJa": "バンドアシストプルアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Band_Assisted_Pull-Up/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "밴드 스컬 크러셔",
+"nameJa": "バンドスカルクラッシャー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Band_Skull_Crusher/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "바벨 복근 롤아웃",
+"nameJa": "バーベル腹筋ロールアウト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Ab_Rollout/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "바벨 복근 롤아웃 니",
+"nameJa": "バーベル腹筋ロールアウトニー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Ab_Rollout_-_On_Knees/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "바벨 벤치 프레스 미디엄 그립",
+"nameJa": "バーベルベンチプレスミディアムグリップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Bench_Press_-_Medium_Grip/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "바벨 컬",
+"nameJa": "バーベルカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Curl/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "바벨 데드리프트",
+"nameJa": "バーベルデッドリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Deadlift/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "바벨 풀 스쿼트",
+"nameJa": "バーベルフルスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Full_Squat/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "바벨 길로틴 벤치 프레스",
+"nameJa": "バーベルギロチンベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Guillotine_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "바벨 핵 스쿼트",
+"nameJa": "バーベルハックスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Hack_Squat/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "바벨 인클라인 벤치 프레스 미디엄 그립",
+"nameJa": "バーベルインクラインベンチプレスミディアムグリップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "바벨 인클라인 숄더 레이즈",
+"nameJa": "バーベルインクラインショルダーレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Incline_Shoulder_Raise/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "바벨 런지",
+"nameJa": "バーベルランジ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Lunge/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "바벨 리어 델트 로우",
+"nameJa": "バーベルリアデルトロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Rear_Delt_Row/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "바벨 롤아웃 벤치",
+"nameJa": "バーベルロールアウトベンチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Rollout_from_Bench/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "바벨 시티드 카프 레이즈",
+"nameJa": "バーベルシーテッドカーフレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Seated_Calf_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "바벨 숄더 프레스",
+"nameJa": "バーベルショルダープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Shoulder_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "바벨 슈러그",
+"nameJa": "バーベルシュラッグ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Shrug/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "바벨 슈러그 비하인드 백",
+"nameJa": "バーベルシュラッグビハインドバック",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Shrug_Behind_The_Back/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "바벨 사이드 벤드",
+"nameJa": "バーベルサイドベンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Side_Bend/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "바벨 사이드 스플릿 스쿼트",
+"nameJa": "バーベルサイドスプリットスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Side_Split_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "바벨 스쿼트",
+"nameJa": "バーベルスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "바벨 스쿼트 벤치",
+"nameJa": "バーベルスクワットベンチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Squat_To_A_Bench/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "바벨 스텝 업",
+"nameJa": "バーベルステップアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Step_Ups/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "바벨 워킹 런지",
+"nameJa": "バーベルウォーキングランジ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Barbell_Walking_Lunge/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "벤치 딥스",
+"nameJa": "ベンチディップス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bench_Dips/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "벤치 프레스 밴드",
+"nameJa": "ベンチプレスバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bench_Press_-_With_Bands/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "벤트 암 바벨 풀오버",
+"nameJa": "ベントアームバーベルプルオーバー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent-Arm_Barbell_Pullover/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "벤트 암 덤벨 풀오버",
+"nameJa": "ベントアームダンベルプルオーバー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent-Arm_Dumbbell_Pullover/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "벤트 니 힙 레이즈",
+"nameJa": "ベントニーヒップレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent-Knee_Hip_Raise/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "벤트 오버 바벨 로우",
+"nameJa": "ベントオーバーバーベルロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent_Over_Barbell_Row/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "벤트 오버 덤벨 리어 델트 레이즈 헤드 벤치",
+"nameJa": "ベントオーバーダンベルリアデルトレイズヘッドベンチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent_Over_Dumbbell_Rear_Delt_Raise_With_Head_On_Bench/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "벤트 오버 로우 풀리 사이드 레터럴",
+"nameJa": "ベントオーバーロープーリーサイドラテラル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent_Over_Low-Pulley_Side_Lateral/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "벤트 오버 원 암 롱 바 로우",
+"nameJa": "ベントオーバーワンアームロングバーロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent_Over_One-Arm_Long_Bar_Row/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "벤트 오버 투 암 롱 바 로우",
+"nameJa": "ベントオーバーツーアームロングバーロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent_Over_Two-Arm_Long_Bar_Row/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "벤트 오버 투 덤벨 로우",
+"nameJa": "ベントオーバーツーダンベルロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent_Over_Two-Dumbbell_Row/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "벤트 오버 투 덤벨 로우 팜",
+"nameJa": "ベントオーバーツーダンベルロウパーム",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent_Over_Two-Dumbbell_Row_With_Palms_In/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "벤트 프레스",
+"nameJa": "ベントプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bent_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "바디 업",
+"nameJa": "ボディアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Body-Up/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "바디 트라이셉 프레스",
+"nameJa": "ボディトライセッププレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Body_Tricep_Press/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "맨몸 플라이",
+"nameJa": "自重フライ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bodyweight_Flyes/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "맨몸 미드 로우",
+"nameJa": "自重ミッドロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bodyweight_Mid_Row/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "맨몸 스쿼트",
+"nameJa": "自重スクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bodyweight_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "맨몸 워킹 런지",
+"nameJa": "自重ウォーキングランジ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bodyweight_Walking_Lunge/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "보수 볼 케이블 크런치 사이드 벤드",
+"nameJa": "ボスボールケーブルクランチサイドベンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bosu_Ball_Cable_Crunch_With_Side_Bends/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "박스 스쿼트 체인",
+"nameJa": "ボックススクワットチェーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Box_Squat_with_Chains/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "브래드포드 록키 프레스",
+"nameJa": "ブラッドフォードロッキープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bradford_Rocky_Presses/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "힙 업",
+"nameJa": "ヒップアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Butt-Ups/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "힙 리프트 브릿지",
+"nameJa": "ヒップリフトブリッジ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Butt_Lift_Bridge/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "케이블 체스트 프레스",
+"nameJa": "ケーブルチェストプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Chest_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 크런치",
+"nameJa": "ケーブルクランチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Crunch/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 해머 컬 로프 어태치먼트",
+"nameJa": "ケーブルハンマーカールロープアタッチメント",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Hammer_Curls_-_Rope_Attachment/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "케이블 인클라인 푸시다운",
+"nameJa": "ケーブルインクラインプッシュダウン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Incline_Pushdown/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 인클라인 트라이셉 익스텐션",
+"nameJa": "ケーブルインクライントライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Incline_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "케이블 내회전 로테이션",
+"nameJa": "ケーブル内旋ローテーション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Internal_Rotation/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "케이블 아이언 크로스",
+"nameJa": "ケーブルアイアンクロス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Iron_Cross/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 라잉 트라이셉 익스텐션",
+"nameJa": "ケーブルライイングトライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Lying_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 원 암 트라이셉 익스텐션",
+"nameJa": "ケーブルワンアームトライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_One_Arm_Tricep_Extension/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 프리처 컬",
+"nameJa": "ケーブルプリーチャーカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Preacher_Curl/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "케이블 리어 델트 플라이",
+"nameJa": "ケーブルリアデルトフライ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Rear_Delt_Fly/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 리버스 크런치",
+"nameJa": "ケーブルリバースクランチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Reverse_Crunch/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 로프 오버헤드 트라이셉 익스텐션",
+"nameJa": "ケーブルロープオーバーヘッドトライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Rope_Overhead_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "케이블 로프 리어 델트 로우",
+"nameJa": "ケーブルロープリアデルトロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Rope_Rear-Delt_Rows/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 러시안 트위스트",
+"nameJa": "ケーブルロシアンツイスト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Russian_Twists/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 시티드 크런치",
+"nameJa": "ケーブルシーテッドクランチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Seated_Crunch/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "케이블 시티드 레터럴 레이즈",
+"nameJa": "ケーブルシーテッドラテラルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Seated_Lateral_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "케이블 숄더 프레스",
+"nameJa": "ケーブルショルダープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Shoulder_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "케이블 슈러그",
+"nameJa": "ケーブルシュラッグ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Shrugs/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케이블 리스트 컬",
+"nameJa": "ケーブルリストカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cable_Wrist_Curl/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "카프 머신 숄더 슈러그",
+"nameJa": "カーフマシンショルダーシュラッグ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Calf-Machine_Shoulder_Shrug/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "카프 프레스",
+"nameJa": "カーフプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Calf_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "카프 프레스 레그 프레스 머신",
+"nameJa": "カーフプレスレッグプレスマシン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Calf_Press_On_The_Leg_Press_Machine/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "카프 레이즈 덤벨",
+"nameJa": "カーフレイズダンベル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Calf_Raise_On_A_Dumbbell/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "카프 레이즈 밴드",
+"nameJa": "カーフレイズバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Calf_Raises_-_With_Bands/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "친 업",
+"nameJa": "チンアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Chin-Up/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "클린 프레스",
+"nameJa": "クリーンプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Clean_and_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "클로즈 그립 바벨 벤치 프레스",
+"nameJa": "クローズグリップバーベルベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Close-Grip_Barbell_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "클로즈 그립 덤벨 프레스",
+"nameJa": "クローズグリップダンベルプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Close-Grip_Dumbbell_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "클로즈 그립 이지 바 컬 밴드",
+"nameJa": "クローズグリップイージーバーカールバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Close-Grip_EZ-Bar_Curl_with_Band/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "클로즈 그립 이지 바 프레스",
+"nameJa": "クローズグリップイージーバープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Close-Grip_EZ-Bar_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "클로즈 그립 이지 바 컬",
+"nameJa": "クローズグリップイージーバーカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Close-Grip_EZ_Bar_Curl/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "클로즈 그립 푸시 업 오프 덤벨",
+"nameJa": "クローズグリッププッシュアップオフダンベル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Close-Grip_Push-Up_off_of_a_Dumbbell/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "클로즈 그립 스탠딩 바벨 컬",
+"nameJa": "クローズグリップスタンディングバーベルカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Close-Grip_Standing_Barbell_Curl/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "컨센트레이션 컬",
+"nameJa": "コンセントレーションカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Concentration_Curls/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "크로스 바디 크런치",
+"nameJa": "クロスボディクランチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cross-Body_Crunch/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "크로스 바디 해머 컬",
+"nameJa": "クロスボディハンマーカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cross_Body_Hammer_Curl/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "크로스 오버 밴드",
+"nameJa": "クロスオーバーバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Cross_Over_-_With_Bands/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "크런치 레그 운동 볼",
+"nameJa": "クランチレッグエクササイズボール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Crunch_-_Legs_On_Exercise_Ball/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "디클라인 바벨 벤치 프레스",
+"nameJa": "デクラインバーベルベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Barbell_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "디클라인 클로즈 그립 벤치 스컬 크러셔",
+"nameJa": "デクラインクローズグリップベンチスカルクラッシャー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Close-Grip_Bench_To_Skull_Crusher/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "디클라인 크런치",
+"nameJa": "デクラインクランチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Crunch/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "디클라인 덤벨 벤치 프레스",
+"nameJa": "デクラインダンベルベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Dumbbell_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "디클라인 덤벨 플라이",
+"nameJa": "デクラインダンベルフライ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Dumbbell_Flyes/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "디클라인 덤벨 트라이셉 익스텐션",
+"nameJa": "デクラインダンベルトライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Dumbbell_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "디클라인 이지 바 트라이셉 익스텐션",
+"nameJa": "デクラインイージーバートライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_EZ_Bar_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "디클라인 복사근 크런치",
+"nameJa": "デクライン腹斜筋クランチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Oblique_Crunch/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "디클라인 푸시 업",
+"nameJa": "デクラインプッシュアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Push-Up/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "디클라인 리버스 크런치",
+"nameJa": "デクラインリバースクランチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Reverse_Crunch/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "디클라인 스미스 프레스",
+"nameJa": "デクラインスミスプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Decline_Smith_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "딥스 머신",
+"nameJa": "ディップスマシン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dip_Machine/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "딥스 체스트 버전",
+"nameJa": "ディップスチェストバージョン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dips_-_Chest_Version/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "딥스 트라이셉 버전",
+"nameJa": "ディップストライセップバージョン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dips_-_Triceps_Version/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "더블 케틀벨 얼터네이팅 행 클린",
+"nameJa": "ダブルケトルベルオルタネイトハングクリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Double_Kettlebell_Alternating_Hang_Clean/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "더블 케틀벨 저크",
+"nameJa": "ダブルケトルベルジャーク",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Double_Kettlebell_Jerk/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "더블 케틀벨 푸시 프레스",
+"nameJa": "ダブルケトルベルプッシュプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Double_Kettlebell_Push_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "더블 케틀벨 스내치",
+"nameJa": "ダブルケトルベルスナッチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Double_Kettlebell_Snatch/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "더블 케틀벨 윈드밀",
+"nameJa": "ダブルケトルベルウィンドミル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Double_Kettlebell_Windmill/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "드래그 컬",
+"nameJa": "ドラッグカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Drag_Curl/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "덤벨 얼터네이트 바이셉 컬",
+"nameJa": "ダンベルオルタネイトバイセップカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Alternate_Bicep_Curl/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "덤벨 벤치 프레스",
+"nameJa": "ダンベルベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "덤벨 바이셉 컬",
+"nameJa": "ダンベルバイセップカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Bicep_Curl/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "덤벨 클린",
+"nameJa": "ダンベルクリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Clean/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "덤벨 인클라인 로우",
+"nameJa": "ダンベルインクラインロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Incline_Row/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "덤벨 인클라인 숄더 레이즈",
+"nameJa": "ダンベルインクラインショルダーレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Incline_Shoulder_Raise/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "덤벨 런지",
+"nameJa": "ダンベルランジ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Lunges/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "덤벨 라잉 원 암 리어 레터럴 레이즈",
+"nameJa": "ダンベルライイングワンアームリアラテラルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Lying_One-Arm_Rear_Lateral_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "덤벨 라잉 리어 레터럴 레이즈",
+"nameJa": "ダンベルライイングリアラテラルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Lying_Rear_Lateral_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "덤벨 원 암 숄더 프레스",
+"nameJa": "ダンベルワンアームショルダープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_One-Arm_Shoulder_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "덤벨 원 암 트라이셉 익스텐션",
+"nameJa": "ダンベルワンアームトライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_One-Arm_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "덤벨 원 암 업라이트 로우",
+"nameJa": "ダンベルワンアームアップライトロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_One-Arm_Upright_Row/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "덤벨 프론 인클라인 컬",
+"nameJa": "ダンベルプローンインクラインカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Prone_Incline_Curl/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "덤벨 레이즈",
+"nameJa": "ダンベルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Raise/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "덤벨 리어 런지",
+"nameJa": "ダンベルリアランジ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Rear_Lunge/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "덤벨 시티드 원 레그 카프 레이즈",
+"nameJa": "ダンベルシーテッドワンレッグカーフレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Seated_One-Leg_Calf_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "덤벨 숄더 프레스",
+"nameJa": "ダンベルショルダープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Shoulder_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "덤벨 슈러그",
+"nameJa": "ダンベルシュラッグ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Shrug/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "덤벨 사이드 벤드",
+"nameJa": "ダンベルサイドベンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Side_Bend/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "덤벨 스쿼트",
+"nameJa": "ダンベルスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "덤벨 스쿼트 벤치",
+"nameJa": "ダンベルスクワットベンチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Squat_To_A_Bench/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "덤벨 스텝 업",
+"nameJa": "ダンベルステップアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Dumbbell_Step_Ups/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "이지 바 컬",
+"nameJa": "イージーバーカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/EZ-Bar_Curl/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "엘리베이티드 백 런지",
+"nameJa": "エレベーテッドバックランジ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Elevated_Back_Lunge/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "엘리베이티드 케이블 로우",
+"nameJa": "エレベーテッドケーブルロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Elevated_Cable_Rows/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "운동 볼 크런치",
+"nameJa": "エクササイズボールクランチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Exercise_Ball_Crunch/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "운동 볼 풀",
+"nameJa": "エクササイズボールプル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Exercise_Ball_Pull-In/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "외회전 로테이션",
+"nameJa": "外旋ローテーション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/External_Rotation/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "외회전 로테이션 밴드",
+"nameJa": "外旋ローテーションバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/External_Rotation_with_Band/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "외회전 로테이션 케이블",
+"nameJa": "外旋ローテーションケーブル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/External_Rotation_with_Cable/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "페이스 풀",
+"nameJa": "フェイスプル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Face_Pull/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "플랫 벤치 케이블 플라이",
+"nameJa": "フラットベンチケーブルフライ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Flat_Bench_Cable_Flyes/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "플랫 벤치 레그 풀",
+"nameJa": "フラットベンチレッグプル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Flat_Bench_Leg_Pull-In/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "플랫 벤치 라잉 레그 레이즈",
+"nameJa": "フラットベンチライイングレッグレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Flat_Bench_Lying_Leg_Raise/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "플로어 글루트 햄 레이즈",
+"nameJa": "フロアグルートハムレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Floor_Glute-Ham_Raise/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "프론트 바벨 스쿼트",
+"nameJa": "フロントバーベルスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Front_Barbell_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "프론트 바벨 스쿼트 벤치",
+"nameJa": "フロントバーベルスクワットベンチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Front_Barbell_Squat_To_A_Bench/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "프론트 케이블 레이즈",
+"nameJa": "フロントケーブルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Front_Cable_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "프론트 덤벨 레이즈",
+"nameJa": "フロントダンベルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Front_Dumbbell_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "프론트 인클라인 덤벨 레이즈",
+"nameJa": "フロントインクラインダンベルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Front_Incline_Dumbbell_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "프론트 플레이트 레이즈",
+"nameJa": "フロントプレートレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Front_Plate_Raise/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "프론트 레이즈 풀오버",
+"nameJa": "フロントレイズプルオーバー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Front_Raise_And_Pullover/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "프론트 스쿼트 클린 그립",
+"nameJa": "フロントスクワットクリーングリップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Front_Squat_Clean_Grip/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "프론트 투 덤벨 레이즈",
+"nameJa": "フロントツーダンベルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Front_Two-Dumbbell_Raise/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "글루트 킥백",
+"nameJa": "グルートキックバック",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Glute_Kickback/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "핵 스쿼트",
+"nameJa": "ハックスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Hack_Squat/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "해머 컬",
+"nameJa": "ハンマーカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Hammer_Curls/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "행잉 레그 레이즈",
+"nameJa": "ハンギングレッグレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Hanging_Leg_Raise/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "하이 케이블 컬",
+"nameJa": "ハイケーブルカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/High_Cable_Curls/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "힙 익스텐션 밴드",
+"nameJa": "ヒップエクステンションバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Hip_Extension_with_Bands/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "하이퍼익스텐션 백 익스텐션",
+"nameJa": "ハイパーエクステンションバックエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Hyperextensions_Back_Extensions/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "인클라인 바벨 트라이셉 익스텐션",
+"nameJa": "インクラインバーベルトライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Barbell_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "인클라인 벤치 풀",
+"nameJa": "インクラインベンチプル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Bench_Pull/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 케이블 체스트 프레스",
+"nameJa": "インクラインケーブルチェストプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Cable_Chest_Press/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 케이블 플라이",
+"nameJa": "インクラインケーブルフライ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Cable_Flye/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 덤벨 벤치 팜 페이싱",
+"nameJa": "インクラインダンベルベンチパームフェイシング",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Dumbbell_Bench_With_Palms_Facing_In/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "인클라인 덤벨 컬",
+"nameJa": "インクラインダンベルカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Dumbbell_Curl/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 덤벨 플라이",
+"nameJa": "インクラインダンベルフライ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Dumbbell_Flyes/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 덤벨 플라이 트위스트",
+"nameJa": "インクラインダンベルフライツイスト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Dumbbell_Flyes_-_With_A_Twist/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 덤벨 프레스",
+"nameJa": "インクラインダンベルプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Dumbbell_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "인클라인 해머 컬",
+"nameJa": "インクラインハンマーカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Hammer_Curls/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "인클라인 이너 바이셉 컬",
+"nameJa": "インクラインインナーバイセップカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Inner_Biceps_Curl/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 푸시 업",
+"nameJa": "インクラインプッシュアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Push-Up/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "인클라인 푸시 업 클로즈 그립",
+"nameJa": "インクラインプッシュアップクローズグリップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Push-Up_Close-Grip/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 푸시 업 미디엄",
+"nameJa": "インクラインプッシュアップミディアム",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Push-Up_Medium/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 푸시 업 리버스 그립",
+"nameJa": "インクラインプッシュアップリバースグリップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Push-Up_Reverse_Grip/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 푸시 업 와이드",
+"nameJa": "インクラインプッシュアップワイド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Push-Up_Wide/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "내회전 로테이션 밴드",
+"nameJa": "内旋ローテーションバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Internal_Rotation_with_Band/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "인버티드 로우",
+"nameJa": "インバーテッドロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Inverted_Row/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "아이언 크로스",
+"nameJa": "アイアンクロス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Iron_Cross/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "아이소메트릭 넥 운동 프론트 백",
+"nameJa": "アイソメトリックネックエクササイズフロントバック",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Isometric_Neck_Exercise_-_Front_And_Back/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "잭나이프 싯 업",
+"nameJa": "ジャックナイフシットアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Jackknife_Sit-Up/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "케틀벨 아놀드 프레스",
+"nameJa": "ケトルベルアーノルドプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kettlebell_Arnold_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "케틀벨 데드 클린",
+"nameJa": "ケトルベルデッドクリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kettlebell_Dead_Clean/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "케틀벨 헤일로",
+"nameJa": "ケトルベルヘイロー",
+"imageUrl": null
+},
+{
+"bodyPart": "SHOULDER",
+"name": "케틀벨 헤일로 오버헤드 익스텐션",
+"nameJa": "ケトルベルヘイローオーバーヘッドエクステンション",
+"imageUrl": null
+},
+{
+"bodyPart": "LEG",
+"name": "케틀벨 행 클린",
+"nameJa": "ケトルベルハングクリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kettlebell_Hang_Clean/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "케틀벨 원 레그드 데드리프트",
+"nameJa": "ケトルベルワンレッグドデッドリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kettlebell_One-Legged_Deadlift/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케틀벨 오버헤드 트라이셉 익스텐션",
+"nameJa": "ケトルベルオーバーヘッドトライセップエクステンション",
+"imageUrl": null
+},
+{
+"bodyPart": "LEG",
+"name": "케틀벨 피스톨 스쿼트",
+"nameJa": "ケトルベルピストルスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kettlebell_Pistol_Squat/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "케틀벨 시티드 프레스",
+"nameJa": "ケトルベルシーテッドプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kettlebell_Seated_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "케틀벨 스모 하이 풀",
+"nameJa": "ケトルベルスモウハイプル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kettlebell_Sumo_High_Pull/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "케틀벨 윈드밀",
+"nameJa": "ケトルベルウィンドミル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kettlebell_Windmill/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "니링 케이블 크런치 얼터네이팅 복사근 트위스트",
+"nameJa": "ニーリングケーブルクランチオルタネイト腹斜筋ツイスト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "니링 케이블 트라이셉 익스텐션",
+"nameJa": "ニーリングケーブルトライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kneeling_Cable_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "니링 하이 풀리 로우",
+"nameJa": "ニーリングハイプーリーロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kneeling_High_Pulley_Row/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "니링 싱글 암 하이 풀리 로우",
+"nameJa": "ニーリングシングルアームハイプーリーロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Kneeling_Single-Arm_High_Pulley_Row/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "랜드마인 리니어 재머",
+"nameJa": "ランドマインリニアジャマー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Landmine_Linear_Jammer/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "레터럴 레이즈 밴드",
+"nameJa": "ラテラルレイズバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lateral_Raise_-_With_Bands/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "레그 오버 플로어 프레스",
+"nameJa": "レッグオーバーフロアプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leg-Over_Floor_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "레그 익스텐션",
+"nameJa": "レッグエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leg_Extensions/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "레그 리프트",
+"nameJa": "レッグリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leg_Lift/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "레그 프레스",
+"nameJa": "レッグプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leg_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "레그 풀",
+"nameJa": "レッグプル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leg_Pull-In/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "레버리지 체스트 프레스",
+"nameJa": "レバレッジチェストプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leverage_Chest_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "레버리지 데드리프트",
+"nameJa": "レバレッジデッドリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leverage_Deadlift/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "레버리지 디클라인 체스트 프레스",
+"nameJa": "レバレッジデクラインチェストプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leverage_Decline_Chest_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "레버리지 하이 로우",
+"nameJa": "レバレッジハイロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leverage_High_Row/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "레버리지 인클라인 체스트 프레스",
+"nameJa": "レバレッジインクラインチェストプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leverage_Incline_Chest_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "레버리지 숄더 프레스",
+"nameJa": "レバレッジショルダープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leverage_Shoulder_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "레버리지 슈러그",
+"nameJa": "レバレッジシュラッグ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Leverage_Shrug/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "로우 케이블 크로스오버",
+"nameJa": "ローケーブルクロスオーバー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Low_Cable_Crossover/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "로우 케이블 트라이셉 익스텐션",
+"nameJa": "ローケーブルトライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Low_Cable_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "로우 풀리 로우 넥",
+"nameJa": "ロープーリーロウネック",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Low_Pulley_Row_To_Neck/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "런지 패스 스루",
+"nameJa": "ランジパススルー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lunge_Pass_Through/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "런지 스프린트",
+"nameJa": "ランジスプリント",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lunge_Sprint/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "라잉 케이블 컬",
+"nameJa": "ライイングケーブルカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Cable_Curl/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "라잉 클로즈 그립 바 컬 하이 풀리",
+"nameJa": "ライイングクローズグリップバーカールハイプーリー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Close-Grip_Bar_Curl_On_High_Pulley/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "라잉 클로즈 그립 바벨 트라이셉 익스텐션 비하인드 헤드",
+"nameJa": "ライイングクローズグリップバーベルトライセップエクステンションビハインドヘッド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Close-Grip_Barbell_Triceps_Extension_Behind_The_Head/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "라잉 클로즈 그립 바벨 트라이셉 프레스 친",
+"nameJa": "ライイングクローズグリップバーベルトライセッププレスチン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Close-Grip_Barbell_Triceps_Press_To_Chin/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "라잉 덤벨 트라이셉 익스텐션",
+"nameJa": "ライイングダンベルトライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Dumbbell_Tricep_Extension/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "라잉 페이스 업 플레이트 넥 저항",
+"nameJa": "ライイングフェイスアッププレートネックレジスタンス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Face_Up_Plate_Neck_Resistance/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "라잉 하이 벤치 바벨 컬",
+"nameJa": "ライイングハイベンチバーベルカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_High_Bench_Barbell_Curl/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "라잉 레그 컬",
+"nameJa": "ライイングレッグカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Leg_Curls/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "라잉 머신 스쿼트",
+"nameJa": "ライイングマシンスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Machine_Squat/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "라잉 원 암 레터럴 레이즈",
+"nameJa": "ライイングワンアームラテラルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_One-Arm_Lateral_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "라잉 리어 델트 레이즈",
+"nameJa": "ライイングリアデルトレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Rear_Delt_Raise/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "라잉 수파인 덤벨 컬",
+"nameJa": "ライイングスパインダンベルカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Supine_Dumbbell_Curl/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "라잉 트라이셉 프레스",
+"nameJa": "ライイングトライセッププレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Lying_Triceps_Press/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "머신 벤치 프레스",
+"nameJa": "マシンベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Machine_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "머신 바이셉 컬",
+"nameJa": "マシンバイセップカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Machine_Bicep_Curl/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "머신 프리처 컬",
+"nameJa": "マシンプリーチャーカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Machine_Preacher_Curls/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "머신 숄더 밀리터리 프레스",
+"nameJa": "マシンショルダーミリタリープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Machine_Shoulder_Military_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "머신 트라이셉 익스텐션",
+"nameJa": "マシントライセップエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Machine_Triceps_Extension/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "머슬 업",
+"nameJa": "マッスルアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Muscle_Up/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "내로우 스탠스 핵 스쿼트",
+"nameJa": "ナロースタンスハックスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Narrow_Stance_Hack_Squats/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "내로우 스탠스 레그 프레스",
+"nameJa": "ナロースタンスレッグプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Narrow_Stance_Leg_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "내로우 스탠스 스쿼트",
+"nameJa": "ナロースタンススクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Narrow_Stance_Squats/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "넥 프레스",
+"nameJa": "ネックプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Neck_Press/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "복사근 크런치",
+"nameJa": "腹斜筋クランチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Oblique_Crunches/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "복사근 크런치 플로어",
+"nameJa": "腹斜筋クランチフロア",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Oblique_Crunches_-_On_The_Floor/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "원 암 덤벨 로우",
+"nameJa": "ワンアームダンベルロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Dumbbell_Row/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "원 암 플랫 벤치 덤벨 플라이",
+"nameJa": "ワンアームフラットベンチダンベルフライ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Flat_Bench_Dumbbell_Flye/0.jpg"
+},
+{
+"bodyPart": "ARM_ABS",
+"name": "원 암 하이 풀리 케이블 사이드 벤드",
+"nameJa": "ワンアームハイプーリーケーブルサイドベンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_High-Pulley_Cable_Side_Bends/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "원 암 인클라인 레터럴 레이즈",
+"nameJa": "ワンアームインクラインラテラルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Incline_Lateral_Raise/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "원 암 케틀벨 클린",
+"nameJa": "ワンアームケトルベルクリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Clean/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "원 암 케틀벨 클린 저크",
+"nameJa": "ワンアームケトルベルクリーンジャーク",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Clean_and_Jerk/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "원 암 케틀벨 플로어 프레스",
+"nameJa": "ワンアームケトルベルフロアプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Floor_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "원 암 케틀벨 저크",
+"nameJa": "ワンアームケトルベルジャーク",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Jerk/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "원 암 케틀벨 밀리터리 프레스 사이드",
+"nameJa": "ワンアームケトルベルミリタリープレスサイド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Military_Press_To_The_Side/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "원 암 케틀벨 푸시 프레스",
+"nameJa": "ワンアームケトルベルプッシュプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Push_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "원 암 케틀벨 로우",
+"nameJa": "ワンアームケトルベルロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Row/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "원 암 케틀벨 스내치",
+"nameJa": "ワンアームケトルベルスナッチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Snatch/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "원 암 케틀벨 스플릿 저크",
+"nameJa": "ワンアームケトルベルスプリットジャーク",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Split_Jerk/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "원 암 케틀벨 스플릿 스내치",
+"nameJa": "ワンアームケトルベルスプリットスナッチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Split_Snatch/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "원 암 케틀벨 스윙",
+"nameJa": "ワンアームケトルベルスイング",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Kettlebell_Swings/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "원 암 롱 바 로우",
+"nameJa": "ワンアームロングバーロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Long_Bar_Row/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "원 암 오픈 팜 케틀벨 클린",
+"nameJa": "ワンアームオープンパームケトルベルクリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Open_Palm_Kettlebell_Clean/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "원 암 오버헤드 케틀벨 스쿼트",
+"nameJa": "ワンアームオーバーヘッドケトルベルスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Overhead_Kettlebell_Squats/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "원 암 사이드 데드리프트",
+"nameJa": "ワンアームサイドデッドリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Side_Deadlift/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "원 암 사이드 레터럴",
+"nameJa": "ワンアームサイドラテラル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Arm_Side_Laterals/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "원 레그드 케이블 킥백",
+"nameJa": "ワンレッグドケーブルキックバック",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One-Legged_Cable_Kickback/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "원 암 친 업",
+"nameJa": "ワンアームチンアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One_Arm_Chin-Up/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "원 암 덤벨 벤치 프레스",
+"nameJa": "ワンアームダンベルベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One_Arm_Dumbbell_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "원 레그 바벨 스쿼트",
+"nameJa": "ワンレッグバーベルスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/One_Leg_Barbell_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "오픈 팜 케틀벨 클린",
+"nameJa": "オープンパームケトルベルクリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Open_Palm_Kettlebell_Clean/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "플라이오 케틀벨 푸시업",
+"nameJa": "プライオケトルベルプッシュアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Plyo_Kettlebell_Pushups/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "파워 클린",
+"nameJa": "パワークリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Power_Clean/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "풀 스루",
+"nameJa": "プルスルー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Pull_Through/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "푸시 업 와이드",
+"nameJa": "プッシュアップワイド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Push-Up_Wide/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "푸시 업 피트 엘리베이티드",
+"nameJa": "プッシュアップフィートエレベーテッド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Push-Ups_With_Feet_Elevated/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "푸시 업 피트 운동 볼",
+"nameJa": "プッシュアップフィートエクササイズボール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Push-Ups_With_Feet_On_An_Exercise_Ball/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "푸시 업 사이드 플랭크",
+"nameJa": "プッシュアップサイドプランク",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Push_Up_to_Side_Plank/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "리버스 플라이",
+"nameJa": "リバースフライ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Reverse_Flyes/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "리버스 플라이 외회전 로테이션",
+"nameJa": "リバースフライ外旋ローテーション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Reverse_Flyes_With_External_Rotation/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "리버스 그립 벤트 오버 로우",
+"nameJa": "リバースグリップベントオーバーロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Reverse_Grip_Bent-Over_Rows/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "리버스 하이퍼익스텐션",
+"nameJa": "リバースハイパーエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Reverse_Hyperextension/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "리버스 머신 플라이",
+"nameJa": "リバースマシンフライ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Reverse_Machine_Flyes/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "록키 풀 업 풀다운",
+"nameJa": "ロッキープルアッププルダウン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Rocky_Pull-Ups_Pulldowns/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "로프 클라임",
+"nameJa": "ロープクライム",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Rope_Climb/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "로프 스트레이트 암 풀다운",
+"nameJa": "ロープストレートアームプルダウン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Rope_Straight-Arm_Pulldown/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "시티드 밴드 햄스트링 컬",
+"nameJa": "シーテッドバンドハムストリングカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Band_Hamstring_Curl/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "시티드 바벨 밀리터리 프레스",
+"nameJa": "シーテッドバーベルミリタリープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Barbell_Military_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "시티드 벤트 오버 리어 델트 레이즈",
+"nameJa": "シーテッドベントオーバーリアデルトレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Bent-Over_Rear_Delt_Raise/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "시티드 케이블 로우",
+"nameJa": "シーテッドケーブルロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Cable_Rows/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "시티드 케이블 숄더 프레스",
+"nameJa": "シーテッドケーブルショルダープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Cable_Shoulder_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "시티드 카프 레이즈",
+"nameJa": "シーテッドカーフレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Calf_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "시티드 덤벨 프레스",
+"nameJa": "シーテッドダンベルプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Dumbbell_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "시티드 레그 컬",
+"nameJa": "シーテッドレッグカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Leg_Curl/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "시티드 원 암 케이블 풀리 로우",
+"nameJa": "シーテッドワンアームケーブルプーリーロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_One-arm_Cable_Pulley_Rows/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "시티드 사이드 레터럴 레이즈",
+"nameJa": "シーテッドサイドラテラルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Side_Lateral_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "숄더 프레스 밴드",
+"nameJa": "ショルダープレスバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Shoulder_Press_-_With_Bands/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "사이드 레터럴 프론트 레이즈",
+"nameJa": "サイドラテラルフロントレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Side_Laterals_to_Front_Raise/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "사이드 사이드 친",
+"nameJa": "サイドサイドチン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Side_To_Side_Chins/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "싱글 암 케이블 크로스오버",
+"nameJa": "シングルアームケーブルクロスオーバー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Single-Arm_Cable_Crossover/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "싱글 암 리니어 재머",
+"nameJa": "シングルアームリニアジャマー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Single-Arm_Linear_Jammer/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "싱글 암 푸시 업",
+"nameJa": "シングルアームプッシュアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Single-Arm_Push-Up/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "싱글 레그 하이 박스 스쿼트",
+"nameJa": "シングルレッグハイボックススクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Single-Leg_High_Box_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "싱글 레그 레그 익스텐션",
+"nameJa": "シングルレッグレッグエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Single-Leg_Leg_Extension/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "싱글 덤벨 레이즈",
+"nameJa": "シングルダンベルレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Single_Dumbbell_Raise/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "싱글 레그 글루트 브릿지",
+"nameJa": "シングルレッググルートブリッジ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Single_Leg_Glute_Bridge/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "슬레드 오버헤드 백워드 워크",
+"nameJa": "スレッドオーバーヘッドバックワードウォーク",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Sled_Overhead_Backward_Walk/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "슬레드 리버스 플라이",
+"nameJa": "スレッドリバースフライ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Sled_Reverse_Flye/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "슬레드 로우",
+"nameJa": "スレッドロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Sled_Row/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스미스 인클라인 숄더 레이즈",
+"nameJa": "スミスインクラインショルダーレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Incline_Shoulder_Raise/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "스미스 머신 비하인드 백 슈러그",
+"nameJa": "スミスマシンビハインドバックシュラッグ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Behind_the_Back_Shrug/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "스미스 머신 벤치 프레스",
+"nameJa": "スミスマシンベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "스미스 머신 벤트 오버 로우",
+"nameJa": "スミスマシンベントオーバーロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Bent_Over_Row/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스미스 머신 카프 레이즈",
+"nameJa": "スミスマシンカーフレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Calf_Raise/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "스미스 머신 디클라인 프레스",
+"nameJa": "スミスマシンデクラインプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Decline_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스미스 머신 행 파워 클린",
+"nameJa": "スミスマシンハングパワークリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Hang_Power_Clean/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "스미스 머신 인클라인 벤치 프레스",
+"nameJa": "スミスマシンインクラインベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Incline_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스미스 머신 레그 프레스",
+"nameJa": "スミスマシンレッグプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Leg_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스미스 머신 원 암 업라이트 로우",
+"nameJa": "スミスマシンワンアームアップライトロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_One-Arm_Upright_Row/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스미스 머신 오버헤드 숄더 프레스",
+"nameJa": "スミスマシンオーバーヘッドショルダープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Overhead_Shoulder_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스미스 머신 피스톨 스쿼트",
+"nameJa": "スミスマシンピストルスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Pistol_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스미스 머신 리버스 카프 레이즈",
+"nameJa": "スミスマシンリバースカーフレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Reverse_Calf_Raises/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스미스 머신 스쿼트",
+"nameJa": "スミスマシンスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스미스 머신 스티프 레그드 데드리프트",
+"nameJa": "スミスマシンスティッフレッグドデッドリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Stiff-Legged_Deadlift/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "스미스 머신 업라이트 로우",
+"nameJa": "スミスマシンアップライトロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Machine_Upright_Row/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스미스 싱글 레그 스플릿 스쿼트",
+"nameJa": "スミスシングルレッグスプリットスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Smith_Single-Leg_Split_Squat/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스내치 풀",
+"nameJa": "スナッチプル",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Snatch_Pull/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스피드 스쿼트",
+"nameJa": "スピードスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Speed_Squats/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스쿼트 저크",
+"nameJa": "スクワットジャーク",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Squat_Jerk/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스쿼트 밴드",
+"nameJa": "スクワットバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Squats_-_With_Bands/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스탠딩 얼터네이팅 덤벨 프레스",
+"nameJa": "スタンディングオルタネイトダンベルプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Alternating_Dumbbell_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스탠딩 바벨 카프 레이즈",
+"nameJa": "スタンディングバーベルカーフレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Barbell_Calf_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스탠딩 바벨 프레스 비하인드 넥",
+"nameJa": "スタンディングバーベルプレスビハインドネック",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Barbell_Press_Behind_Neck/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스탠딩 브래드포드 프레스",
+"nameJa": "スタンディングブラッドフォードプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Bradford_Press/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "스탠딩 케이블 체스트 프레스",
+"nameJa": "スタンディングケーブルチェストプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Cable_Chest_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스탠딩 카프 레이즈",
+"nameJa": "スタンディングカーフレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Calf_Raises/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스탠딩 덤벨 카프 레이즈",
+"nameJa": "スタンディングダンベルカーフレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Dumbbell_Calf_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스탠딩 덤벨 프레스",
+"nameJa": "スタンディングダンベルプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Dumbbell_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "스탠딩 덤벨 업라이트 로우",
+"nameJa": "スタンディングダンベルアップライトロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Dumbbell_Upright_Row/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스탠딩 프론트 바벨 레이즈 오버 헤드",
+"nameJa": "スタンディングフロントバーベルレイズオーバーヘッド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Front_Barbell_Raise_Over_Head/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스탠딩 레그 컬",
+"nameJa": "スタンディングレッグカール",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Leg_Curl/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스탠딩 로우 풀리 델토이드 레이즈",
+"nameJa": "スタンディングロープーリーデルトイドレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Low-Pulley_Deltoid_Raise/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스탠딩 밀리터리 프레스",
+"nameJa": "スタンディングミリタリープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Military_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스탠딩 팜 원 암 덤벨 프레스",
+"nameJa": "スタンディングパームワンアームダンベルプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Palm-In_One-Arm_Dumbbell_Press/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스탠딩 팜 덤벨 프레스",
+"nameJa": "スタンディングパームダンベルプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Standing_Palms-In_Dumbbell_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스텝 업 니 레이즈",
+"nameJa": "ステップアップニーレイズ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Step-up_with_Knee_Raise/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스티프 레그드 바벨 데드리프트",
+"nameJa": "スティッフレッグドバーベルデッドリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Stiff-Legged_Barbell_Deadlift/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "스티프 레그드 덤벨 데드리프트",
+"nameJa": "スティッフレッグドダンベルデッドリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Stiff-Legged_Dumbbell_Deadlift/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "스티프 레그 바벨 굿 모닝",
+"nameJa": "スティッフレッグバーベルグッドモーニング",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Stiff_Leg_Barbell_Good_Morning/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "스트레이트 암 덤벨 풀오버",
+"nameJa": "ストレートアームダンベルプルオーバー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Straight-Arm_Dumbbell_Pullover/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "스트레이트 암 풀다운",
+"nameJa": "ストレートアームプルダウン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Straight-Arm_Pulldown/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "스트레이트 바 벤치 미드 로우",
+"nameJa": "ストレートバーベンチミッドロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Straight_Bar_Bench_Mid_Rows/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "스트레이트 레이즈 인클라인 벤치",
+"nameJa": "ストレートレイズインクラインベンチ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Straight_Raises_on_Incline_Bench/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "서스펜디드 푸시 업",
+"nameJa": "サスペンデッドプッシュアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Suspended_Push-Up/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "서스펜디드 로우",
+"nameJa": "サスペンデッドロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Suspended_Row/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "서스펜디드 스플릿 스쿼트",
+"nameJa": "サスペンデッドスプリットスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Suspended_Split_Squat/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "스벤드 프레스",
+"nameJa": "スベンドプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Svend_Press/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "트랩 바 데드리프트",
+"nameJa": "トラップバーデッドリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Trap_Bar_Deadlift/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "투 암 케틀벨 클린",
+"nameJa": "ツーアームケトルベルクリーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Two-Arm_Kettlebell_Clean/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "투 암 케틀벨 저크",
+"nameJa": "ツーアームケトルベルジャーク",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Two-Arm_Kettlebell_Jerk/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "투 암 케틀벨 밀리터리 프레스",
+"nameJa": "ツーアームケトルベルミリタリープレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Two-Arm_Kettlebell_Military_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "투 암 케틀벨 로우",
+"nameJa": "ツーアームケトルベルロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Two-Arm_Kettlebell_Row/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "언더핸드 케이블 풀다운",
+"nameJa": "アンダーハンドケーブルプルダウン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Underhand_Cable_Pulldowns/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "업라이트 바벨 로우",
+"nameJa": "アップライトバーベルロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Upright_Barbell_Row/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "업라이트 케이블 로우",
+"nameJa": "アップライトケーブルロウ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Upright_Cable_Row/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "업라이트 로우 밴드",
+"nameJa": "アップライトロウバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Upright_Row_-_With_Bands/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "웨이티드 볼 하이퍼익스텐션",
+"nameJa": "ウェイテッドボールハイパーエクステンション",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Weighted_Ball_Hyperextension/0.jpg"
+},
+{
+"bodyPart": "LEG",
+"name": "웨이티드 점프 스쿼트",
+"nameJa": "ウェイテッドジャンプスクワット",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Weighted_Jump_Squat/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "웨이티드 풀 업",
+"nameJa": "ウェイテッドプルアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Weighted_Pull_Ups/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "와이드 그립 바벨 벤치 프레스",
+"nameJa": "ワイドグリップバーベルベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Wide-Grip_Barbell_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "와이드 그립 디클라인 바벨 벤치 프레스",
+"nameJa": "ワイドグリップデクラインバーベルベンチプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Wide-Grip_Decline_Barbell_Bench_Press/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "와이드 그립 디클라인 바벨 풀오버",
+"nameJa": "ワイドグリップデクラインバーベルプルオーバー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Wide-Grip_Decline_Barbell_Pullover/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "와이드 그립 풀다운 비하인드 넥",
+"nameJa": "ワイドグリッププルダウンビハインドネック",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Wide-Grip_Pulldown_Behind_The_Neck/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "와이드 그립 리어 풀 업",
+"nameJa": "ワイドグリップリアプルアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Wide-Grip_Rear_Pull-Up/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "체인 프레스",
+"nameJa": "チェーンプレス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Chain_Press/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "데드리프트 밴드",
+"nameJa": "デッドリフトバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Deadlift_with_Bands/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "데드리프트 체인",
+"nameJa": "デッドリフトチェーン",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Deadlift_with_Chains/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "데피싯 데드리프트",
+"nameJa": "デフィシットデッドリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Deficit_Deadlift/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "랙 풀 밴드",
+"nameJa": "ラックプルバンド",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Rack_Pull_with_Bands/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "리버스 밴드 데드리프트",
+"nameJa": "リバースバンドデッドリフト",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Reverse_Band_Deadlift/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "시티드 굿 모닝",
+"nameJa": "シーテッドグッドモーニング",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Seated_Good_Mornings/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "클린 슈러그",
+"nameJa": "クリーンシュラッグ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Clean_Shrug/0.jpg"
+},
+{
+"bodyPart": "SHOULDER",
+"name": "클린 저크",
+"nameJa": "クリーンジャーク",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Clean_and_Jerk/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "스내치 슈러그",
+"nameJa": "スナッチシュラッグ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Snatch_Shrug/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "체스트 푸시 멀티플 리스폰스",
+"nameJa": "チェストプッシュマルチプルレスポンス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Chest_Push_multiple_response/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "체스트 푸시 싱글 리스폰스",
+"nameJa": "チェストプッシュシングルレスポンス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Chest_Push_single_response/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "인클라인 푸시 업 뎁스 점프",
+"nameJa": "インクラインプッシュアップデプスジャンプ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Incline_Push-Up_Depth_Jump/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "메디신 볼 체스트 패스",
+"nameJa": "メディシンボールチェストパス",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Medicine_Ball_Chest_Pass/0.jpg"
+},
+{
+"bodyPart": "BACK",
+"name": "오버헤드 슬램",
+"nameJa": "オーバーヘッドスラム",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Overhead_Slam/0.jpg"
+},
+{
+"bodyPart": "CHEST",
+"name": "플라이오 푸시 업",
+"nameJa": "プライオプッシュアップ",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Plyo_Push-up/0.jpg"
+},
+{
+"bodyPart": "CARDIO",
+"name": "사이클링",
+"nameJa": "サイクリング",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bicycling/0.jpg"
+},
+{
+"bodyPart": "CARDIO",
+"name": "사이클링 스테이셔너리",
+"nameJa": "サイクリングスタショナリー",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Bicycling_Stationary/0.jpg"
+},
+{
+"bodyPart": "CARDIO",
+"name": "로프 점핑",
+"nameJa": "ロープジャンピング",
+"imageUrl": "https://cdn.jsdelivr.net/gh/yuhonas/free-exercise-db@main/exercises/Rope_Jumping/0.jpg"
+}
+]
