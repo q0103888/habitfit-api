@@ -26,6 +26,16 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   });
 
   if (!res.ok) {
+    // 토큰이 만료/무효(401·403)되면 "요청 실패" 메시지만 뜨고 원인을 알기 어려움 —
+    // 로그인/회원가입/구글로그인 자체는 제외하고, 토큰을 들고 보낸 요청이 거부된 경우엔
+    // 바로 로그아웃 처리 후 로그인 화면으로 보내서 헷갈리지 않게 함
+    if ((res.status === 401 || res.status === 403) && token && !path.startsWith("/api/auth/")) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("email");
+      localStorage.removeItem("firstName");
+      if (typeof window !== "undefined") window.location.href = "/login";
+    }
+
     // 실패 응답의 JSON을 파싱 시도. 혹시 body가 JSON이 아니면 빈 객체로 처리.
     // 여기는 React 밖(hook 사용 불가)이라 localStorage에서 언어를 직접 읽음 — LanguageProvider와 같은 키
     const body = await res.json().catch(() => ({}));
