@@ -7,6 +7,7 @@ import Image from "next/image";
 import { signup, ApiError, type SignupPayload } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 import { useLanguage, type Key } from "@/lib/i18n";
+import { GoogleSignInButton } from "@/components/google-signin-button";
 
 // DB 테이블 대신 여기 고정 배열로 관리 — ISO 국가 코드는 사실상 안 바뀌는 데이터라
 // 프론트 코드 안에 하드코딩해도 충분함. 나중에 국가가 더 필요하면 그냥 이 배열에 추가하면 됨.
@@ -35,7 +36,7 @@ export default function SignupPage() {
   const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인 입력값. 서버로 안 보내고 클라이언트에서만 비교
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const { t } = useLanguage();
   const router = useRouter();
 
@@ -66,6 +67,16 @@ export default function SignupPage() {
       setError(err instanceof ApiError ? err.message : t("auth.signupFailed"));
     } finally {
       setIsSubmitting(false);
+    }
+  }
+
+  async function handleGoogleToken(idToken: string) {
+    setError("");
+    try {
+      await loginWithGoogle(idToken);
+      router.push("/");
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : t("auth.googleLoginFailed"));
     }
   }
 
@@ -158,6 +169,15 @@ export default function SignupPage() {
         >
           {isSubmitting ? t("auth.signingUp") : t("auth.signup")}
         </button>
+
+        <div className="mt-5 flex items-center gap-3 text-xs text-zinc-600">
+          <div className="h-px flex-1 bg-white/10" />
+          {t("auth.orContinueWith")}
+          <div className="h-px flex-1 bg-white/10" />
+        </div>
+        <div className="mt-4">
+          <GoogleSignInButton onToken={handleGoogleToken} />
+        </div>
 
         <p className="mt-4 text-center text-sm text-zinc-500">
           {t("auth.hasAccount")}{" "}

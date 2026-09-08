@@ -58,6 +58,7 @@ public class SecurityConfig {
                                 auth.requestMatchers(
                                                 "/api/auth/signup",
                                                 "/api/auth/login",
+                                                "/api/auth/google",
                                                 "/actuator/health",
                                                 "/error") // 존재하지 않는 URL 요청 시 내부 포워딩되는 경로. 없으면 404가 403으로 둔갑함
                                         .permitAll()

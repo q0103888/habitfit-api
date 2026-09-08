@@ -39,10 +39,10 @@ public class User {
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "birth_date", nullable = false)
+    // 구글 로그인 유저는 이 정보를 안 줘서 null일 수 있음(V3 마이그레이션에서 NOT NULL 해제)
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @Column(nullable = false)
     private String nationality;
 
     // 로그인 방식 (local/google/kakao). 지금은 이메일 가입만 만들 거라 기본값 고정

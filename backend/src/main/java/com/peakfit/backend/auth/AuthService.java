@@ -1,8 +1,16 @@
 package com.peakfit.backend.auth;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.gson.GsonFactory;
 import com.peakfit.backend.security.JwtService;
 import com.peakfit.backend.user.User;
 import com.peakfit.backend.user.UserRepository;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.Collections;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,12 +25,20 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;   // 6단계 SecurityConfig에서 @Bean으로 등록해둔 것
     private final JwtService jwtService;             // 4단계에서 만든 도장 기계/검사기
+    private final GoogleIdTokenVerifier googleVerifier;
 
     public AuthService(
-            UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            JwtService jwtService,
+            @Value("${app.google.client-id}") String googleClientId) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+        this.googleVerifier =
+                new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), GsonFactory.getDefaultInstance())
+                        .setAudience(Collections.singletonList(googleClientId))
+                        .build();
     }
 
     // 회원가입
@@ -66,6 +82,47 @@ public class AuthService {
         }
 
         // 통과했으면 signup과 동일하게 토큰 발급
+        return new AuthResponse(jwtService.generateToken(user.getEmail()), user.getEmail(), user.getFirstName());
+    }
+
+    // 구글 로그인 — 프론트(Google Identity Services)가 이미 구글 계정 확인을 끝내고 넘겨준
+    // ID 토큰의 서명/유효기간/대상(audience)을 여기서 검증. 통과하면 그 자체가 "본인 확인 완료"라는 뜻
+    public AuthResponse loginWithGoogle(String idTokenString) {
+        GoogleIdToken idToken;
+        try {
+            idToken = googleVerifier.verify(idTokenString);
+        } catch (GeneralSecurityException | IOException e) {
+            throw new BadCredentialsException("구글 로그인 검증에 실패했습니다.");
+        }
+        if (idToken == null) {
+            throw new BadCredentialsException("유효하지 않은 구글 토큰입니다.");
+        }
+
+        GoogleIdToken.Payload payload = idToken.getPayload();
+        // 구글 계정에 아직 인증 안 된 이메일(예: 등록만 하고 확인 메일 클릭 안 한 부계정)을
+        // 그대로 믿으면, 그 이메일의 진짜 주인 행세를 할 수 있는 계정 탈취 경로가 생김
+        if (!Boolean.TRUE.equals(payload.getEmailVerified())) {
+            throw new BadCredentialsException("인증되지 않은 구글 이메일입니다.");
+        }
+        String email = payload.getEmail();
+        String firstName = (String) payload.get("given_name");
+        String lastName = (String) payload.get("family_name");
+
+        // 이미 이메일/비밀번호로 가입했던 사람이 구글로도 로그인하면 그냥 같은 계정으로 이어줌.
+        // 구글이 이미 이 이메일의 주인임을 검증해준 상태라 별도 비밀번호 확인은 필요 없음
+        User user =
+                userRepository
+                        .findByEmail(email)
+                        .orElseGet(
+                                () -> {
+                                    User newUser = new User();
+                                    newUser.setEmail(email);
+                                    newUser.setFirstName(firstName != null ? firstName : "");
+                                    newUser.setLastName(lastName != null ? lastName : "");
+                                    newUser.setProvider("google");
+                                    return userRepository.save(newUser);
+                                });
+
         return new AuthResponse(jwtService.generateToken(user.getEmail()), user.getEmail(), user.getFirstName());
     }
 }

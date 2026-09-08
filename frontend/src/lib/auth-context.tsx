@@ -9,7 +9,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { login as loginApi, type AuthResponse } from "@/lib/api";
+import { login as loginApi, loginWithGoogle as loginWithGoogleApi, type AuthResponse } from "@/lib/api";
 
 // 로그인한 사용자 정보를 담을 타입.
 // 로그인/회원가입 응답(AuthResponse)에 firstName이 추가돼서 같이 저장
@@ -20,6 +20,7 @@ type AuthContextValue = {
   user: AuthUser | null;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<AuthResponse>;
+  loginWithGoogle: (idToken: string) => Promise<AuthResponse>;
   logout: () => void;
 };
 
@@ -51,13 +52,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const { user, isLoading } = state;
 
-  async function login(email: string, password: string) {
-    const res = await loginApi({ email, password });
-    // 토큰/이메일/이름을 브라우저에 저장 (새로고침해도 로그인 상태 유지되게)
+  // 로그인/구글 로그인 둘 다 응답 모양이 같아서(AuthResponse) 저장 로직을 공유
+  function applyAuthResponse(res: AuthResponse) {
     localStorage.setItem("token", res.token);
     localStorage.setItem("email", res.email);
     localStorage.setItem("firstName", res.firstName);
     setState({ user: { email: res.email, firstName: res.firstName }, isLoading: false });
+  }
+
+  async function login(email: string, password: string) {
+    const res = await loginApi({ email, password });
+    applyAuthResponse(res);
+    return res;
+  }
+
+  async function loginWithGoogle(idToken: string) {
+    const res = await loginWithGoogleApi(idToken);
+    applyAuthResponse(res);
     return res;
   }
 
@@ -69,7 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, logout }}>
+    <AuthContext.Provider value={{ user, isLoading, login, loginWithGoogle, logout }}>
       {children}
     </AuthContext.Provider>
   );

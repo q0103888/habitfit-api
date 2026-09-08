@@ -107,6 +107,14 @@ const ja = {
 
   "exercises.title": "種目図鑑",
   "exercises.subtitle": "部位別に種目を確認できます。",
+
+  "assistant.title": "AIコーチ",
+  "assistant.subtitle": "運動に関する質問をしてみましょう。",
+  "assistant.placeholder": "例: ベンチプレスの正しい姿勢を教えて",
+  "assistant.ask": "質問する",
+  "assistant.asking": "回答を作成中...",
+  "assistant.emptyState": "まだ質問がありません。",
+  "assistant.error": "回答の取得に失敗しました。もう一度お試しください。",
   "exercises.noImage": "画像なし",
 
   "stats.title": "統計",
@@ -145,6 +153,8 @@ const ja = {
   "auth.noAccount": "アカウントをお持ちでないですか?",
   "auth.signup": "新規登録",
   "auth.loginFailed": "ログインに失敗しました。",
+  "auth.orContinueWith": "または",
+  "auth.googleLoginFailed": "Googleログインに失敗しました。",
   "auth.signupTitle": "PeakFit新規登録",
   "auth.lastName": "姓",
   "auth.firstName": "名",
@@ -280,6 +290,14 @@ const ko: Record<Key, string> = {
 
   "exercises.title": "운동 도감",
   "exercises.subtitle": "부위별로 운동 종목을 확인할 수 있어요.",
+
+  "assistant.title": "AI 코치",
+  "assistant.subtitle": "운동에 관해 궁금한 걸 물어보세요.",
+  "assistant.placeholder": "예: 벤치프레스 올바른 자세 알려줘",
+  "assistant.ask": "질문하기",
+  "assistant.asking": "답변 작성 중...",
+  "assistant.emptyState": "아직 질문한 내용이 없어요.",
+  "assistant.error": "답변을 가져오지 못했어요. 다시 시도해주세요.",
   "exercises.noImage": "이미지 없음",
 
   "stats.title": "통계",
@@ -318,6 +336,8 @@ const ko: Record<Key, string> = {
   "auth.noAccount": "계정이 없나요?",
   "auth.signup": "회원가입",
   "auth.loginFailed": "로그인에 실패했습니다.",
+  "auth.orContinueWith": "또는",
+  "auth.googleLoginFailed": "구글 로그인에 실패했습니다.",
   "auth.signupTitle": "PeakFit 회원가입",
   "auth.lastName": "성",
   "auth.firstName": "이름",

@@ -4,6 +4,7 @@ import { useEffect, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 import { useLanguage } from "@/lib/i18n";
+import { AssistantWidget } from "@/components/assistant-widget";
 
 // 이걸로 감싼 화면은, 로그인 안 되어 있으면 자동으로 /login으로 튕겨나감
 export function RequireAuth({ children }: { children: ReactNode }) {
@@ -28,5 +29,10 @@ export function RequireAuth({ children }: { children: ReactNode }) {
     );
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <AssistantWidget />
+    </>
+  );
 }

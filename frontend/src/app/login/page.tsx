@@ -8,6 +8,7 @@ import Image from "next/image";
 import { ApiError } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 import { useLanguage } from "@/lib/i18n";
+import { GoogleSignInButton } from "@/components/google-signin-button";
 
 export default function LoginPage() {
   // 입력창 하나당 state 하나. 사용자가 타이핑할 때마다 이 값들이 갱신됨
@@ -16,7 +17,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");         // 실패 메시지 보여줄 자리
   const [isSubmitting, setIsSubmitting] = useState(false); // 중복 클릭 방지용
 
-  const { login } = useAuth();   // 2단계에서 만든 Context에서 login 함수 꺼내옴
+  const { login, loginWithGoogle } = useAuth();   // 2단계에서 만든 Context에서 login 함수 꺼내옴
   const { t } = useLanguage();
   const router = useRouter();     // 페이지 이동시킬 때 씀
 
@@ -32,6 +33,16 @@ export default function LoginPage() {
       setError(err instanceof ApiError ? err.message : t("auth.loginFailed"));
     } finally {
       setIsSubmitting(false);
+    }
+  }
+
+  async function handleGoogleToken(idToken: string) {
+    setError("");
+    try {
+      await loginWithGoogle(idToken);
+      router.push("/");
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : t("auth.googleLoginFailed"));
     }
   }
 
@@ -72,6 +83,15 @@ export default function LoginPage() {
         >
           {isSubmitting ? t("auth.loggingIn") : t("auth.login")}
         </button>
+
+        <div className="mt-5 flex items-center gap-3 text-xs text-zinc-600">
+          <div className="h-px flex-1 bg-white/10" />
+          {t("auth.orContinueWith")}
+          <div className="h-px flex-1 bg-white/10" />
+        </div>
+        <div className="mt-4">
+          <GoogleSignInButton onToken={handleGoogleToken} />
+        </div>
 
         <p className="mt-4 text-center text-sm text-zinc-500">
           {t("auth.noAccount")}{" "}

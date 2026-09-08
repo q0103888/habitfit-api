@@ -69,6 +69,14 @@ export function login(data: LoginPayload) {
   });
 }
 
+// Google Identity Services가 프론트에서 직접 발급해준 ID 토큰을 백엔드로 전달해서 검증받음
+export function loginWithGoogle(idToken: string) {
+  return request<AuthResponse>("/api/auth/google", {
+    method: "POST",
+    body: JSON.stringify({ idToken }),
+  });
+}
+
 // 루틴에 기록된 세트 하나 (예: 60kg x 10회)
 export type RoutineSet = { id: number; setNumber: number; weightKg: number; reps: number };
 
@@ -233,6 +241,17 @@ export type BodyPartSummaryPoint = { bodyPart: string; count: number };
 
 export function getBodyPartSummary() {
   return request<BodyPartSummaryPoint[]>("/api/routines/summary");
+}
+
+// AI 운동 코치에게 질문. history는 이전 대화(localStorage에 저장된 것) —
+// Claude API는 매 요청이 독립적이라 이어서 대화하려면 매번 같이 보내줘야 함
+export type AssistantHistoryItem = { question: string; answer: string };
+
+export function askAssistant(question: string, history: AssistantHistoryItem[]) {
+  return request<{ answer: string }>("/api/assistant/ask", {
+    method: "POST",
+    body: JSON.stringify({ question, history }),
+  });
 }
 
 // 통계 화면의 부위별 회복 상태 카드용 — 그 부위를 마지막으로 완료한 날짜(기록 없으면 목록에 안 나옴)
