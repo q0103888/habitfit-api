@@ -5,11 +5,38 @@
   --foreground: #171717;
 }
 
+/* Stitch Kinetic Obsidian 디자인 시스템 컬러 토큰. Material Design 3 네이밍 규칙을 그대로 옮김 */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --color-surface: #131315;
+  --color-surface-dim: #131315;
+  --color-surface-bright: #39393b;
+  --color-surface-container-lowest: #0e0e10;
+  --color-surface-container-low: #1c1b1d;
+  --color-surface-container: #201f22;
+  --color-surface-container-high: #2a2a2c;
+  --color-surface-container-highest: #353437;
+  --color-on-surface: #e5e1e4;
+  --color-on-surface-variant: #c2cab0;
+  --color-outline: #8c947c;
+  --color-outline-variant: #424936;
+  --color-primary: #ccff80;
+  --color-on-primary: #213600;
+  --color-primary-container: #a3e635;
+  --color-on-primary-container: #416400;
+  --color-secondary: #4ae176;
+  --color-on-secondary: #003915;
+  --color-secondary-container: #00b954;
+  --color-on-secondary-container: #004119;
+  --color-tertiary: #def1ff;
+  --color-on-tertiary: #00354a;
+  --color-tertiary-container: #9ddaff;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +49,21 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Material Symbols는 아이콘 이름을 텍스트(리거처)로 렌더링하는 폰트라 이 클래스가 필수 —
+   구글이 공식적으로 안내하는 표준 스니펫 */
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
 }

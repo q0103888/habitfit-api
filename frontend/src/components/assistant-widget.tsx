@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { MessageCircle, X } from "lucide-react";
+import { MaterialIcon } from "@/components/material-icon";
 import { askAssistant, ApiError, type AssistantHistoryItem } from "@/lib/api";
 import { useLanguage } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth-context";
@@ -54,47 +54,47 @@ export function AssistantWidget() {
   return (
     <>
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 flex h-[32rem] w-80 flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-950/95 shadow-2xl backdrop-blur-xl sm:w-96">
-          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+        <div className="fixed bottom-24 right-6 z-50 flex h-[32rem] w-80 flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-surface-container-lowest/95 shadow-2xl backdrop-blur-xl sm:w-96">
+          <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-3">
             <div>
-              <p className="text-sm font-bold text-white">{t("assistant.title")}</p>
-              <p className="text-xs text-zinc-500">{t("assistant.subtitle")}</p>
+              <p className="text-sm font-bold text-on-surface">{t("assistant.title")}</p>
+              <p className="text-xs text-on-surface-variant">{t("assistant.subtitle")}</p>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-zinc-500 hover:text-white">
-              <X size={18} />
+            <button onClick={() => setIsOpen(false)} className="text-on-surface-variant hover:text-on-surface">
+              <MaterialIcon name="close" className="text-[18px]" />
             </button>
           </div>
 
           <div className="flex-1 space-y-3 overflow-y-auto px-4 py-3">
             {history.length === 0 && !isAsking && (
-              <p className="text-xs text-zinc-500">{t("assistant.emptyState")}</p>
+              <p className="text-xs text-on-surface-variant">{t("assistant.emptyState")}</p>
             )}
             {history.map((qa, i) => (
               <div key={i} className="space-y-1.5">
-                <p className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-sm bg-lime-400 px-3 py-1.5 text-xs font-medium text-black">
+                <p className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-sm bg-primary-container px-3 py-1.5 text-xs font-medium text-on-primary-container">
                   {qa.question}
                 </p>
-                <p className="w-fit max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-bl-sm border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-zinc-100">
+                <p className="w-fit max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-bl-sm border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-xs text-on-surface">
                   {qa.answer}
                 </p>
               </div>
             ))}
-            {isAsking && <p className="text-xs text-zinc-500">{t("assistant.asking")}</p>}
-            {error && <p className="text-xs text-rose-400">{error}</p>}
+            {isAsking && <p className="text-xs text-on-surface-variant">{t("assistant.asking")}</p>}
+            {error && <p className="text-xs text-error">{error}</p>}
           </div>
 
-          <form onSubmit={handleSubmit} className="flex items-center gap-2 border-t border-white/10 p-3">
+          <form onSubmit={handleSubmit} className="flex items-center gap-2 border-t border-white/[0.08] p-3">
             <input
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder={t("assistant.placeholder")}
               disabled={isAsking}
-              className="flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-white placeholder:text-zinc-600"
+              className="flex-1 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-2 text-xs text-on-surface placeholder:text-on-surface-variant"
             />
             <button
               type="submit"
               disabled={isAsking || !question.trim()}
-              className="rounded-xl bg-lime-400 px-3 py-2 text-xs font-semibold text-black hover:bg-lime-300 disabled:opacity-50"
+              className="rounded-xl bg-primary-container px-3 py-2 text-xs font-semibold text-on-primary-container hover:brightness-110 disabled:opacity-50"
             >
               {t("assistant.ask")}
             </button>
@@ -104,9 +104,9 @@ export function AssistantWidget() {
 
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-lime-400 text-black shadow-[0_0_25px_-4px_rgba(163,230,53,0.7)] hover:bg-lime-300"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary-container text-on-primary-container shadow-[0_0_24px_rgba(163,230,53,0.4)] transition-all hover:scale-105 hover:shadow-[0_0_32px_rgba(163,230,53,0.6)] active:scale-95"
       >
-        {isOpen ? <X size={22} /> : <MessageCircle size={22} />}
+        <MaterialIcon name={isOpen ? "close" : "smart_toy"} className="text-[28px]" />
       </button>
     </>
   );

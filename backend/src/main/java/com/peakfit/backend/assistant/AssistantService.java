@@ -93,7 +93,7 @@ public class AssistantService {
         }
     }
 
-    @JsonClassDescription("특정 운동 종목의 날짜별 최고 무게/총 볼륨 기록 히스토리를 조회한다")
+    @JsonClassDescription("특정 운동 종목의 날짜별 기록 히스토리를 조회한다 (일반 운동은 최고 무게/총 볼륨, 유산소는 총 운동 시간)")
     static class GetExerciseHistory implements Supplier<String> {
         @JsonPropertyDescription("조회할 운동 이름(한국어 그대로), 예: 벤치프레스")
         public String exerciseName;
@@ -105,14 +105,16 @@ public class AssistantService {
             return history.stream()
                     .map(
                             h ->
-                                    h.date()
-                                            + ": 최고 "
-                                            + h.maxWeightKg()
-                                            + "kg, 총 볼륨 "
-                                            + h.totalVolumeKg()
-                                            + "kg, 세트 "
-                                            + h.totalSets()
-                                            + "개")
+                                    h.totalDurationMin() != null
+                                            ? h.date() + ": 총 " + h.totalDurationMin() + "분, 세트 " + h.totalSets() + "개"
+                                            : h.date()
+                                                    + ": 최고 "
+                                                    + h.maxWeightKg()
+                                                    + "kg, 총 볼륨 "
+                                                    + h.totalVolumeKg()
+                                                    + "kg, 세트 "
+                                                    + h.totalSets()
+                                                    + "개")
                     .collect(Collectors.joining("\n"));
         }
     }

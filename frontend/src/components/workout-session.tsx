@@ -44,7 +44,7 @@ export function WorkoutSession({
   if (!current || finished) {
     const totalSets = queue.reduce((sum, r) => sum + r.sets.length, 0);
     const totalVolume = queue.reduce(
-      (sum, r) => sum + r.sets.reduce((s, set) => s + set.weightKg * set.reps, 0),
+      (sum, r) => sum + r.sets.reduce((s, set) => s + (set.weightKg ?? 0) * (set.reps ?? 0), 0),
       0,
     );
     return (

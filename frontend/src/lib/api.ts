@@ -87,8 +87,14 @@ export function loginWithGoogle(idToken: string) {
   });
 }
 
-// 루틴에 기록된 세트 하나 (예: 60kg x 10회)
-export type RoutineSet = { id: number; setNumber: number; weightKg: number; reps: number };
+// 루틴에 기록된 세트 하나 (예: 60kg x 10회, 유산소는 durationMin만 채워짐)
+export type RoutineSet = {
+  id: number;
+  setNumber: number;
+  weightKg: number | null;
+  reps: number | null;
+  durationMin: number | null;
+};
 
 // 백엔드 RoutineResponse 레코드와 모양을 맞춘 타입
 export type Routine = {
@@ -136,8 +142,12 @@ export function toggleRoutine(id: number) {
   return request<Routine>(`/api/routines/${id}/toggle`, { method: "PATCH" });
 }
 
-// 세트 기록 추가 (몇 kg x 몇 회) — 세트 목록이 갱신된 루틴 전체를 돌려받음
-export function addSet(routineId: number, data: { weightKg: number; reps: number }) {
+// 세트 기록 추가 — 일반 운동은 {weightKg, reps}, 유산소는 {durationMin}만 보냄.
+// 세트 목록이 갱신된 루틴 전체를 돌려받음
+export function addSet(
+  routineId: number,
+  data: { weightKg: number; reps: number } | { durationMin: number },
+) {
   return request<Routine>(`/api/routines/${routineId}/sets`, {
     method: "POST",
     body: JSON.stringify(data),
@@ -232,12 +242,14 @@ export function recordBodyWeight(weightKg: number) {
   });
 }
 
-// 통계 화면의 운동별 무게 추이 그래프용 — 하루(세션)당 최고 무게 + 총 볼륨(무게 x 횟수 합)
+// 통계 화면의 운동별 무게/시간 추이 그래프용 — 하루(세션)당 최고 무게 + 총 볼륨(무게 x 횟수 합).
+// 유산소 운동은 maxWeightKg/totalVolumeKg가 0이고 대신 totalDurationMin(그날 총 운동 시간, 분)이 채워짐
 export type ExerciseHistoryPoint = {
   date: string;
   maxWeightKg: number;
   totalVolumeKg: number;
   totalSets: number;
+  totalDurationMin: number | null;
 };
 
 export function getExerciseHistory(exerciseName: string) {

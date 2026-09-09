@@ -39,13 +39,16 @@ describe("SetPanel 신기록(PR) 판정", () => {
 
   beforeEach(() => {
     vi.mocked(getExerciseHistory).mockResolvedValue([
-      { date: "2026-09-01", maxWeightKg: 60, totalVolumeKg: 600, totalSets: 3 },
+      { date: "2026-09-01", maxWeightKg: 60, totalVolumeKg: 600, totalSets: 3, totalDurationMin: null },
     ]);
   });
 
   test("역대 최고 무게보다 무거운 무게를 기록하면 신기록 배지가 뜬다", async () => {
     const routine = baseRoutine();
-    vi.mocked(addSet).mockResolvedValue({ ...routine, sets: [{ id: 1, setNumber: 1, weightKg: 65, reps: 8 }] });
+    vi.mocked(addSet).mockResolvedValue({
+      ...routine,
+      sets: [{ id: 1, setNumber: 1, weightKg: 65, reps: 8, durationMin: null }],
+    });
     renderPanel(routine);
 
     // 지난 세션 최고 무게(60kg)를 히스토리에서 불러올 때까지 대기
@@ -60,7 +63,10 @@ describe("SetPanel 신기록(PR) 판정", () => {
 
   test("역대 최고 무게보다 가벼우면 신기록 배지가 안 뜬다", async () => {
     const routine = baseRoutine();
-    vi.mocked(addSet).mockResolvedValue({ ...routine, sets: [{ id: 1, setNumber: 1, weightKg: 50, reps: 8 }] });
+    vi.mocked(addSet).mockResolvedValue({
+      ...routine,
+      sets: [{ id: 1, setNumber: 1, weightKg: 50, reps: 8, durationMin: null }],
+    });
     renderPanel(routine);
 
     await screen.findByText("前回のベスト 60kg");

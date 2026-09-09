@@ -118,8 +118,8 @@ class RoutineServiceTest {
         when(setRepository.findByRoutineIdInOrderByRoutineIdAscSetNumberAsc(List.of(10L, 11L)))
                 .thenReturn(
                         List.of(
-                                new WorkoutSet(10L, 1, 60.0, 10),
-                                new WorkoutSet(10L, 2, 65.0, 8)));
+                                new WorkoutSet(10L, 1, 60.0, 10, null),
+                                new WorkoutSet(10L, 2, 65.0, 8, null)));
 
         List<ExerciseHistoryPoint> history = service.exerciseHistory(EMAIL, "벤치프레스");
 
@@ -128,6 +128,26 @@ class RoutineServiceTest {
         assertThat(history.get(0).maxWeightKg()).isEqualTo(65.0);
         assertThat(history.get(0).totalVolumeKg()).isEqualTo(60.0 * 10 + 65.0 * 8);
         assertThat(history.get(0).totalSets()).isEqualTo(2);
+        assertThat(history.get(0).totalDurationMin()).isNull();
+    }
+
+    @Test
+    void exerciseHistory_유산소는_무게_대신_총_운동시간을_합산한다() {
+        WorkoutRoutine day1 = routine("CARDIO", "러닝", LocalDate.of(2026, 1, 1), true);
+        day1.setId(20L);
+
+        when(userRepository.findByEmail(EMAIL)).thenReturn(Optional.of(user));
+        when(routineRepository.findByUserAndExerciseNameOrderByScheduledDateAsc(user, "러닝"))
+                .thenReturn(List.of(day1));
+        when(setRepository.findByRoutineIdInOrderByRoutineIdAscSetNumberAsc(List.of(20L)))
+                .thenReturn(List.of(new WorkoutSet(20L, 1, null, null, 30)));
+
+        List<ExerciseHistoryPoint> history = service.exerciseHistory(EMAIL, "러닝");
+
+        assertThat(history).hasSize(1);
+        assertThat(history.get(0).maxWeightKg()).isEqualTo(0);
+        assertThat(history.get(0).totalVolumeKg()).isEqualTo(0);
+        assertThat(history.get(0).totalDurationMin()).isEqualTo(30);
     }
 
     // ---------- recoveryStatus ----------

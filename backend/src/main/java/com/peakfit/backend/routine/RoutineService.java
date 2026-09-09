@@ -95,7 +95,7 @@ public class RoutineService {
         return RoutineResponse.from(routine, sets);
     }
 
-    // 이 운동을 언제 얼마나 무겁게 들었는지 시간순으로 — 통계 화면 그래프용.
+    // 이 운동을 언제 얼마나 무겁게 들었는지(유산소는 얼마나 오래 했는지) 시간순으로 — 통계 화면 그래프용.
     // 세트 기록이 하나도 없는 날(무게 입력 없이 완료 체크만 한 경우)은 그래프에서 제외
     public List<ExerciseHistoryPoint> exerciseHistory(String email, String exerciseName) {
         User user = findUser(email);
@@ -112,15 +112,35 @@ public class RoutineService {
                 .map(
                         r -> {
                             List<WorkoutSet> sets = setsByRoutine.getOrDefault(r.getId(), List.of());
+                            if (isCardio(r)) {
+                                int totalDuration =
+                                        sets.stream()
+                                                .mapToInt(s -> s.getDurationMin() != null ? s.getDurationMin() : 0)
+                                                .sum();
+                                return new ExerciseHistoryPoint(
+                                        r.getScheduledDate(), 0, 0, sets.size(), totalDuration);
+                            }
                             double maxWeight =
-                                    sets.stream().mapToDouble(WorkoutSet::getWeightKg).max().orElse(0);
+                                    sets.stream()
+                                            .mapToDouble(s -> s.getWeightKg() != null ? s.getWeightKg() : 0)
+                                            .max()
+                                            .orElse(0);
                             double totalVolume =
-                                    sets.stream().mapToDouble(s -> s.getWeightKg() * s.getReps()).sum();
+                                    sets.stream()
+                                            .mapToDouble(
+                                                    s ->
+                                                            (s.getWeightKg() != null ? s.getWeightKg() : 0)
+                                                                    * (s.getReps() != null ? s.getReps() : 0))
+                                            .sum();
                             return new ExerciseHistoryPoint(
-                                    r.getScheduledDate(), maxWeight, totalVolume, sets.size());
+                                    r.getScheduledDate(), maxWeight, totalVolume, sets.size(), null);
                         })
                 .filter(p -> p.totalSets() > 0)
                 .toList();
+    }
+
+    private boolean isCardio(WorkoutRoutine routine) {
+        return "CARDIO".equals(routine.getBodyPart());
     }
 
     // 최근 30일간 부위별로 루틴을 몇 번 했는지 — 통계 화면 부위 비중 도넛차트용
@@ -199,11 +219,21 @@ public class RoutineService {
         return toResponse(routine);
     }
 
-    // 새 세트 기록 추가 — 세트 번호는 지금까지 기록된 개수+1로 자동 매김
+    // 새 세트 기록 추가 — 세트 번호는 지금까지 기록된 개수+1로 자동 매김.
+    // durationMin이 있으면 유산소(시간 기록), 없으면 weightKg/reps가 둘 다 있어야 하는 일반 운동(무게 기록)
     public RoutineResponse addSet(String email, Long routineId, WorkoutSetRequest request) {
         WorkoutRoutine routine = findOwnedRoutine(email, routineId);
         int nextSetNumber = (int) setRepository.countByRoutineId(routineId) + 1;
-        setRepository.save(new WorkoutSet(routineId, nextSetNumber, request.weightKg(), request.reps()));
+        WorkoutSet set;
+        if (request.durationMin() != null) {
+            set = new WorkoutSet(routineId, nextSetNumber, null, null, request.durationMin());
+        } else {
+            if (request.weightKg() == null || request.reps() == null) {
+                throw new IllegalArgumentException("weightKg/reps 또는 durationMin 중 하나는 필요합니다.");
+            }
+            set = new WorkoutSet(routineId, nextSetNumber, request.weightKg(), request.reps(), null);
+        }
+        setRepository.save(set);
         return toResponse(routine);
     }
 

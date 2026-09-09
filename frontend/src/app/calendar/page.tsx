@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { ChevronLeft, ChevronRight, Plus, Trash2, CheckCircle2, Repeat, ChevronDown, ChevronUp } from "lucide-react";
 import { Sidebar } from "@/components/sidebar";
 import { RequireAuth } from "@/components/require-auth";
 import { SetPanel } from "@/components/set-panel";
+import { MaterialIcon } from "@/components/material-icon";
 import {
   getMonthRoutines,
   createRoutine,
@@ -27,7 +27,7 @@ export default function CalendarPage() {
   );
 }
 
-// 월간 캘린더 — 날짜 칸을 눌러서 그날의 루틴을 아래 패널에서 바로 보고 편집함.
+// 월간 캘린더 — 날짜 칸을 눌러서 그날의 루틴을 우측(모바일에선 아래) 패널에서 바로 보고 편집함.
 // 반복 템플릿은 그 달 전체 주에 대해 서버에서 미리 materialize되어 미래 날짜에도 표시됨
 function CalendarView() {
   const { locale, t } = useLanguage();
@@ -104,6 +104,18 @@ function CalendarView() {
   const selectedRoutines = routinesByDate.get(selectedDate) ?? [];
   const dayLabels = weekdayLabels(t);
 
+  // 이번 달 KPI — routines(이번 달 조회분)에서 실제로 계산. 어드히어런스/매크로사이클 같은 가짜 지표는 없음
+  const monthDoneCount = routines.filter((r) => r.done).length;
+  const monthVolumeKg = routines.reduce(
+    (sum, r) => sum + r.sets.reduce((s, set) => s + (set.weightKg ?? 0) * (set.reps ?? 0), 0),
+    0,
+  );
+  const monthWeightDays = [...bodyWeightDates].filter((d) => {
+    const dt = new Date(d);
+    return dt.getFullYear() === year && dt.getMonth() === month;
+  }).length;
+  const monthAdherencePct = routines.length ? Math.round((monthDoneCount / routines.length) * 100) : 0;
+
   // 선택된 날짜에 루틴 즉석 추가하는 폼
   const [isAdding, setIsAdding] = useState(false);
   const [newBodyPart, setNewBodyPart] = useState(BODY_PARTS[0].code);
@@ -150,216 +162,255 @@ function CalendarView() {
   }
 
   return (
-    <div className="flex min-h-screen w-full bg-black text-zinc-100">
+    <div className="relative flex min-h-screen w-full bg-surface-container-lowest text-on-surface">
+      <div className="pointer-events-none fixed left-0 right-0 top-0 z-0 h-[480px] bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(163,230,53,0.12),transparent_70%)]" />
       <Sidebar />
-      <div className="min-w-0 flex-1">
-        <header className="border-b border-white/10 bg-black/40 px-6 py-4 backdrop-blur-xl lg:px-8">
-          <h1 className="text-xl font-bold text-white">{t("calendar.title")}</h1>
-          <p className="mt-1 text-sm text-zinc-400">{t("calendar.subtitle")}</p>
+      <div className="relative z-10 min-w-0 flex-1">
+        <header className="border-b border-white/[0.08] bg-surface-container-lowest/60 px-6 py-4 backdrop-blur-xl lg:px-8">
+          <h1 className="text-xl font-bold text-on-surface">{t("calendar.title")}</h1>
+          <p className="mt-1 text-sm text-on-surface-variant">{t("calendar.subtitle")}</p>
         </header>
 
         <main className="space-y-6 p-6 lg:p-8">
-          <section className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+          {/* 월간 이동 컨트롤 */}
+          <section className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-surface-container/30 p-4 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.5)] backdrop-blur-xl">
+            <div className="flex items-center gap-1 rounded-xl bg-surface-container-lowest p-1 shadow-inner">
+              <button
+                onClick={goPrevMonth}
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-on-surface-variant transition-all hover:bg-surface-container hover:text-primary-container"
+              >
+                <MaterialIcon name="chevron_left" className="text-[20px]" />
+              </button>
+              <span className="px-4 text-base font-semibold tracking-tight text-on-surface">
+                {t("calendar.monthLabel", { year, month: month + 1 })}
+              </span>
+              <button
+                onClick={goNextMonth}
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-on-surface-variant transition-all hover:bg-surface-container hover:text-primary-container"
+              >
+                <MaterialIcon name="chevron_right" className="text-[20px]" />
+              </button>
+            </div>
+            <button
+              onClick={goToday}
+              className="rounded-xl bg-surface-container-high px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-on-surface transition-colors hover:bg-surface-bright hover:text-primary-container"
+            >
+              {t("calendar.today")}
+            </button>
+          </section>
+
+          <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-12">
+            {/* 왼쪽: 월간 KPI + 캘린더 그리드 */}
+            <div className="flex flex-col gap-4 xl:col-span-8">
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                <div className="flex flex-col justify-between rounded-xl bg-surface-container/40 p-4 shadow-sm backdrop-blur-xl">
+                  <div className="flex items-center justify-between text-on-surface-variant">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider">{t("dashboard.todayDone")}</span>
+                    <MaterialIcon name="check_circle" className="text-[16px] text-primary-container" />
+                  </div>
+                  <div className="mt-2 flex items-baseline gap-1">
+                    <span className="font-mono text-2xl font-bold text-on-surface">{monthDoneCount}</span>
+                    <span className="text-sm text-on-surface-variant">/ {routines.length}</span>
+                  </div>
+                </div>
+                <div className="flex flex-col justify-between rounded-xl bg-surface-container/40 p-4 shadow-sm backdrop-blur-xl">
+                  <div className="flex items-center justify-between text-on-surface-variant">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider">{t("dashboard.weeklyVolume")}</span>
+                    <MaterialIcon name="fitness_center" className="text-[16px] text-primary-container" />
+                  </div>
+                  <span className="mt-2 font-mono text-2xl font-bold text-on-surface">{monthVolumeKg.toLocaleString()}</span>
+                </div>
+                <div className="flex flex-col justify-between rounded-xl bg-surface-container/40 p-4 shadow-sm backdrop-blur-xl">
+                  <div className="flex items-center justify-between text-on-surface-variant">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider">{t("dashboard.bodyWeightRecord")}</span>
+                    <MaterialIcon name="monitor_weight" className="text-[16px] text-tertiary" />
+                  </div>
+                  <span className="mt-2 font-mono text-2xl font-bold text-on-surface">{monthWeightDays}</span>
+                </div>
+                <div className="flex flex-col justify-between rounded-xl bg-surface-container/40 p-4 shadow-sm backdrop-blur-xl">
+                  <div className="flex items-center justify-between text-on-surface-variant">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider">{t("dashboard.weeklyGoalRate")}</span>
+                    <MaterialIcon name="insights" className="text-[16px] text-primary-container" />
+                  </div>
+                  <span className="mt-2 font-mono text-2xl font-bold text-on-surface">{monthAdherencePct}%</span>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-white/[0.04] p-6 shadow-md backdrop-blur-xl">
+                <div className="grid grid-cols-7 gap-1.5 text-center font-mono text-xs font-semibold text-on-surface-variant">
+                  {dayLabels.map((label) => (
+                    <span key={label}>{label}</span>
+                  ))}
+                </div>
+
+                <div className="mt-2 space-y-1.5">
+                  {weeks.map((week, wi) => (
+                    <div key={wi} className="grid grid-cols-7 gap-1.5">
+                      {week.map((date) => {
+                        const dateStr = toDateStr(date);
+                        const inMonth = date.getMonth() === month;
+                        const isToday = dateStr === todayStr;
+                        const isSelected = dateStr === selectedDate;
+                        const status = dayStatus(dateStr);
+                        const hasWeight = bodyWeightDates.has(dateStr);
+                        return (
+                          <button
+                            key={dateStr}
+                            onClick={() => setSelectedDate(dateStr)}
+                            className={`flex flex-col items-center gap-1 rounded-xl p-2 transition-all ${
+                              isSelected
+                                ? "bg-primary-container/15 ring-1 ring-primary-container"
+                                : isToday
+                                  ? "bg-surface-container-high/80"
+                                  : "bg-surface-container-low/50 hover:bg-surface-container-low"
+                            } ${inMonth ? "" : "opacity-30"}`}
+                          >
+                            <span className={`font-mono text-xs ${isToday ? "font-bold text-primary-container" : "text-on-surface"}`}>
+                              {date.getDate()}
+                            </span>
+                            <span className="flex h-1.5 items-center gap-0.5">
+                              <span
+                                className={`h-1.5 w-1.5 rounded-full ${
+                                  status === "done"
+                                    ? "bg-primary-container"
+                                    : status === "partial"
+                                      ? "bg-tertiary"
+                                      : "bg-transparent"
+                                }`}
+                              />
+                              {hasWeight && <span className="h-1.5 w-1.5 rounded-full bg-secondary" />}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 flex flex-wrap items-center gap-4 font-mono text-xs text-on-surface-variant">
+                  <span className="flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-primary-container" />
+                    {t("calendar.legendDone")}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-tertiary" />
+                    {t("calendar.legendPartial")}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-white/15" />
+                    {t("calendar.legendEmpty")}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-secondary" />
+                    {t("calendar.legendWeight")}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 오른쪽: 선택한 날짜 상세 패널 */}
+            <div className="rounded-2xl bg-white/[0.04] p-6 shadow-md backdrop-blur-xl xl:col-span-4">
+              <div className="flex items-center justify-between">
+                <h2 className="font-mono text-base font-semibold text-on-surface">{selectedDate}</h2>
                 <button
-                  onClick={goPrevMonth}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-zinc-400 hover:bg-white/5"
+                  onClick={() => setIsAdding((v) => !v)}
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.14] text-on-surface-variant hover:bg-white/[0.06]"
                 >
-                  <ChevronLeft size={16} />
-                </button>
-                <h2 className="w-36 text-center text-base font-semibold text-white">
-                  {t("calendar.monthLabel", { year, month: month + 1 })}
-                </h2>
-                <button
-                  onClick={goNextMonth}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-zinc-400 hover:bg-white/5"
-                >
-                  <ChevronRight size={16} />
+                  <MaterialIcon name="add" className="text-[16px]" />
                 </button>
               </div>
-              <button
-                onClick={goToday}
-                className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-zinc-300 hover:bg-white/5"
-              >
-                {t("calendar.today")}
-              </button>
-            </div>
 
-            <div className="mt-6 grid grid-cols-7 gap-1.5 text-center text-xs font-semibold text-zinc-500">
-              {dayLabels.map((label) => (
-                <span key={label}>{label}</span>
-              ))}
-            </div>
-
-            <div className="mt-2 space-y-1.5">
-              {weeks.map((week, wi) => (
-                <div key={wi} className="grid grid-cols-7 gap-1.5">
-                  {week.map((date) => {
-                    const dateStr = toDateStr(date);
-                    const inMonth = date.getMonth() === month;
-                    const isToday = dateStr === todayStr;
-                    const isSelected = dateStr === selectedDate;
-                    const status = dayStatus(dateStr);
-                    const hasWeight = bodyWeightDates.has(dateStr);
-                    return (
-                      <button
-                        key={dateStr}
-                        onClick={() => setSelectedDate(dateStr)}
-                        className={`flex flex-col items-center gap-1 rounded-xl border p-2 transition-colors ${
-                          isSelected
-                            ? "border-lime-400 bg-lime-400/10"
-                            : isToday
-                              ? "border-lime-400/40 bg-white/5"
-                              : "border-white/10 bg-white/5 hover:bg-white/10"
-                        } ${inMonth ? "" : "opacity-30"}`}
-                      >
-                        <span className={`text-xs ${isToday ? "font-bold text-lime-400" : "text-zinc-300"}`}>
-                          {date.getDate()}
-                        </span>
-                        <span className="flex h-1.5 items-center gap-0.5">
-                          <span
-                            className={`h-1.5 w-1.5 rounded-full ${
-                              status === "done"
-                                ? "bg-lime-400"
-                                : status === "partial"
-                                  ? "bg-amber-400"
-                                  : "bg-transparent"
-                            }`}
-                          />
-                          {hasWeight && <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-zinc-400">
-              <span className="flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-lime-400" />
-                {t("calendar.legendDone")}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-amber-400" />
-                {t("calendar.legendPartial")}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-white/15" />
-                {t("calendar.legendEmpty")}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-cyan-400" />
-                {t("calendar.legendWeight")}
-              </span>
-            </div>
-          </section>
-
-          <section className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-base font-semibold text-white">{selectedDate}</h2>
-              <button
-                onClick={() => setIsAdding((v) => !v)}
-                className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-zinc-400 hover:bg-white/5"
-              >
-                <Plus size={14} />
-              </button>
-            </div>
-
-            {isAdding && (
-              <form
-                onSubmit={handleAddRoutine}
-                className="mt-4 flex flex-wrap items-end gap-2 rounded-xl border border-white/10 bg-black/30 p-3"
-              >
-                <select
-                  value={newBodyPart}
-                  onChange={(e) => handleBodyPartChange(e.target.value)}
-                  className="rounded-lg border border-white/10 bg-white/5 px-2 py-1.5 text-sm text-white"
+              {isAdding && (
+                <form
+                  onSubmit={handleAddRoutine}
+                  className="mt-4 flex flex-col gap-2 rounded-xl border border-white/[0.08] bg-surface-container-lowest/60 p-3"
                 >
-                  {BODY_PARTS.map((part) => (
-                    <option key={part.code} value={part.code} className="bg-zinc-900">
-                      {bodyPartLabel(part.code, t)}
+                  <select
+                    value={newBodyPart}
+                    onChange={(e) => handleBodyPartChange(e.target.value)}
+                    className="rounded-lg border border-white/[0.08] bg-white/[0.04] px-2 py-1.5 text-sm text-on-surface"
+                  >
+                    {BODY_PARTS.map((part) => (
+                      <option key={part.code} value={part.code} className="bg-surface-container">
+                        {bodyPartLabel(part.code, t)}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    required
+                    value={newExerciseName}
+                    onChange={(e) => setNewExerciseName(e.target.value)}
+                    className="rounded-lg border border-white/[0.08] bg-white/[0.04] px-2 py-1.5 text-sm text-on-surface"
+                  >
+                    <option value="" disabled className="bg-surface-container">
+                      {t("common.selectExercise")}
                     </option>
-                  ))}
-                </select>
-                <select
-                  required
-                  value={newExerciseName}
-                  onChange={(e) => setNewExerciseName(e.target.value)}
-                  className="min-w-[140px] flex-1 rounded-lg border border-white/10 bg-white/5 px-2 py-1.5 text-sm text-white"
-                >
-                  <option value="" disabled className="bg-zinc-900">
-                    {t("common.selectExercise")}
-                  </option>
-                  {exercisesForNewRoutine.map((ex) => (
-                    <option key={ex.id} value={ex.name} className="bg-zinc-900">
-                      {ex.displayName}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="submit"
-                  className="rounded-lg bg-lime-400 px-4 py-1.5 text-sm font-semibold text-black hover:bg-lime-300"
-                >
-                  {t("common.add")}
-                </button>
-              </form>
-            )}
-
-            <ul className="mt-4 space-y-3">
-              {selectedRoutines.length === 0 && (
-                <li className="text-sm text-zinc-500">{t("routine.noRoutine")}</li>
+                    {exercisesForNewRoutine.map((ex) => (
+                      <option key={ex.id} value={ex.name} className="bg-surface-container">
+                        {ex.displayName}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    type="submit"
+                    className="rounded-lg bg-primary-container py-1.5 text-sm font-semibold text-on-primary-container hover:brightness-110"
+                  >
+                    {t("common.add")}
+                  </button>
+                </form>
               )}
-              {selectedRoutines.map((routine) => {
-                const isExpanded = expandedRoutineId === routine.id;
-                return (
-                  <li key={routine.id} className="rounded-lg">
-                    <div className="flex items-center justify-between">
-                      <button
-                        onClick={() => setExpandedRoutineId(isExpanded ? null : routine.id)}
-                        className="flex min-w-0 flex-1 items-center gap-3 text-left"
-                      >
-                        <span className="shrink-0 rounded-lg bg-lime-400/15 px-2 py-1 text-xs font-semibold text-lime-300">
-                          {bodyPartLabel(routine.bodyPart, t)}
-                        </span>
-                        <p className="truncate text-sm font-medium leading-tight text-white">
-                          {exerciseDisplayName(routine.exerciseName)}
-                        </p>
-                        {routine.fromTemplate && <Repeat size={12} className="shrink-0 text-zinc-500" />}
-                        {routine.sets.length > 0 && (
-                          <span className="shrink-0 text-xs text-zinc-500">
-                            {t("common.setCount", { n: routine.sets.length })}
+
+              <div className="mt-4 flex flex-col gap-2">
+                {selectedRoutines.length === 0 && (
+                  <p className="text-sm text-on-surface-variant">{t("routine.noRoutine")}</p>
+                )}
+                {selectedRoutines.map((routine) => {
+                  const isExpanded = expandedRoutineId === routine.id;
+                  return (
+                    <div key={routine.id} className="rounded-lg bg-surface-container-low/50 p-2">
+                      <div className="flex items-center justify-between">
+                        <button
+                          onClick={() => setExpandedRoutineId(isExpanded ? null : routine.id)}
+                          className="flex min-w-0 flex-1 items-center gap-2 text-left"
+                        >
+                          <span className="shrink-0 rounded-md bg-primary-container/15 px-2 py-1 text-xs font-semibold text-primary-container">
+                            {bodyPartLabel(routine.bodyPart, t)}
                           </span>
-                        )}
-                        {isExpanded ? (
-                          <ChevronUp size={14} className="shrink-0 text-zinc-500" />
-                        ) : (
-                          <ChevronDown size={14} className="shrink-0 text-zinc-500" />
-                        )}
-                      </button>
-                      <div className="flex shrink-0 items-center gap-3">
-                        <button onClick={() => handleToggle(routine.id)}>
-                          <CheckCircle2
-                            size={20}
-                            className={routine.done ? "text-lime-400" : "text-white/10"}
+                          <p className="truncate text-sm font-medium leading-tight text-on-surface">
+                            {exerciseDisplayName(routine.exerciseName)}
+                          </p>
+                          {routine.fromTemplate && (
+                            <MaterialIcon name="repeat" className="shrink-0 text-[12px] text-on-surface-variant" />
+                          )}
+                          {routine.sets.length > 0 && (
+                            <span className="shrink-0 font-mono text-xs text-on-surface-variant">
+                              {t("common.setCount", { n: routine.sets.length })}
+                            </span>
+                          )}
+                          <MaterialIcon
+                            name={isExpanded ? "expand_less" : "expand_more"}
+                            className="shrink-0 text-[14px] text-on-surface-variant"
                           />
                         </button>
-                        <button
-                          onClick={() => handleDelete(routine.id)}
-                          className="text-zinc-600 hover:text-rose-400"
-                        >
-                          <Trash2 size={16} />
-                        </button>
+                        <div className="flex shrink-0 items-center gap-2">
+                          <button onClick={() => handleToggle(routine.id)}>
+                            <MaterialIcon
+                              name="check_circle"
+                              className={`text-[18px] ${routine.done ? "text-primary-container" : "text-white/10"}`}
+                            />
+                          </button>
+                          <button onClick={() => handleDelete(routine.id)} className="text-on-surface-variant hover:text-error">
+                            <MaterialIcon name="delete" className="text-[16px]" />
+                          </button>
+                        </div>
                       </div>
+                      {isExpanded && <SetPanel routine={routine} onUpdate={handleRoutineUpdate} />}
                     </div>
-
-                    {isExpanded && <SetPanel routine={routine} onUpdate={handleRoutineUpdate} />}
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </main>
       </div>
     </div>
