@@ -67,6 +67,10 @@ Google Stitch로 만든 디자인 명세를 기반으로 전체 UI를 리디자�
 - 화면/기능 변경 후엔 항상 `npm run build`(frontend) / `./mvnw test`(backend, JAVA_HOME export 필수)로 검증
 - Notion에도 개발 일지·기능 구현 방식·DB 설계서를 기록 중 — 큰 변경사항은 Notion에도 반영 요청받을 수 있음
 
+## 체크인
+
+- 2026-09-16: 별도 개발 없이 체크인만(커밋 기록용).
+
 ## 아직 안 한 것 / 보류된 것
 
 - AI 어시스턴트 rate-limiting (보안 리뷰에서 발견, 명시적으로 "보류하자"고 결정됨)
