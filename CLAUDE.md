@@ -30,11 +30,10 @@ Google Stitch로 만든 디자인 명세를 기반으로 전체 UI를 리디자�
 
 - **폰트**: Inter(본문) + JetBrains Mono(숫자/지표) — `next/font/google`로 로드, `frontend/src/app/layout.tsx`
 - **아이콘**: Material Symbols Outlined(리게이처 기반). `frontend/src/components/material-icon.tsx`의 `<MaterialIcon name="..." />`로 사용. lucide-react는 대부분 제거했지만 `BodyPartIcon`(부위별 커스텀 아이콘)은 의도적으로 유지
-- **색상 토큰**: `frontend/src/app/globals.css`의 `@theme inline` 안에 정의된 Material Design 3 스타일 시맨틱 토큰 — `surface`, `surface-container`, `surface-container-lowest/low/high/highest`, `on-surface`, `on-surface-variant`, `primary`(`#ccff80`), `primary-container`(`#a3e635`), `on-primary-container`, `secondary`(`#4ae176`), `tertiary`(`#def1ff`), `error`(`#ffb4ab`) 등. 옛날 `bg-black`/`bg-zinc-*`/`bg-lime-400` 클래스는 전부 이 토큰으로 교체됨(단, `set-panel.tsx`는 스타일링 자체는 아직 옛 방식 — 기능만 수정했음, 필요시 리디자인 대상)
+- **색상 토큰**: `frontend/src/app/globals.css`의 `@theme inline` 안에 정의된 Material Design 3 스타일 시맨틱 토큰 — `surface`, `surface-container`, `surface-container-lowest/low/high/highest`, `on-surface`, `on-surface-variant`, `primary`(`#ccff80`), `primary-container`(`#a3e635`), `on-primary-container`, `secondary`(`#4ae176`), `tertiary`(`#def1ff`), `error`(`#ffb4ab`) 등. 옛날 `bg-black`/`bg-zinc-*`/`bg-lime-400` 클래스는 전부 이 토큰으로 교체됨
 - **카드 스타일**: 글래스모피즘 — `rounded-2xl bg-white/[0.04] backdrop-blur-xl shadow-md` 패턴, 주요 요소에는 라임색 "kinetic glow" box-shadow
 
-**리디자인 완료 화면**: 대시보드(`/`), 루틴(`/routine`), 캘린더(`/calendar`), 운동 도감(`/exercises`), 통계(`/stats`), 로그인(`/login`), 회원가입(`/signup`), AI 코치 위젯.
-**아직 옛 스타일인 곳**: `SetPanel`(세트 기록 패널, `frontend/src/components/set-panel.tsx`) — 기능 로직은 최신이지만 시각 스타일은 리디자인 이전 상태.
+**리디자인 완료 화면**: 대시보드(`/`), 루틴(`/routine`), 캘린더(`/calendar`), 운동 도감(`/exercises`), 통계(`/stats`), 로그인(`/login`), 회원가입(`/signup`), AI 코치 위젯, `SetPanel`(세트 기록 패널, 2026-09-17). 이제 전 화면이 토큰 적용 완료 상태.
 
 **리디자인 시 지킨 원칙**(다음 화면 작업 시에도 동일하게 적용):
 1. 기존 state/handler/API 호출은 100% 유지, 레이아웃/스타일만 교체
@@ -70,10 +69,12 @@ Google Stitch로 만든 디자인 명세를 기반으로 전체 UI를 리디자�
 ## 체크인
 
 - 2026-09-16: 별도 개발 없이 체크인만(커밋 기록용).
+- 2026-09-17: `SetPanel` 리디자인 완료 — Kinetic Obsidian 토큰 적용, lucide `Trash2`/`bg-lime-400` 등 옛 스타일 제거, MaterialIcon(`delete`, `military_tech`)으로 교체. 로직 변경 없음. 이메일 관련 기능(회원가입 인증 메일, 팀 초대 메일)은 논의만 하고 보류 — 서비스는 Resend로 정함(아직 미착수)
 
 ## 아직 안 한 것 / 보류된 것
 
 - AI 어시스턴트 rate-limiting (보안 리뷰에서 발견, 명시적으로 "보류하자"고 결정됨)
 - 카카오/라인 소셜 로그인 (구글만 우선 구현, 나중에 추가 검토)
-- 팀/그룹 기능 (대시보드에 더미 위젯만 존재, 실제 기능 없음)
-- `SetPanel` 컴포넌트 시각 리디자인 (기능은 최신, 스타일만 구버전)
+- 팀/그룹 기능 (대시보드에 더미 위젯만 존재, 실제 기능 없음) — 팀 초대 메일 기능은 이 기능이 먼저 있어야 붙일 수 있음
+- 회원가입 이메일 인증 (Resend로 하기로 결정, 아직 미착수)
+- 팀 초대 메일/카카오톡/라인 — 이메일은 Resend로 무료 가능. 카카오/라인은 "공유 버튼"(무료, 사용자가 직접 전달) 아니면 유료 비즈메시지(사업자 등록+건당 과금) 중 선택 필요, 아직 미결정
