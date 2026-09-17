@@ -29,13 +29,16 @@ const generalItems = [
   { labelKey: "nav.help", icon: "help" },
 ] as const;
 
-// 대시보드/루틴 페이지가 공용으로 쓰는 사이드바. pathname으로 현재 메뉴를 활성 표시함
+// 대시보드/루틴 페이지가 공용으로 쓰는 사이드바. pathname으로 현재 메뉴를 활성 표시함.
+// lg 미만(모바일/태블릿)에서는 사이드바 자체가 안 보이므로, 좌측 상단에 떠 있는
+// 메뉴 버튼 + 슬라이드인 드로어로 동일한 내비게이션을 제공함
 export function Sidebar() {
   const pathname = usePathname();
   const { logout } = useAuth();
   const { locale, setLocale, t } = useLanguage();
   const router = useRouter();
   const [tipKey, setTipKey] = useState(() => TIP_KEYS[Math.floor(Math.random() * TIP_KEYS.length)]);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -47,13 +50,19 @@ export function Sidebar() {
     return () => clearInterval(id);
   }, []);
 
+  // 페이지 이동하면 모바일 드로어는 자동으로 닫음
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   function handleLogout() {
     logout();
     router.push("/login");
   }
 
-  return (
-    <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col overflow-y-auto bg-surface-container-lowest/80 px-5 py-5 shadow-[0_1px_8px_rgba(0,0,0,0.5)] backdrop-blur-2xl lg:flex">
+  // 데스크톱 사이드바와 모바일 드로어가 그대로 공유하는 내용
+  const navContent = (
+    <>
       <div className="flex items-center justify-between px-1">
         <Link href="/" className="flex items-center gap-2">
           <Image src="/logo.png" alt={t("common.logoAlt")} width={32} height={32} className="rounded-xl" />
@@ -117,6 +126,34 @@ export function Sidebar() {
         </p>
         <p className="mt-1 text-xs leading-relaxed text-on-surface-variant">{t(tipKey)}</p>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* 데스크톱 사이드바 (lg 이상에서만 보임) */}
+      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col overflow-y-auto bg-surface-container-lowest/80 px-5 py-5 shadow-[0_1px_8px_rgba(0,0,0,0.5)] backdrop-blur-2xl lg:flex">
+        {navContent}
+      </aside>
+
+      {/* 모바일 메뉴 버튼 (lg 미만에서만 보임) — 사이드바가 안 보이는 화면에서 화면 이동 수단 */}
+      <button
+        onClick={() => setMobileOpen(true)}
+        aria-label={t("nav.menu")}
+        className="fixed left-4 top-4 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-surface-container-lowest/90 text-on-surface shadow-[0_4px_16px_rgba(0,0,0,0.4)] backdrop-blur-xl lg:hidden"
+      >
+        <MaterialIcon name="menu" className="text-[22px]" />
+      </button>
+
+      {/* 모바일 드로어 */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div className="absolute inset-0 bg-black/60" onClick={() => setMobileOpen(false)} />
+          <aside className="absolute left-0 top-0 flex h-full w-72 max-w-[80vw] flex-col overflow-y-auto bg-surface-container-lowest px-5 py-5 shadow-2xl">
+            {navContent}
+          </aside>
+        </div>
+      )}
+    </>
   );
 }

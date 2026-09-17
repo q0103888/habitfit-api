@@ -37,7 +37,7 @@ function ExerciseGallery() {
       <div className="pointer-events-none fixed left-0 right-0 top-0 z-0 h-[480px] bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(163,230,53,0.12),transparent_70%)]" />
       <Sidebar />
       <div className="relative z-10 min-w-0 flex-1">
-        <header className="border-b border-white/[0.08] bg-surface-container-lowest/60 px-6 py-4 backdrop-blur-xl lg:px-8">
+        <header className="border-b border-white/[0.08] bg-surface-container-lowest/60 py-4 pl-16 pr-6 backdrop-blur-xl lg:px-8">
           <h1 className="text-xl font-bold text-on-surface">{t("exercises.title")}</h1>
           <p className="mt-1 text-sm text-on-surface-variant">{t("exercises.subtitle")}</p>
         </header>

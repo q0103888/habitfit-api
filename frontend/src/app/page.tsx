@@ -296,7 +296,7 @@ function Dashboard() {
       {/* Main column */}
       <div className="relative z-10 min-w-0 flex-1">
         {/* Top bar */}
-        <header className="flex items-center gap-4 border-b border-white/[0.08] bg-surface-container-lowest/60 px-6 py-4 backdrop-blur-xl lg:px-8">
+        <header className="flex items-center gap-4 border-b border-white/[0.08] bg-surface-container-lowest/60 py-4 pl-16 pr-6 backdrop-blur-xl lg:px-8">
           <div className="flex flex-1 items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-2 text-sm text-on-surface-variant">
             <MaterialIcon name="search" className="text-[18px]" />
             <span>{t("dashboard.searchPlaceholder")}</span>
