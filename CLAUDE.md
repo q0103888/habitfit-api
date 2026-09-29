@@ -10,8 +10,11 @@
 - **프론트엔드**: `frontend/` — Next.js 16(App Router, Turbopack) + TypeScript + Tailwind CSS v4
 - **백엔드**: `backend/` — Spring Boot 3.5.3 + Java 21 + Spring Security(JWT) + Spring Data JPA + Flyway
 - **DB**: PostgreSQL 16
-- **배포**: 프론트 Vercel(`https://peakfit-ten.vercel.app`), 백엔드+DB Railway(`https://habitfit-api-production.up.railway.app`)
-  - Railway는 계속 유지하기로 결정함(대안으로 Render+Neon을 검토했으나 보류)
+- **배포**: 프론트 Vercel(`https://peakfit-ten.vercel.app`), 백엔드 Render(`https://habitfit-api.onrender.com`) + DB Neon
+  - 2026-09-29: Railway 무료 체험이 끝나 백엔드가 완전히 죽어서(`Application not found`) Render(백엔드)+Neon(DB)으로 이전함. 코드 변경은 전혀 없었음 — `application.properties`가 처음부터 `${DATABASE_URL:...}` 같은 환경변수 placeholder로만 돼있어서 대시보드 환경변수 교체만으로 이전 완료(DATABASE_URL/DATABASE_USERNAME/DATABASE_PASSWORD/JWT_SECRET/ANTHROPIC_API_KEY/GOOGLE_CLIENT_ID/CORS_ALLOWED_ORIGINS를 Render에, NEXT_PUBLIC_API_BASE_URL을 Vercel에 설정)
+  - **주의**: Render 무료 플랜은 일정 시간 미사용 시 슬립되고, 첫 요청 때 콜드스타트로 30초 정도 걸림
+  - **주의**: Next.js의 `NEXT_PUBLIC_*` 환경변수는 빌드 시점에 박히므로, 값만 바꾸고 재배포(redeploy)를 안 하면 반영 안 됨 — 이번에 실제로 이 문제로 한 번 헤맸음(`main` 브랜치에 새 커밋을 push해서 자동 재배포 트리거로 해결)
+  - Railway는 아예 서비스가 사라진 상태라 더 이상 유효한 배포처가 아님
 - GitHub: `q0103888/habitfit-api`
 
 ## 로컬 실행
@@ -71,6 +74,7 @@ Google Stitch로 만든 디자인 명세를 기반으로 전체 UI를 리디자�
 - 2026-09-16: 별도 개발 없이 체크인만(커밋 기록용).
 - 2026-09-17: `SetPanel` 리디자인 완료 — Kinetic Obsidian 토큰 적용, lucide `Trash2`/`bg-lime-400` 등 옛 스타일 제거, MaterialIcon(`delete`, `military_tech`)으로 교체. 로직 변경 없음. 이메일 관련 기능(회원가입 인증 메일, 팀 초대 메일)은 논의만 하고 보류 — 서비스는 Resend로 정함(아직 미착수)
 - 2026-09-17: 모바일 네비게이션 신규 추가 — `Sidebar`가 `hidden lg:flex`라 1024px 미만에서는 화면 이동 수단이 아예 없던 버그를 발견해서 수정. `frontend/src/components/sidebar.tsx`에 좌측 상단 플로팅 메뉴 버튼(`fixed left-4 top-4 lg:hidden`) + 슬라이드인 드로어(백드롭 클릭 또는 페이지 이동 시 자동 닫힘) 추가, 데스크톱 사이드바와 내용(`navContent`)을 그대로 공유. 각 페이지 헤더(`pl-16` 적용, 대시보드/루틴/캘린더/도감/통계 5개 파일)에 좌측 여백을 줘서 버튼과 안 겹치게 함. 실제로 회원가입 → 모바일 뷰포트(390px)에서 드로어 열기/메뉴 이동까지 브라우저로 확인 후 테스트 계정 삭제
+- 2026-09-29: Railway 무료 체험 종료로 백엔드가 죽어서 **Render(백엔드)+Neon(DB)으로 이전**. 코드 변경 없이 환경변수 교체만으로 끝남(위 "배포" 섹션 참고). 새 백엔드 주소는 `https://habitfit-api.onrender.com`. 이전 과정에서 main 브랜치가 v5보다 뒤처져있던 것도 발견해서 `git push origin v5:main`으로 따라잡음(SetPanel 리디자인 + 모바일 네비 커밋이 그동안 배포에 반영 안 되고 있었음). `test1234@naver.com` 계정으로 4주치 더미 데이터(루틴 템플릿 12개 + 세트 기록 + 몸무게) 다시 시딩함 — 방식은 실제 프로덕션 API를 스크립트로 호출하는 것(DB 직접 접근 아님), 스크립트는 세션 스크래치패드에 있어 세션 종료 시 사라짐. README에도 배포 주소 추가함
 
 ## 아직 안 한 것 / 보류된 것
 
