@@ -5,6 +5,7 @@ import com.peakfit.backend.user.UserRepository;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -137,6 +138,22 @@ public class RoutineService {
                         })
                 .filter(p -> p.totalSets() > 0)
                 .toList();
+    }
+
+    // 특정 운동의 역대 개인 최고 기록 — exerciseHistory()가 계산한 일별 데이터 중 최고값만 뽑음
+    public PersonalRecordResponse personalRecord(String email, String exerciseName) {
+        List<ExerciseHistoryPoint> history = exerciseHistory(email, exerciseName);
+        if (history.isEmpty()) return new PersonalRecordResponse(false, null, null, null);
+
+        boolean cardio = history.get(0).totalDurationMin() != null;
+        if (cardio) {
+            ExerciseHistoryPoint best =
+                    history.stream().max(Comparator.comparingInt(ExerciseHistoryPoint::totalDurationMin)).get();
+            return new PersonalRecordResponse(true, best.date(), null, best.totalDurationMin());
+        }
+        ExerciseHistoryPoint best =
+                history.stream().max(Comparator.comparingDouble(ExerciseHistoryPoint::maxWeightKg)).get();
+        return new PersonalRecordResponse(true, best.date(), best.maxWeightKg(), null);
     }
 
     private boolean isCardio(WorkoutRoutine routine) {

@@ -27,6 +27,13 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", e.getMessage()));
     }
 
+    // AssistantRateLimiter가 던진 RateLimitExceededException(AI 코치 하루 호출 한도 초과)을 낚아챔
+    @ExceptionHandler(RateLimitExceededException.class)
+    public ResponseEntity<Map<String, String>> handleRateLimit(RateLimitExceededException e) {
+        // 429 Too Many Requests + 에러 메시지
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(Map.of("message", e.getMessage()));
+    }
+
     // AuthController의 @Valid 검증(3단계 @NotBlank, @Email, @Past 등)이 실패하면
     // 스프링이 자동으로 이 예외를 던짐 — 그걸 여기서 낚아챔
     @ExceptionHandler(MethodArgumentNotValidException.class)
