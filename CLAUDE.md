@@ -84,7 +84,17 @@ Google Stitch로 만든 디자인 명세를 기반으로 전체 UI를 리디자�
 - 화면/기능 변경 후엔 항상 `npm run build`(frontend) / `./mvnw test`(backend, JAVA_HOME export 필수)로 검증
 - UI 변경은 가능하면 실제 브라우저(chrome-devtools)로 확인 — 특히 모바일 뷰포트 등 레이아웃 관련 변경은 필수
 - 프로덕션 DB/서버에 직접 접근하는 대신, 가능하면 실제 API를 호출하는 스크립트로 처리(더 안전함)
+
+## 트리거 키워드
+
+사용자가 **"테스트커밋"**이라고 말하면 아래를 순서대로 자동 실행:
+1. 프론트엔드: `npm run build && npm run test`
+2. 백엔드: `JAVA_HOME=/usr/local/Cellar/openjdk@21/21.0.12/libexec/openjdk.jdk/Contents/Home ./mvnw test`
+3. 둘 다 통과하면: `git status`로 `.env` 등 의도치 않은 파일 없는지 확인 → 변경된 파일만 `git add` → 일본어 커밋 메시지(+ 위의 Co-Authored-By/Claude-Session footer)로 커밋 → **현재 작업 브랜치**(main이 아님)에 push
+4. 하나라도 실패하면 커밋/푸시하지 말고 실패 원인만 보고
+- main으로 병합하는 것까지는 포함 안 함(위 "main에는 직접 push 금지, 항상 PR로" 규칙에 따라 PR은 별도 요청 시에만)
 - Notion에도 개발 일지·기능 구현 방식·DB 설계서를 기록 중 — 큰 변경사항은 Notion에도 반영 요청받을 수 있음
+5. push 완료 후 결과 요약 출력
 
 ## 아직 안 한 것 / 보류된 것
 
