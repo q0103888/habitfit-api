@@ -258,6 +258,35 @@ export function getExerciseHistory(exerciseName: string) {
   );
 }
 
+// 통계 화면 운동 상세 카드의 "역대 최고 기록 달성일" 표시용.
+// 최고값 자체는 history에서도 계산 가능하지만, 그걸 언제 달성했는지는 이 API로만 알 수 있음
+export type PersonalRecord = {
+  hasRecord: boolean;
+  date: string | null;
+  maxWeightKg: number | null;
+  totalDurationMin: number | null;
+};
+
+export function getPersonalRecord(exerciseName: string) {
+  return request<PersonalRecord>(
+    `/api/routines/personal-record?exerciseName=${encodeURIComponent(exerciseName)}`,
+  );
+}
+
+// 대시보드 "이번 주 목표" 카드용 — 목표 일수(1~7). 실제 진행률은 이미 불러온 주간 루틴에서 계산
+export type WeeklyGoal = { weeklyGoalDays: number };
+
+export function getWeeklyGoal() {
+  return request<WeeklyGoal>("/api/users/me/weekly-goal");
+}
+
+export function updateWeeklyGoal(weeklyGoalDays: number) {
+  return request<WeeklyGoal>("/api/users/me/weekly-goal", {
+    method: "PATCH",
+    body: JSON.stringify({ weeklyGoalDays }),
+  });
+}
+
 // 통계 화면의 부위별 비중 도넛차트용 — 최근 30일간 부위별 루틴 횟수
 export type BodyPartSummaryPoint = { bodyPart: string; count: number };
 

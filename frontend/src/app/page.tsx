@@ -17,6 +17,8 @@ import {
   getExercises,
   getBodyWeightLogs,
   recordBodyWeight,
+  getWeeklyGoal,
+  updateWeeklyGoal,
   type Routine,
   type Exercise,
   type BodyWeightLog,
@@ -174,6 +176,8 @@ function Dashboard() {
   const [bodyWeight, setBodyWeight] = useState("");
   const [bodyWeightLogs, setBodyWeightLogs] = useState<BodyWeightLog[]>([]);
   const [latestBodyWeight, setLatestBodyWeight] = useState<number | null>(null);
+  const [weeklyGoalDays, setWeeklyGoalDays] = useState(3);
+  const [editingGoal, setEditingGoal] = useState(false);
 
   useEffect(() => {
     getWeekRoutines().then(setWeekRoutines);
@@ -182,7 +186,14 @@ function Dashboard() {
       setBodyWeightLogs(logs);
       if (logs.length > 0) setLatestBodyWeight(logs[logs.length - 1].weightKg);
     });
+    getWeeklyGoal().then((g) => setWeeklyGoalDays(g.weeklyGoalDays));
   }, []);
+
+  async function handleGoalChange(days: number) {
+    setWeeklyGoalDays(days);
+    setEditingGoal(false);
+    await updateWeeklyGoal(days);
+  }
 
   // 운동 카탈로그는 언어 전환 시 표시 이름(displayName)이 바뀌므로 locale이 바뀔 때마다 다시 불러옴
   useEffect(() => {
@@ -276,9 +287,12 @@ function Dashboard() {
     };
   });
 
-  const weeklyGoalPct = weekRoutines.length
-    ? Math.round((weekRoutines.filter((r) => r.done).length / weekRoutines.length) * 100)
-    : 0;
+  // "목표"는 총 루틴 대비 완료율이 아니라, 사용자가 정한 주간 목표 일수 대비
+  // 실제로 운동을 완료한 날짜 수(중복 제거) — 달성일이 하루면 그날 루틴이 몇 개든 1일로 침
+  const daysCompletedThisWeek = new Set(
+    weekRoutines.filter((r) => r.done).map((r) => r.scheduledDate),
+  ).size;
+  const weeklyGoalPct = Math.min(100, Math.round((daysCompletedThisWeek / weeklyGoalDays) * 100));
 
   // 이번 주 전체 세트의 무게 x 횟수 합 — Stitch의 "Gross Volume" 카드에 해당하는 실제 지표
   const weeklyVolumeKg = weekRoutines.reduce(
@@ -431,9 +445,34 @@ function Dashboard() {
 
             <div className="flex flex-col gap-4 lg:col-span-4">
               <div className="flex flex-1 flex-col items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.04] p-6 backdrop-blur-xl">
-                <span className="self-start font-mono text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">
-                  {t("dashboard.weeklyGoalRate")}
-                </span>
+                <div className="flex w-full items-center justify-between">
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">
+                    {t("dashboard.weeklyGoalRate")}
+                  </span>
+                  {editingGoal ? (
+                    <select
+                      autoFocus
+                      value={weeklyGoalDays}
+                      onChange={(e) => handleGoalChange(Number(e.target.value))}
+                      onBlur={() => setEditingGoal(false)}
+                      className="rounded-md border border-white/[0.14] bg-surface-container-lowest px-1.5 py-0.5 text-xs text-on-surface"
+                    >
+                      {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+                        <option key={n} value={n} className="bg-surface-container">
+                          {n}
+                          {t("dashboard.dayUnit")}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <button
+                      onClick={() => setEditingGoal(true)}
+                      className="text-on-surface-variant hover:text-primary-container"
+                    >
+                      <MaterialIcon name="edit" className="text-[14px]" />
+                    </button>
+                  )}
+                </div>
                 <div className="relative my-2 flex h-32 w-32 items-center justify-center">
                   <svg className="h-32 w-32 -rotate-90" viewBox="0 0 120 120">
                     <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="9" />
@@ -451,7 +490,10 @@ function Dashboard() {
                     />
                   </svg>
                   <div className="absolute flex flex-col items-center">
-                    <span className="font-mono text-2xl font-bold text-on-surface">{weeklyGoalPct}%</span>
+                    <span className="font-mono text-2xl font-bold text-on-surface">
+                      {daysCompletedThisWeek}/{weeklyGoalDays}
+                      {t("dashboard.dayUnit")}
+                    </span>
                   </div>
                 </div>
                 <p className="text-center text-xs text-on-surface-variant">{t("dashboard.weeklyGoalHint")}</p>

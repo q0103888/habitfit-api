@@ -99,6 +99,13 @@ public class RoutineController {
         return ResponseEntity.ok(routineService.exerciseHistory(principal.getName(), exerciseName));
     }
 
+    // 특정 운동의 역대 개인 최고 기록(PR) — 일반 운동은 최고 무게, 유산소는 최장 시간
+    @GetMapping("/personal-record")
+    public ResponseEntity<PersonalRecordResponse> personalRecord(
+            Principal principal, @RequestParam String exerciseName) {
+        return ResponseEntity.ok(routineService.personalRecord(principal.getName(), exerciseName));
+    }
+
     // 최근 30일 부위별 운동 비중 (통계 화면 도넛차트용)
     @GetMapping("/summary")
     public ResponseEntity<List<BodyPartSummaryPoint>> bodyPartSummary(Principal principal) {

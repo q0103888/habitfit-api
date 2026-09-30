@@ -10,11 +10,13 @@ import {
   getBodyWeightLogs,
   getExercises,
   getExerciseHistory,
+  getPersonalRecord,
   getBodyPartSummary,
   getRecoveryStatus,
   type BodyWeightLog,
   type Exercise,
   type ExerciseHistoryPoint,
+  type PersonalRecord,
   type BodyPartSummaryPoint,
   type BodyPartRecoveryPoint,
 } from "@/lib/api";
@@ -46,6 +48,7 @@ function Stats() {
   const [selectedBodyPart, setSelectedBodyPart] = useState(BODY_PARTS[0].code);
   const [selectedExercise, setSelectedExercise] = useState("");
   const [history, setHistory] = useState<ExerciseHistoryPoint[]>([]);
+  const [personalRecord, setPersonalRecord] = useState<PersonalRecord | null>(null);
   const [bodyPartSummary, setBodyPartSummary] = useState<BodyPartSummaryPoint[]>([]);
   const [bigThree, setBigThree] = useState<Record<string, number>>({});
   const [recovery, setRecovery] = useState<BodyPartRecoveryPoint[]>([]);
@@ -73,6 +76,7 @@ function Stats() {
   useEffect(() => {
     if (!selectedExercise) return;
     getExerciseHistory(selectedExercise).then(setHistory);
+    getPersonalRecord(selectedExercise).then(setPersonalRecord);
   }, [selectedExercise]);
 
   const exercisesForPart = exercises.filter((ex) => ex.bodyPart === selectedBodyPart);
@@ -321,6 +325,11 @@ function Stats() {
                       <p className="mt-1 font-mono text-lg font-bold text-primary-container">
                         {history.length ? `${allTimeMax}분` : "-"}
                       </p>
+                      {personalRecord?.hasRecord && personalRecord.date && (
+                        <p className="mt-0.5 text-[11px] text-on-surface-variant">
+                          {t("stats.recordDate", { date: personalRecord.date })}
+                        </p>
+                      )}
                     </div>
                   </>
                 ) : (
@@ -336,6 +345,11 @@ function Stats() {
                       <p className="mt-1 font-mono text-lg font-bold text-primary-container">
                         {history.length ? `${allTimeMax}kg` : "-"}
                       </p>
+                      {personalRecord?.hasRecord && personalRecord.date && (
+                        <p className="mt-0.5 text-[11px] text-on-surface-variant">
+                          {t("stats.recordDate", { date: personalRecord.date })}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <p className="text-xs text-on-surface-variant">{t("stats.recentVolume")}</p>

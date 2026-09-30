@@ -51,6 +51,10 @@ public class User {
 
     private String timezone = "Asia/Seoul";
 
+    // 주간 운동 목표(일수, 1~7). 대시보드 "이번 주 목표" 진행률 계산 기준
+    @Column(name = "weekly_goal_days", nullable = false)
+    private int weeklyGoalDays = 3;
+
     // 가입 시각. updatable = false라 한번 저장되면 이후 수정 쿼리에 절대 포함되지 않음
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt = Instant.now();

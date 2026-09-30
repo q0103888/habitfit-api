@@ -27,13 +27,16 @@ public class AssistantService {
 
     private final AnthropicClient client;
     private final String model;
+    private final AssistantRateLimiter rateLimiter;
 
     public AssistantService(
             @Value("${app.anthropic.api-key}") String apiKey,
             @Value("${app.anthropic.model}") String model,
-            RoutineService routineService) {
+            RoutineService routineService,
+            AssistantRateLimiter rateLimiter) {
         this.client = AnthropicOkHttpClient.builder().apiKey(apiKey).build();
         this.model = model;
+        this.rateLimiter = rateLimiter;
         // 도구 클래스는 SDK가 리플렉션으로 직접 생성해서 생성자로 값을 못 넘겨줌 —
         // 앱 전체에 하나뿐인 RoutineService 싱글턴은 여기서 한 번만 정적 필드에 꽂아둠
         ToolContext.routineService = routineService;
@@ -44,6 +47,8 @@ public class AssistantService {
     // history는 프론트(localStorage)가 보낸 이전 대화 — Claude API는 매 요청이 독립적이라
     // 이어서 대화하려면 이전 질문/답변을 다시 메시지로 재구성해서 앞에 붙여줘야 함
     public String ask(String email, String question, List<AskRequest.HistoryItem> history) {
+        // Claude API 호출(비용 발생) 전에 먼저 체크 — 한도 초과 시 API 호출 자체를 안 함
+        rateLimiter.checkAndRecord(email);
         ToolContext.email.set(email);
         try {
             MessageCreateParams.Builder builder =
