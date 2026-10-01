@@ -12,7 +12,7 @@
 - **DB**: PostgreSQL 16
 - **배포**: 프론트 [Vercel](https://peakfit-ten.vercel.app), 백엔드 [Render](https://habitfit-api.onrender.com) + DB [Neon](https://neon.tech) — 자세한 이전 경위/주의사항은 "배포 인프라" 섹션 참고
 - GitHub: `q0103888/habitfit-api`
-- **현재 작업 브랜치**: `v6` (main과 동일 지점에서 시작, 아직 이 브랜치 자체 커밋 없음)
+- **현재 작업 브랜치**: `v7` (v6은 PR #2로 main에 머지 완료, main과 동일 지점에서 새로 시작, 아직 이 브랜치 자체 커밋 없음)
 
 ## 로컬 실행
 
@@ -23,6 +23,8 @@ cd frontend && npm install && npm run dev # 반드시 포트 3100 (package.json�
 ```
 
 로컬 `java` 기본값은 Java 11이므로 `./mvnw` 실행 전 항상 `JAVA_HOME`을 위처럼 export해야 함.
+
+**로컬 시크릿(`ANTHROPIC_API_KEY` 등)**: `backend/.env`(gitignore 대상)에 넣어두면 부팅 시 자동으로 읽힘 — `spring.config.import=optional:file:.env[.properties]`(`application.properties`, 새 의존성 없이 Spring Boot 내장 기능). 템플릿은 `backend/.env.example` 참고. 2026-10-01에 로컬에서 AI 코치가 "x-api-key header is required"로 터진 적 있었는데, 원인은 `ANTHROPIC_API_KEY`가 로컬 어디에도(`.env`/쉘 프로필/히스토리) 설정된 적이 없었던 것 — 지금까지 로컬에서는 AI 코치를 제대로 테스트한 적이 없었다는 뜻이라 주의.
 
 ## 배포 인프라
 

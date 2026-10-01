@@ -17,6 +17,7 @@ const TIP_ROTATE_MS = 30_000; // 30초마다 랜덤 교체
 const navItems = [
   { labelKey: "nav.dashboard", icon: "grid_view", href: "/" },
   { labelKey: "nav.routine", icon: "fitness_center", href: "/routine" },
+  { labelKey: "nav.aiRoutine", icon: "auto_awesome", href: "/routine/ai-generate" },
   { labelKey: "nav.exercises", icon: "menu_book", href: "/exercises" },
   { labelKey: "nav.calendar", icon: "calendar_today", href: "/calendar" },
   { labelKey: "nav.stats", icon: "insights", href: "/stats" },
