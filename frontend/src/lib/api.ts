@@ -305,6 +305,30 @@ export function askAssistant(question: string, history: AssistantHistoryItem[]) 
   });
 }
 
+// AI 루틴 자동 생성 — 분할/부위/세션 시간/숙련도를 주면 요일별 루틴을 짜서 돌려줌(저장은 안 됨, 미리보기용)
+export type RoutinePlanDaySplit = { dayOfWeek: (typeof WEEKDAYS)[number]; bodyParts: string[] };
+
+export type RoutinePlanRequestBody = {
+  days: RoutinePlanDaySplit[];
+  sessionDurationMin: number;
+  level: "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
+};
+
+export type PlannedExercise = {
+  dayOfWeek: (typeof WEEKDAYS)[number];
+  bodyPart: string;
+  exerciseName: string;
+};
+
+export type RoutinePlan = { plan: PlannedExercise[] };
+
+export function generateRoutinePlan(data: RoutinePlanRequestBody) {
+  return request<RoutinePlan>("/api/assistant/routine-plan", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+}
+
 // 통계 화면의 부위별 회복 상태 카드용 — 그 부위를 마지막으로 완료한 날짜(기록 없으면 목록에 안 나옴)
 export type BodyPartRecoveryPoint = { bodyPart: string; lastTrainedDate: string };
 

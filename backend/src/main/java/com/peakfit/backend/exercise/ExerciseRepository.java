@@ -1,6 +1,10 @@
 package com.peakfit.backend.exercise;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-// 커스텀 조회 메서드 없이 JpaRepository 기본 CRUD(findAll, save, count 등)만 그대로 씀
-public interface ExerciseRepository extends JpaRepository<Exercise, Long> {}
+public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
+
+    // AI 루틴 생성 시 실제로 필요한 부위만 추려서 Claude에게 넘길 때 씀 (전체 460개를 다 줄 필요 없음)
+    List<Exercise> findByBodyPartIn(List<String> bodyParts);
+}
